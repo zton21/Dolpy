@@ -3,6 +3,11 @@
     width:100%;
     height:80vh;
 }
+
+#benefit .container {
+    height: 80vh;
+}
+
 </style>
 <div class="background position-absolute row">
     <svg width="597" height="874" viewBox="0 0 597 874" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,10 +33,10 @@
         </defs>
     </svg> 
 </div>
-<div class="container">
+<div class="container d-flex">
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-8">
+        <div class="col-8 desc my-auto">
             <div class="row fs-2 fw-bold mb-2">Let developers focus on code</div>
             <div class="row fs-5 mb-4">Lorem ipsum dolor sit amet. Non laboriosam voluptates ut illo ipsum sed quia accusantium sed autem placeat! Sit delectus numquam et quas veniam ut galisum nihil qui libero unde ut ipsum beatae ut quam facilis aut cupiditate omnis. Et harum natus ut eaque incidunt et mollitia nihil. Ad doloremque dolor est quia delectus non galisum culpa.</div>
             <div class="row fs-2 fw-bold mb-2">How it works?</div>
