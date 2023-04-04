@@ -8,8 +8,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Dolpy</title>
+  <style>
+    /* div{
+        border: 1px solid black;
+    } */
+</style>
 </head>
 <body>
-  
+  <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email...">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword" placeholder="Enter your password...">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm">
+          One of three columns
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
