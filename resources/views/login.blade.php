@@ -7,5 +7,3 @@
     <h3 class="text-center">Maaf anda ga bisa login hehee</h3>
   </div>
 @endsection
-
-<!--  -->
