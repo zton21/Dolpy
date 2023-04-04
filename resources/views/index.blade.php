@@ -50,7 +50,7 @@
         @include('subviews.pricing')
     </div>
     <div class="section" id="about">
-        @include('subviews.pricing')
+        @include('subviews.about')
     </div>
     <div class="section" id="footer">
         @include('subviews.footer')
