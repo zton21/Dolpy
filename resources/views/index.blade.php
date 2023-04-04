@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolpy</title>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">
     <nav class="navbar navbar-expand-sm navbar-light fixed-top w-100 transition-1">
         <div class="container d-flex justify-content-between w-100 px-0 py-2">
             <div class="flex-fill brand">
@@ -20,10 +20,10 @@
             </div>
             <div class="flex-fill collapse navbar-collapse" id="navigations">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <a class="text-neutral-10 nav-item nav-link {{Request::path() == 'feature' ? 'active' : '';}}" href="/feature">Features</a>
-                    <a class="text-neutral-10 nav-item nav-link {{Request::path() == 'solution' ? 'active' : '';}}" href="/solution">Solution</a>
-                    <a class="text-neutral-10 nav-item nav-link {{Request::path() == 'pricing' ? 'active' : '';}}" href="pricing">Pricing</a>
-                    <a class="text-neutral-10 nav-item nav-link {{Request::path() == 'about' ? 'active' : '';}}" href="/about">About Us</a>
+                    <a class="text-neutral-10 nav-item nav-link" href="#benefit">Benefits</a>
+                    <a class="text-neutral-10 nav-item nav-link" href="#feature">Features</a>
+                    <a class="text-neutral-10 nav-item nav-link" href="#pricing">Pricing</a>
+                    <a class="text-neutral-10 nav-item nav-link" href="#about">About Us</a>
                 </ul>
             </div>
             <div id="flex-fill logreg">
