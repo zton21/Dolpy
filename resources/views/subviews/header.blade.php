@@ -1,14 +1,17 @@
 <style>
-.background {
-    top:-15vh;
+#header .background {
+    top:-35vh;
     z-index: -1;
 }
 #watch {
     width: fit-content !important;
 }
+#header svg {
+    width: 100vw;
+}
 </style>
 <div class="background position-absolute">
-    <svg width="1440" height="793" viewBox="0 0 1440 793" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1440 793" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_60_37)">
         <path d="M-1 784V0H1442V633.251C1442 633.251 1241.56 729.924 1072 714C902.441 698.076 695.241 633.251 413.644 672C132.046 710.749 -1 784 -1 784Z" fill="url(#paint0_linear_60_37)"/>
         {{-- <path d="M-1 784V0H1442V633.251C1442 633.251 1241.56 729.924 1072 714C902.441 698.076 695.241 633.251 413.644 672C132.046 710.749 -1 784 -1 784Z" stroke="black"/> --}}

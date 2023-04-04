@@ -12,26 +12,29 @@
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">
     <nav class="navbar navbar-expand-sm navbar-light fixed-top w-100 transition-1">
-        <div class="container d-flex justify-content-between w-100 px-0 py-2">
-            <div class="flex-fill brand">
-                <a class="text-neutral-10 navbar-brand" href="/index" >
-                    Dolpy
+        <div class="container justify-content-between w-100 px-0 py-1">
+            <div class="brand">
+                <a class="text-neutral-10 navbar-brand fw-bold fs-3" href="/index" >
+                    <div class="d-inline-block" style="max-width:8vh;">
+                        <img src="{{URL::asset('img/logo.png')}}" alt="Logo" class="img-fluid" >
+                    </div>
+                    <div class="d-inline ms-2">Dolpy</div> 
                 </a>
             </div>
-            <div class="flex-fill collapse navbar-collapse" id="navigations">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <div class="collapse navbar-collapse" id="navigations">
+                <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <a class="text-neutral-10 nav-item nav-link" href="#benefit">Benefits</a>
                     <a class="text-neutral-10 nav-item nav-link" href="#feature">Features</a>
                     <a class="text-neutral-10 nav-item nav-link" href="#pricing">Pricing</a>
                     <a class="text-neutral-10 nav-item nav-link" href="#about">About Us</a>
                 </ul>
             </div>
-            <div id="flex-fill logreg">
+            <div id="logreg">
                 <ul class="navbar-nav mt-2 mt-lg-0">
-                    <a class="btn btn-primary nav-item nav-link" href="#" role="button">Get Started</a>
+                    <a class="px-4 btn btn-primary nav-item nav-link" href="#" role="button">Get Started</a>
                 </ul>
             </div>
-            <button class="flex-fill navbar-toggler" type="button" data-toggle="collapse" data-target="#navigations,#logreg" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigations,#logreg" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -50,7 +53,7 @@
         @include('subviews.pricing')
     </div>
     <div class="section" id="about">
-        @include('subviews.pricing')
+        @include('subviews.about')
     </div>
     <div class="section" id="footer">
         @include('subviews.footer')
