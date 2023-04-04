@@ -1,6 +1,6 @@
 <style>
-.background {
-    top:-15vh;
+#header .background {
+    top:-35vh;
     z-index: -1;
 }
 #watch {
