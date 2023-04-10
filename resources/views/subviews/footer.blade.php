@@ -1,12 +1,37 @@
 <div class="container-fluid" style="background-color:#05204B; color:white">
     <div class="container">
-        <div class="row p-5">
-            Bagian Atas
+        <div class="row p-4">
+            <div class="col-md-4 justify-content-center align-items-center d-flex">
+                <div class="brand">
+                    <a class="text-neutral-10 navbar-brand fw-bold fs-3" href="/index">
+                        <div class="d-inline-block" style="max-width:8vh;">
+                            <img src="http://localhost:8000/img/logo.png" alt="Logo" class="img-fluid">
+                        </div>
+                        <div class="d-inline ms-2 fs-1">Dolpy</div> 
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4 d-flex flex-column gap-1">
+                        <div class="fs-4">About Dolpy</div>
+                        <div class="fs-6">What's behind the boards</div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column gap-1">
+                        <div class="fs-4">Dolpy Apps</div>
+                        <div class="fs-6">Download the Dolpy App for your mobile in playstore</div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column gap-1">
+                        <div class="fs-4">Contact Us</div>
+                        <div class="fs-6">Need anything? Get in touch and we can help</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <hr class="vw-100 m-0" style="color:#A3A3A5">
     <div class="container">
-        <div class="row p-4">
+        <div class="row py-4">
             <div class="col-md-3 d-flex flex-row align-items-center gap-5">
                 <div class="d-flex flex-row align-items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
