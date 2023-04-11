@@ -13,10 +13,10 @@
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">    
     @include('index.nav')
-    <div class="section px-md-0 px-2 bg-success" id="header">
+    <div class="section px-md-0 px-2" id="header">
         @include('index.header')
     </div>
-    <div class="section px-md-0 px-2 bg-danger" id="benefit">
+    <div class="section px-md-0 px-2" id="benefit">
         @include('index.benefit')
     </div>
     <div class="section px-md-0 px-2" id="feature">

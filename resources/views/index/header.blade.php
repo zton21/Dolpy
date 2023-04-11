@@ -1,6 +1,6 @@
 <style>
 #header .background {
-    top:-35vh;
+    top: calc(90% - 200vw);
     z-index: -1;
 }
 #watch {
@@ -11,28 +11,15 @@
 }
 </style>
 <div class="background position-absolute">
-    <svg viewBox="0 0 1440 793" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_d_60_37)">
-        <path d="M-1 784V0H1442V633.251C1442 633.251 1241.56 729.924 1072 714C902.441 698.076 695.241 633.251 413.644 672C132.046 710.749 -1 784 -1 784Z" fill="url(#paint0_linear_60_37)"/>
-        {{-- <path d="M-1 784V0H1442V633.251C1442 633.251 1241.56 729.924 1072 714C902.441 698.076 695.241 633.251 413.644 672C132.046 710.749 -1 784 -1 784Z" stroke="black"/> --}}
-        </g>
-        <defs>
-        <filter id="filter0_d_60_37" x="-5.5" y="-0.5" width="1452" height="793.346" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-        <feOffset dy="4"/>
-        <feGaussianBlur stdDeviation="2"/>
-        <feComposite in2="hardAlpha" operator="out"/>
-        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_60_37"/>
-        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_60_37" result="shape"/>
-        </filter>
-        <linearGradient id="paint0_linear_60_37" x1="88.531" y1="724.019" x2="1304.23" y2="144.255" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#3980F3"/>
-        <stop offset="1" stop-color="#00B8D9"/>
-        </linearGradient>
-        </defs>
-    </svg>        
+    <svg viewBox="0 0 1443 2980" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 2979.5V0H1443V2828.75C1443 2828.75 1242.56 2925.42 1073 2909.5C903.441 2893.58 696.241 2828.75 414.644 2867.5C133.046 2906.25 0 2979.5 0 2979.5Z" fill="url(#paint0_linear_345_314)"/>
+    <defs>
+    <linearGradient id="paint0_linear_345_314" x1="89.531" y1="2919.52" x2="1305.23" y2="2339.75" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#3980F3"/>
+    <stop offset="1" stop-color="#00B8D9"/>
+    </linearGradient>
+    </defs>
+    </svg>
 </div>
 <div class="container">
     <div class="row">
