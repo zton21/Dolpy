@@ -36,7 +36,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-6 the-prologue text-neutral-10">
+        <div class="col-md-6 the-prologue text-neutral-10">
             <p class="row fw-bold display-4">Dolpy brings all your task, teammates, and tools together</b></p>
             <h3 class="row fw-normal fs-5 mb-4">Keep everything in the same place—even if your team isn’t.</h3>
             <form class="row my-5">
@@ -50,6 +50,9 @@
                     <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
                 </svg>
             </a>
+        </div>
+        <div class="col-md-6 text-end">
+            <img class="img-fluid h-100" src="{{URL::asset('img/dolpy_ads.png')}}">
         </div>
     </div>
 </div>
