@@ -19,7 +19,7 @@ body {
 
 .section {
     position: relative;
-    height: 100vh;
+    padding-bottom: 10vh;
 }
 
 nav::before {
