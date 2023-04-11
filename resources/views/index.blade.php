@@ -41,22 +41,22 @@
     </nav>   
 
     <div class="section" id="header">
-        @include('subviews.header')
+        @include('index.header')
     </div>
     <div class="section" id="benefit">
-        @include('subviews.benefit')
+        @include('index.benefit')
     </div>
     <div class="section" id="feature">
-        @include('subviews.feature')
+        @include('index.feature')
     </div>
     <div class="section" id="pricing">
-        @include('subviews.pricing')
+        @include('index.pricing')
     </div>
     <div class="section" id="about">
-        @include('subviews.about')
+        @include('index.about')
     </div>
     <div class="section" id="footer">
-        @include('subviews.footer')
+        @include('index.footer')
     </div>
 
 </body>
