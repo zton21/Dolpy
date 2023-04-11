@@ -17,7 +17,7 @@
     <div class="d-flex align-items-center justify-content-center" style="height:100vh">
       <div class="container">
         <div class="row h-100">
-          <div class="col-lg-6 col-md-6 col-sm-12 align-items-center order-0">
+          <div class="col-lg-6 col-md-6 col-sm-12 p-4 p-md-5 align-items-center order-0">
             <div class="px-5 mb-3 text-center">
                 <h2>Boost your team work flexibility with <span class="text-primary">Dolpy</span></h2>
             </div>
