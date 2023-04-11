@@ -20,17 +20,19 @@
         <div class="row h-100">
           <div class="col-lg-6 col-md-6 col-sm-12 p-4 p-md-5 order-1 order-md-0">
             <div class="px-5 ms-xl-4 text-center">
-              <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+              <img src="{{URL::asset('img/logo_blue.png')}}" alt="Logo" class="img mh-25 mw-25" >
               <span class="h3 fw-bold mb-0">Dolpy</span>
             </div>
             
+            <h6 class="text-center">Login to your account</h6>
+            
             <form>
           <div class="form-group mt-2">
-              <label for="inputEmail">Email address</label>
-              <div class="input-group">
-                <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                <input type="email" class="form-control  form-control-sm" id="inputEmail" placeholder="Enter your email...">
-              </div>
+            <label for="inputEmail">Email address</label>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroupPrepend2">@</span>
+              <input type="email" class="form-control  form-control-sm" id="inputEmail" placeholder="Enter your email...">
+            </div>
             </div>
             <div class="form-group mt-2">
               <label for="inputPassword">Password</label>
@@ -51,7 +53,9 @@
             </form>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 align-self-center order-0 order-md-1 ">
-            <h2 class="text-center mt-4 mb-1">Boost your team work flexibility with <span class="text-primary">Dolpy</span></h2>
+            <div class="px-5 mb-3 text-center">
+              <h2>Boost your team work flexibility with <span class="text-primary">Dolpy</span></h2>
+            </div>
             <div class="d-flex align-items-center justify-content-center">
               <img src="https://img.freepik.com/free-vector/coworking-concept-illustration_114360-5921.jpg?w=740&t=st=1680766027~exp=1680766627~hmac=f952d76faa53b358fa783c094826d45353c48244803d10299fc2e1f8b4245736"
                   class="img-fluid w-75" alt="Coworking">

@@ -8,16 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
     <style>
-        /* div{
-            border: 1px solid black;
-        } */
+      /* div{
+          border: 1px solid black;
+      } */
     </style>
   </head>
   <body>
-    <div class="d-flex align-items-center justify-content-center">
-      <div class="container-fluid">
-        <div class="row h-100 px-5">
-          <div class="col-lg-6 col-md-6 col-sm-12 align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center" style="height:100vh">
+      <div class="container">
+        <div class="row h-100">
+          <div class="col-lg-6 col-md-6 col-sm-12 align-items-center order-0">
             <div class="px-5 mb-3 text-center">
                 <h2>Boost your team work flexibility with <span class="text-primary">Dolpy</span></h2>
             </div>
@@ -26,10 +26,10 @@
                     class="img-fluid w-75" alt="Coworking">
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 p-3 p-md-5">
+          <div class="col-lg-6 col-md-6 col-sm-12 p-3 p-md-5 order-1">
             <div class="px-5 ms-xl-4 mb-3 text-center">
-                {{-- <i class="fa fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i> --}}
-                <span class="h3 fw-bold mb-0">Dolpy</span>
+              <img src="{{URL::asset('img/logo_blue.png')}}" alt="Logo" class="img-fluid" >
+              <span class="h3 fw-bold mb-0">Dolpy</span>
             </div>
 
             <h6 class="text-center">Register your account</h6>
@@ -45,7 +45,7 @@
               </div>
               <div class="form-group mt-2">
                 <label for="inputPhoneNumber">Phone Number</label>
-                <input type="number" class="form-control form-control-sm" id="inputPhoneNumber" placeholder="Enter your email...">
+                <input type="tel" class="form-control form-control-sm" id="inputPhoneNumber" placeholder="Enter your phone number...">
               </div>
               <div class="form-group mt-2">
                 <label for="inputEmail">Email address</label>
