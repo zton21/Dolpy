@@ -52,10 +52,10 @@
     <div class="section" id="pricing">
         @include('subviews.pricing')
     </div>
-    <div class="section" id="about">
+    <div class="section h-auto" id="about">
         @include('subviews.about')
     </div>
-    <div class="section" id="footer">
+    <div class="section h-auto" id="footer">
         @include('subviews.footer')
     </div>
 
