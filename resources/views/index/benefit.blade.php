@@ -9,7 +9,7 @@
 }
 
 </style>
-<div class="background position-absolute row">
+<div class="background position-absolute row d-md-block d-none">
     <svg width="597" height="874" viewBox="0 0 597 874" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="165" cy="435" r="432" fill="url(#paint0_linear_71_99)"/>
         <ellipse cx="165.5" cy="443" rx="323.5" ry="324" stroke="#D7E6FD" stroke-width="10"/>
@@ -35,7 +35,7 @@
 </div>
 <div class="container d-flex">
     <div class="row">
-        <div class="col-4"></div>
+        <div class="col-md-4 col-2"></div>
         <div class="col-8 desc my-auto">
             <div class="row fs-2 fw-bold mb-2">Let developers focus on code</div>
             <div class="row fs-5 mb-4">Lorem ipsum dolor sit amet. Non laboriosam voluptates ut illo ipsum sed quia accusantium sed autem placeat! Sit delectus numquam et quas veniam ut galisum nihil qui libero unde ut ipsum beatae ut quam facilis aut cupiditate omnis. Et harum natus ut eaque incidunt et mollitia nihil. Ad doloremque dolor est quia delectus non galisum culpa.</div>
