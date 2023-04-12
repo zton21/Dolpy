@@ -43,6 +43,10 @@ nav::before {
     color: var(--neutral-10);
 }
 
+.text-primary-70 {
+    color: var(--primary-70)
+}
+
 .btn-primary {
     background-color: var(--primary-70);
     color: var(--neutral-10)
