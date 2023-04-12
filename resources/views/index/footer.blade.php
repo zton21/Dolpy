@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <hr class="vw-100 m-0" style="color:#A3A3A5">
+    <hr class="w-100 m-0" style="color:#A3A3A5">
     <div class="container">
         <div class="row py-4">
             <div class="col-md-3 d-flex flex-row align-items-center gap-5">

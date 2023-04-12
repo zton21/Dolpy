@@ -63,7 +63,7 @@
               <div class="d-grid mt-3">
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
               </div>
-              <p class="text-center mt-3">Already have an account? <span class="text-primary"><a href="#">Login</a></span></p>
+              <p class="text-center mt-3">Already have an account? <span class="text-primary"><a href="/login">Login</a></span></p>
             </form>
           </div>
         </div>
