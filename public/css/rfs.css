@@ -2,16 +2,16 @@
     legend {
       font-size: calc(1.275rem + 0.3vw) ;
     }
-    h1, .h1 {
+    h1, .h1, .fs-1 {
       font-size: calc(1.375rem + 1.5vw) ;
     }
-    h2, .h2 {
+    h2, .h2, .fs-2 {
       font-size: calc(1.325rem + 0.9vw) ;
     }
-    h3, .h3 {
+    h3, .h3, .fs-3 {
       font-size: calc(1.3rem + 0.6vw) ;
     }
-    h4, .h4 {
+    h4, .h4, .fs-4 {
       font-size: calc(1.275rem + 0.3vw) ;
     }
     .display-1 {
