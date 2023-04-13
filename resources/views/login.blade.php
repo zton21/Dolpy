@@ -26,22 +26,25 @@
             
             <h6 class="text-center">Login to your account</h6>
             
-            <form>
+            <form method="POST" action="/login">
+              @csrf
           <div class="form-group mt-2">
-            <label for="inputEmail">Email address</label>
+            <label for="email">Email address</label>
             <div class="input-group">
               <span class="input-group-text" id="inputGroupPrepend2">@</span>
-              <input type="email" class="form-control  form-control-sm" id="inputEmail" placeholder="Enter your email...">
+              <input value="{{ old('email')}}" type="email" class="form-control  form-control-sm" name="email" placeholder="Enter your email...">
             </div>
             </div>
             <div class="form-group mt-2">
-              <label for="inputPassword">Password</label>
+              <label for="password">Password</label>
               <div class="input-group">
-                <input type="password" class="form-control  form-control-sm" id="inputPassword" placeholder="Enter your password...">
+                <input value="" type="password" class="form-control  form-control-sm" name="password" placeholder="Enter your password...">
                 <p class="fa fa-key p-2 m-0"></i>
-              {{-- <span style="opacity: 0">ini error</span> --}}
               </div>
             </div>
+            @error('username')
+              <span style="color: blue">{{$message}}</span>
+            @enderror
             <div class="d-flex justify-content-end mt-2">
               <a href="#!">Forgot password?</a>
             </div>
@@ -49,7 +52,7 @@
               <button class="btn btn-primary btn-block mt-4">Login</button>
               <button class="btn btn-block btn-light mt-3 shadow sm-5">Login with Google</button>
             </div>
-            <p class="text-center mt-2 mb-1">Don’t have an account? <span class="text-primary"><a href="#">Register</a></span></h3>
+            <p class="text-center mt-2 mb-1">Don’t have an account? <span class="text-primary"><a href="/register">Register</a></span></h3>
             </form>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 align-self-center order-0 order-md-1 ">
