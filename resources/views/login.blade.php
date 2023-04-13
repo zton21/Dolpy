@@ -43,7 +43,7 @@
               </div>
             </div>
             @error('username')
-              <span style="color: blue">{{$message}}</span>
+              <span style="color: red">Invalid credentials.</span>
             @enderror
             <div class="d-flex justify-content-end mt-2">
               <a href="#!">Forgot password?</a>

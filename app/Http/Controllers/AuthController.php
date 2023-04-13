@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -26,19 +27,18 @@ class AuthController extends Controller
 
         // Input Validasi
         $validatedData = $request->validate([
-            'email' => 'required|email|unique:users|max:255',
             'name' => 'required|max:20',
             'name2' => 'required|max:20',
-            'phone' => 'required|numeric|digits:8',
+            'email' => 'required|email|unique:users|max:255',
+            'phone' => 'required|numeric|digits:6',
             'password' => 'required|min:8',
         ]);
-
         // Create user (from model)
         $user = User::create([
-            'username' => $validatedData['username'],
-            'email' => $validatedData['email'],
             'name' => $validatedData['name'],
             'name2' => $validatedData['name2'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
             'password' => Hash::make($validatedData['password']),
         ]);
         
@@ -53,16 +53,18 @@ class AuthController extends Controller
     
         // Logout 
         Auth::logout();
-        return redirect('/login');
+        return redirect('/index');
     }
 
     public function showRegister()
     {
+        Auth::logout();
         return view('register');
     }
     
     public function showLogin()
     {
+        Auth::logout();
         return view('login');
     }
 }
