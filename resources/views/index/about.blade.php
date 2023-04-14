@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <img src="http://localhost:8000/img/about-milestone-2.png" alt="Milestone1" class="img-fluid">
+                        <img src="http://localhost:8000/img/about-milestone-2.png" alt="Milestone2" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <img src="http://localhost:8000/img/about-milestone-3.png" alt="Milestone1" class="img-fluid">
+                        <img src="http://localhost:8000/img/about-milestone-3.png" alt="Milestone3" class="img-fluid">
                     </div>
                 </div>
             </div>

@@ -11,6 +11,9 @@
       /* div{
           border: 1px solid black;
       } */
+      .error {
+        color:red;
+      }
     </style>
   </head>
   <body>
@@ -34,36 +37,65 @@
 
             <h6 class="text-center">Register your account</h6>
             
-            <form class="row mt-3">
+            <form class="row mt-3" method="post">
+              @csrf
               <div class="col">
                 <label for="inputFirstName">First Name</label>
-                <input type="text" class="form-control form-control-sm" id="inputFirstName" placeholder="First name">
+                <input type="text" class="form-control form-control-sm" name="name" id="inputFirstName" placeholder="First name" value="{{old('name')}}">
+                @if ($errors->has('name'))
+                    {{-- @foreach ($errors->get('name') as $message)
+                        <span style="color:red">{{ $message }}</span><br>
+                    @endforeach --}}
+                    <span class="error"><small>Nama aja ga bener</small></span>
+                @endif
               </div>
               <div class="col">
                 <label for="inputLastName">Last Name</label>
-                <input type="text" class="form-control form-control-sm" id="inputLastName" placeholder="Last name">
+                <input type="text" class="form-control form-control-sm" name="name2" id="inputLastName" placeholder="Last name" value="{{old('name2')}}">
+                @if ($errors->has('name2'))
+                    {{-- @foreach ($errors->get('name2') as $message)
+                        <span class="error">{{ $message }}</span><br>
+                    @endforeach --}}
+                    <span class="error"><small>Apalagi hiduplu :p</small></span>
+                @endif
               </div>
               <div class="form-group mt-2">
                 <label for="inputPhoneNumber">Phone Number</label>
-                <input type="tel" class="form-control form-control-sm" id="inputPhoneNumber" placeholder="Enter your phone number...">
+                <input type="tel" class="form-control form-control-sm" name="phone" id="inputPhoneNumber" placeholder="Enter your phone number..." value="{{old('phone')}}">
+                @if ($errors->has('phone'))
+                    {{-- @foreach ($errors->get('phone') as $message)
+                        <span class="error">{{ $message }}</span><br>
+                    @endforeach --}}
+                    <span class="error"><small>Ngapain palsuin, ga bakal gw chat ~</small></span>
+                @endif
               </div>
               <div class="form-group mt-2">
                 <label for="inputEmail">Email address</label>
-                <input type="email" class="form-control form-control-sm" id="inputEmail" placeholder="johndoe@gmail.com">
-                {{-- <span style="color:red"><small>ini error</small></span> --}}
+                <input type="email" class="form-control form-control-sm" name="email" id="inputEmail" placeholder="johndoe@gmail.com" value="{{old('email')}}">
+                @if ($errors->has('email'))
+                    {{-- @foreach ($errors->get('email') as $message)
+                        <span class="error">{{ $message }}</span><br>
+                    @endforeach --}}
+                    <span class="error"><small>Email ya email.</small></span>
+                @endif
               </div>
               <div class="form-group mt-2">
                 <label for="inputPassword">Password</label>
                 <div class="input-icon">
-                <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="**********">
+                <input type="password" class="form-control form-control-sm" name="password" id="inputPassword" value="" placeholder="**********">
                 <i class="fa fa-key"></i>
-                {{-- <span style="color:red"><small>ini error</small></span> --}}
+                @if ($errors->has('password'))
+                    {{-- @foreach ($errors->get('password') as $message)
+                        <span class="error">{{ $message }}</span><br>
+                    @endforeach --}}
+                    <span class="error"><small>Mau digebuk pak Yohan?</small></span>
+                @endif
                 </div>
               </div>
               <div class="d-grid mt-3">
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
               </div>
-              <p class="text-center mt-3">Already have an account? <span class="text-primary"><a href="#">Login</a></span></p>
+              <p class="text-center mt-3">Already have an account? <span class="text-primary"><a href="/login">Login</a></span></p>
             </form>
           </div>
         </div>

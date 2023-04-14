@@ -13,18 +13,18 @@
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">    
     @include('index.nav')
-    <div class="section px-md-0 px-2" id="header">
+    <div class="section pb-5" id="header">
         @include('index.header')
     </div>
-    <div class="section px-md-0 px-2" id="benefit">
+    <div class="section mx-md-0 mx-2 pb-5" id="benefit">
         @include('index.benefit')
     </div>
-    <div class="section px-md-0 px-2" id="feature">
+    {{-- <div class="section mx-md-0 mx-2" id="feature">
         @include('index.feature')
-    </div>
+    </div> 
     <div class="section px-md-0 px-2" id="pricing">
         @include('index.pricing')
-    </div>
+    </div> --}}
     <div class="section px-md-0 px-2" id="about">
         @include('index.about')
     </div>
