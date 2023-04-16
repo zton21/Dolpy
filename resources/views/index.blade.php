@@ -19,12 +19,12 @@
     <div class="section mx-md-0 mx-2 pb-5" id="benefit">
         @include('index.benefit')
     </div>
-    {{-- <div class="section mx-md-0 mx-2" id="feature">
+    <div class="section mx-md-0 mx-2 pb-5" id="feature">
         @include('index.feature')
     </div> 
-    <div class="section px-md-0 px-2" id="pricing">
+    <div class="section px-md-0 px-2 pb-5" id="pricing">
         @include('index.pricing')
-    </div> --}}
+    </div>
     <div class="section px-md-0 px-2" id="about">
         @include('index.about')
     </div>
