@@ -55,3 +55,11 @@ nav::before {
     background-color: var(--primary-70);
     color: var(--neutral-10)
 }
+
+/* Untuk better navbar target */
+:target:before {
+    content: "";
+    display: block;
+    height: 80px; /* adjust this value to match your navbar height */
+    margin: -80px 0 0; /* adjust this value to match your navbar height */
+}
