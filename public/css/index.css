@@ -1,7 +1,12 @@
 :root {
+    --primary-10: #D7E6FD;
+    --primary-30: #88B3F8;
     --primary-50: #3980F3;
     --primary-70: #0055DE;
+    --primary-90: #1D407A;
     --neutral-10: #EDEDED;
+    --success-70: #379436;
+    --warning-50: #FFA800;
 }
 
 * {
@@ -49,4 +54,12 @@ nav::before {
 .btn-primary {
     background-color: var(--primary-70);
     color: var(--neutral-10)
+}
+
+/* Untuk better navbar target */
+:target:before {
+    content: "";
+    display: block;
+    height: 80px; /* adjust this value to match your navbar height */
+    margin: -80px 0 0; /* adjust this value to match your navbar height */
 }

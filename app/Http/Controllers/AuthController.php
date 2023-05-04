@@ -2,40 +2,43 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
     public function login(Request $request) {
-        // Cek username = email/username
-        $field = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $request->merge([$field => $request->input('username')]);
-        $credentials = $request->only($field, 'password');
-        
-        // Login attempt
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+        $credentials = $request->only('email', 'password');  
+        // $credentials['password'] = Hash::make($credentials['password']);      
+        // Login 
+        $login = Auth::attempt($credentials);
+        if ($login) {
+            return redirect()->intended('home');
         }
-
         // Salah
+        echo("SALAHH WOI");
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => $credentials['password']
         ]);
     }
 
     public function register(Request $request) {
+
         // Input Validasi
         $validatedData = $request->validate([
-            'username' => 'required|unique:users|max:255',
+            'name' => 'required|max:20',
+            'name2' => 'required|max:20',
             'email' => 'required|email|unique:users|max:255',
-            'name' => 'required|max:255',
+            'phone' => 'required|numeric|digits:6',
             'password' => 'required|min:8',
         ]);
-        
         // Create user (from model)
         $user = User::create([
-            'username' => $validatedData['username'],
-            'email' => $validatedData['email'],
             'name' => $validatedData['name'],
+            'name2' => $validatedData['name2'],
+            'email' => $validatedData['email'],
+            'phone' => $validatedData['phone'],
             'password' => Hash::make($validatedData['password']),
         ]);
         
@@ -43,23 +46,25 @@ class AuthController extends Controller
         Auth::login($user);
         return redirect('/home');
     }
-
+ 
     public function logout() {
         // Display message gini kah?
         session()->flash('message', 'You have been logged out.');
     
         // Logout 
         Auth::logout();
-        return redirect('/login');
+        return redirect('/index');
     }
 
     public function showRegister()
     {
+        Auth::logout();
         return view('register');
     }
     
     public function showLogin()
     {
+        Auth::logout();
         return view('login');
     }
 }
