@@ -27,16 +27,16 @@ class AuthController extends Controller
 
         // Input Validasi
         $validatedData = $request->validate([
-            'name' => 'required|max:20',
-            'name2' => 'required|max:20',
+            'firstName' => 'required|max:20',
+            'lastName' => 'required|max:20',
             'email' => 'required|email|unique:users|max:255',
             'phone' => 'required|numeric|digits:6',
             'password' => 'required|min:8',
         ]);
         // Create user (from model)
         $user = User::create([
-            'name' => $validatedData['name'],
-            'name2' => $validatedData['name2'],
+            'firstName' => $validatedData['firstName'],
+            'lastName' => $validatedData['lastName'],
             'email' => $validatedData['email'],
             'phone' => $validatedData['phone'],
             'password' => Hash::make($validatedData['password']),

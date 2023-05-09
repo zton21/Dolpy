@@ -41,9 +41,9 @@
               @csrf
               <div class="col">
                 <label for="inputFirstName">First Name</label>
-                <input type="text" class="form-control form-control-sm" name="name" id="inputFirstName" placeholder="First name" value="{{old('name')}}">
-                @if ($errors->has('name'))
-                    {{-- @foreach ($errors->get('name') as $message)
+                <input type="text" class="form-control form-control-sm" name="firstName" id="inputFirstName" placeholder="First name" value="{{old('firstName')}}">
+                @if ($errors->has('firstName'))
+                    {{-- @foreach ($errors->get('firstName') as $message)
                         <span style="color:red">{{ $message }}</span><br>
                     @endforeach --}}
                     <span class="error"><small>Nama aja ga bener</small></span>
@@ -51,9 +51,9 @@
               </div>
               <div class="col">
                 <label for="inputLastName">Last Name</label>
-                <input type="text" class="form-control form-control-sm" name="name2" id="inputLastName" placeholder="Last name" value="{{old('name2')}}">
-                @if ($errors->has('name2'))
-                    {{-- @foreach ($errors->get('name2') as $message)
+                <input type="text" class="form-control form-control-sm" name="lastName" id="inputLastName" placeholder="Last name" value="{{old('lastName')}}">
+                @if ($errors->has('lastName'))
+                    {{-- @foreach ($errors->get('lastName') as $message)
                         <span class="error">{{ $message }}</span><br>
                     @endforeach --}}
                     <span class="error"><small>Apalagi hiduplu :p</small></span>
