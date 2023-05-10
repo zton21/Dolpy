@@ -11,6 +11,15 @@ class UserController extends Controller
         $data = [
             'user' => Auth::user(),
         ];
+        
         return view('home', $data);
+    }
+
+    public function profile()
+    {
+        $data = [
+            'user' => Auth::user(),
+        ];
+        return view('profile', $data);
     }
 }

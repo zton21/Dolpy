@@ -11,6 +11,22 @@
     .buss{
         border-left: var(--bs-border-width) var(--bs-border-style) var(--warning-50)!important;
     }
+    .border-def{
+        --border-width:2px;
+        --neutral-30: #A3A3A5;
+        border: var(--border-width) var(--bs-border-style) var(--neutral-30)!important;
+    }
+    .best{
+        --border-width:3px;
+        border: var(--border-width) var(--bs-border-style) var(--primary-90)!important;
+    }
+    .best-bot{
+        border: 3px solid #1D407A;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-width: 0px;
+        background-color: #D7E6FD;
+    }
 </style>
 
 <div class="container-fluid phone-bg mb-3" style="color:white">    
@@ -27,8 +43,17 @@
     </div>
 </div>
 <div class="container p-4 mt-5">
-    <div class="row align-item-center">
-        <div class="col shadow-lg border border-3 rounded-3 mx-2" style="background: #D7E6FD">
+    <div class="row align-item-center clearfix">
+        <div class="col mx-2"></div>
+        <div class="col mx-2">
+            <div class="row py-1 text-center best-bot">
+                <h3 class="text-primary m-0 p-0">BEST CHOICE</h3>
+            </div>
+        </div>
+        <div class="col mx-2"></div>
+    </div>
+    <div class="row align-item-center clearfix">
+        <div class="col shadow-lg border-def rounded-3 mx-2" style="background: #D7E6FD">
             <div class="row p-3 rounded-top-3" style="background: white">
                 <div class="col-auto my-auto">
                     <svg width="65" height="65" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,15 +62,15 @@
                         <path d="M35.8442 46.6546L46.6776 35.8213" stroke="#379436" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>                    
                 </div>
-                <div class="col free border-start border-3 m-0" style="border-color: #379436; border-left-color: #379436">
+                <div class="col free border-start border-5 m-0" style="border-color: #379436; border-left-color: #379436">
                     <h3 style="color: #379436">Free</h3>
                     <p class="m-0" style="color: #858487">For organizing every corner of your work & life</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col p-3">
-                    <h2>Free</h2>
-                    <p >Daily task or school project?<br>Let we handle it </p>
+                    <h2 class="m-0">Free</h2>
+                    <p class="m-0">Daily task or school project?<br>Let we handle it </p>
                 </div>
             </div>
             <div class="d-grid pt-2">
@@ -61,8 +86,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col shadow-lg border border-3 rounded-3 mx-2" style="background: #D7E6FD">
-            <div class="row p-3 rounded-top-3" style="background: white">
+        <div class="col shadow-lg best rounded-bottom-3 mx-2" style="background: #D7E6FD">
+            <div class="row p-3" style="background: white">
                 <div class="col-auto my-auto">
                     <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.5 34.6777H52.25" stroke="#0055DE" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,8 +104,8 @@
             </div>
             <div class="row">
                 <div class="col p-3">
-                    <h2>IDR 100,000</h2>
-                    <p>per user / month <br> billed annually</p>
+                    <h2 class="m-0">IDR 100,000</h2>
+                    <p class="m-0">per user / month <br> billed annually</p>
                 </div>
             </div>
             <div class="d-grid pt-2">
@@ -96,7 +121,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col shadow-lg border border-3 rounded-3 mx-2" style="background: #D7E6FD">
+        <div class="col shadow-lg border-def rounded-3 mx-2" style="background: #D7E6FD">
             <div class="row p-3 rounded-top-3" style="background: white">
                 <div class="col-auto my-auto">
                     <svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,8 +138,8 @@
             </div>
             <div class="row">
                 <div class="col p-3">
-                    <h2>IDR 235,000</h2>
-                    <p>per user / month <br> billed annually</p>
+                    <h2 class="m-0">IDR 235,000</h2>
+                    <p class="m-0">per user / month <br> billed annually</p>
                 </div>
             </div>
             <div class="d-grid pt-2">

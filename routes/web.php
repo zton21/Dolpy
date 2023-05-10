@@ -27,10 +27,12 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::post('/login', 'AuthController@login');
     Route::post('/register', 'AuthController@register');
 
+    
     Route::middleware(['web', 'auth'])->group(
         function() {
             // Route that need auth
             Route::get('/home', 'UserController@home')->name('dashboard');
+            Route::get('/profile', 'UserController@profile')->name('profile');
         }
     );
 });
