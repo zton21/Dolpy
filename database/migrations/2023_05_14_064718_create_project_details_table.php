@@ -20,8 +20,8 @@ return new class extends Migration
 
             $table->primary(['projectID', 'userID']);
 
-            $table->foreign('projectID')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('userID')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('projectID')->references('projectID')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
