@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('project_headers', function (Blueprint $table) {
-            $table->id();
+            $table->id('projectID');
             $table->string('projectName');
             $table->date('projectDueDate');
             $table->timestamps();
