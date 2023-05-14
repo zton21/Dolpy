@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('topic_sections', function (Blueprint $table) {
-            $table->id();
+            $table->id('topicID');
             $table->foreignId('projectID');
             $table->foreignId('userID');
             $table->string('topicName');
