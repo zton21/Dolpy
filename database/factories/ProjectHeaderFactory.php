@@ -17,8 +17,8 @@ class ProjectHeaderFactory extends Factory
     public function definition()
     {
         return [
-            'projectName' => fake()->title(),
-            'projectDueDate' => fake()->date(),
+            'projectName' => fake()->words(2, true),
+            'projectDueDate' => fake()->dateTimeThisYear(),
         ];
     }
 }
