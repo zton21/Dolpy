@@ -19,8 +19,8 @@ class TopicSectionFactory extends Factory
     public function definition()
     {
         return [
-            'projectID' => ProjectHeader::all()->random()->id,
-            'userID' => User::all()->random()->id,
+            'project_id' => ProjectHeader::all()->random()->id,
+            'user_id' => User::all()->random()->id,
             'topicName' => fake()->words(2,true),
             'topicDate' => fake()->dateTimeThisYear(),
         ];

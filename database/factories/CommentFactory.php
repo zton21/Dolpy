@@ -19,8 +19,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'topicID' => TopicSection::all()->random()->id,
-            'userID' => User::all()->random()->id,
+            'topic_id' => TopicSection::all()->random()->id,
+            'user_id' => User::all()->random()->id,
             'chatContent' => fake()->sentence($nbWords = fake()->numberBetween($min = 3, $max = 20), $variableNbWords = true),
             'chatDate' => fake()->dateTimeThisYear(),
         ];

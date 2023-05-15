@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,17 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\User::factory()->create([
+            'firstName' => "Admin",
+            'lastName' => "Admin",
+            'phone' => "1234567890",
+            'email' => "admin@gmail.com",
+            'email_verified_at' => now(),
+            'password' => Hash::make("password"), // password
+            'remember_token' => Str::random(10),
+        ]);
+
         \App\Models\User::factory(10)->create();
-        // \App\Models\ProjectHeader::factory(10)->create();
-        // \App\Models\ProjectDetail::factory(10)->create();
-        // \App\Models\TopicSection::factory(10)->create();
-        // \App\Models\Comment::factory(10)->create();
-        // \App\Models\User::factory()->create([
-        //     'firstName' => 'Jonathan',
-        //     'lastName' => 'Lee',
-        //     'phone' => '1234567890',
-        //     'email' => 'test@test.com',
-        //     'password' => Hash::make('password')
-        // ]);
+        \App\Models\ProjectHeader::factory(20)->create();
+        \App\Models\ProjectDetail::factory(50)->create();
+        \App\Models\TopicSection::factory(10)->create();
+        \App\Models\Comment::factory(100)->create();
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('role');
 
-            $table->primary(['project_id', 'user_id']);
+            // $table->primary(['project_id', 'user_id']);
 
             $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
