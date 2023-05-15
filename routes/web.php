@@ -33,6 +33,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
             // Route that need auth
             Route::get('/home', 'UserController@home')->name('dashboard');
             Route::get('/profile', 'UserController@profile')->name('profile');
+            Route::get('/topic', 'UserController@topic')->name('topic');
         }
     );
 });
