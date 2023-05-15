@@ -30,7 +30,7 @@ class AuthController extends Controller
             'firstName' => 'required|max:20',
             'lastName' => 'required|max:20',
             'email' => 'required|email|unique:users|max:255',
-            'phone' => 'required|numeric|digits:6',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:6',
             'password' => 'required|min:8',
         ]);
         // Create user (from model)
