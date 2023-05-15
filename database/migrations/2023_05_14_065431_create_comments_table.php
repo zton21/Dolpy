@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id('commentID');
-            $table->foreignId('topicID');
-            $table->foreignId('userID');
+            $table->id();
+            $table->foreignId('topic_id');
+            $table->foreignId('user_id');
             $table->text('chatContent');
             $table->date('chatDate');
             
-            $table->foreign('topicID')->references('topicID')->on('topic_sections')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('topic_id')->references('id')->on('topic_sections')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

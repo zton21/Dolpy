@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('project_details', function (Blueprint $table) {
-            $table->foreignId('projectID');
-            $table->foreignId('userID');
+            $table->foreignId('project_id');
+            $table->foreignId('user_id');
             $table->string('role');
 
-            $table->primary(['projectID', 'userID']);
+            $table->primary(['project_id', 'user_id']);
 
-            $table->foreign('projectID')->references('projectID')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

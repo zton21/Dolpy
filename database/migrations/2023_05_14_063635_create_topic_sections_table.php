@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('topic_sections', function (Blueprint $table) {
-            $table->id('topicID');
-            $table->foreignId('projectID');
-            $table->foreignId('userID');
+            $table->id();
+            $table->foreignId('project_id');
+            $table->foreignId('user_id');
             $table->string('topicName');
             $table->date('topicDate');
             $table->timestamps();
 
-            $table->foreign('projectID')->references('projectID')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('userID')->references('userID')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
