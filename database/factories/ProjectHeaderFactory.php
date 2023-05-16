@@ -19,7 +19,7 @@ class ProjectHeaderFactory extends Factory
         return [
             'projectName' => fake()->words(2, true),
             'projectDueDate' => fake()->dateTimeThisYear(),
-            'projectDescription' => fake()->sentence(5),
+            'projectDescription' => fake()->sentence($nbWords = fake()->numberBetween($min = 3, $max = 6), $variableNbWords = true),
             'projectStatus' => fake()->randomElement('In Progress', 'Developing', 'Designing', 'Implementing'),
         ];
     }
