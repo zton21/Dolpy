@@ -19,6 +19,8 @@ class ProjectHeaderFactory extends Factory
         return [
             'projectName' => fake()->words(2, true),
             'projectDueDate' => fake()->dateTimeThisYear(),
+            'projectDescription' => fake()->sentence(5),
+            'projectStatus' => fake()->randomElement('In Progress', 'Developing', 'Designing', 'Implementing'),
         ];
     }
 }
