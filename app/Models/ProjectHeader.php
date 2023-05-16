@@ -11,6 +11,7 @@ class ProjectHeader extends Model
 
     protected $fillable = [
         'projectName',
+        'projectDescription',
         'projectDueDate',
     ];
 }

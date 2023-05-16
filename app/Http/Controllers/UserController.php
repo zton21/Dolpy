@@ -39,4 +39,9 @@ class UserController extends Controller
         ];
         return view('profile', $data);
     }
+
+    public function topic()
+    {
+        return view('topic');
+    }
 }

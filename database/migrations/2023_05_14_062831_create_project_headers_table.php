@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('projectName');
             $table->date('projectDueDate');
+            $table->text('projectDescription');
+            $table->string('projectStatus');
             $table->timestamps();
         });
     }
