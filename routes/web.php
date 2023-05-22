@@ -21,6 +21,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/about', 'GuestController@showAbout')->name('about');
     Route::get('/pricing', 'GuestController@showPricing')->name('pricing');
     Route::get('/solution', 'GuestController@showSolution')->name('solution');
+    Route::get('/faq', 'GuestController@FAQ')->name('faq');
 
     Route::get('/login', 'AuthController@showLogin')->name('login');
     Route::get('/register', 'AuthController@showRegister')->name('register');
