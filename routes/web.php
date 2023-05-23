@@ -35,6 +35,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
             Route::get('/home', 'UserController@home')->name('dashboard');
             Route::get('/profile', 'UserController@profile')->name('profile');
             Route::get('/topic', 'UserController@topic')->name('topic');
+            Route::get('/setting', 'UserController@topic')->name('setting');
         }
     );
 });

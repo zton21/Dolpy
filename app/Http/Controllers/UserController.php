@@ -44,4 +44,12 @@ class UserController extends Controller
     {
         return view('topic');
     }
+
+    public function setting()
+    {
+        $data = [
+            'user' => Auth::user(),
+        ];
+        return view('setting', $data);
+    }
 }
