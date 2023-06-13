@@ -25,6 +25,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::get('/login', 'AuthController@showLogin')->name('login');
     Route::get('/register', 'AuthController@showRegister')->name('register');
+    Route::get('/forgotpassword', 'AuthController@forgotPassword');
+    Route::get('/resetpassword', 'AuthController@resetPassword');
     Route::post('/login', 'AuthController@login');
     Route::post('/register', 'AuthController@register');
 

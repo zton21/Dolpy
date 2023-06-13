@@ -30,8 +30,8 @@
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 p-3 p-md-5 order-1">
-            <div class="px-5 ms-xl-4 mb-3 text-center">
-              <img src="{{URL::asset('img/logo_blue.png')}}" alt="Logo" class="img-fluid" >
+            <div class="px-5 mb-3 text-center">
+              <img src="{{URL::asset('img/logo-primary.png')}}" alt="Logo" class="img-fluid" >
               <span class="h3 fw-bold mb-0">Dolpy</span>
             </div>
 

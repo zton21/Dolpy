@@ -20,7 +20,7 @@
         <div class="row h-100">
           <div class="col-lg-6 col-md-6 col-sm-12 p-4 p-md-5 order-1 order-md-0">
             <div class="px-5 ms-xl-4 text-center">
-              <img src="{{URL::asset('img/logo_blue.png')}}" alt="Logo" class="img mh-25 mw-25" >
+              <img src="{{URL::asset('img/logo-primary.png')}}" alt="Logo" class="img mh-25 mw-25" >
               <span class="h3 fw-bold mb-0">Dolpy</span>
             </div>
             
@@ -46,7 +46,7 @@
               <span style="color: red">Invalid credentials.</span>
             @enderror
             <div class="d-flex justify-content-end mt-2">
-              <a href="#!">Forgot password?</a>
+              <a href="/forgotpassword">Forgot password?</a>
             </div>
             <div class="d-grid gap-2 mt-2">
               <button class="btn btn-primary btn-block mt-4">Login</button>
