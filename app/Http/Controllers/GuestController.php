@@ -6,7 +6,7 @@ class GuestController extends Controller
 {
     public function show()
     {
-        return view('index');
+        return view('index.index');
     }
 
     public function faq()

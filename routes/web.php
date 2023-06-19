@@ -17,18 +17,19 @@ use App\Http\Controllers;
 Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/', 'GuestController@show');
     Route::get('/index', 'GuestController@show')->name('index');
-    Route::get('/feature', 'GuestController@showFeature')->name('feature');
-    Route::get('/about', 'GuestController@showAbout')->name('about');
-    Route::get('/pricing', 'GuestController@showPricing')->name('pricing');
-    Route::get('/solution', 'GuestController@showSolution')->name('solution');
-    Route::get('/faq', 'GuestController@FAQ')->name('faq');
+    // Route::get('/feature', 'GuestController@showFeature')->name('feature');
+    // Route::get('/about', 'GuestController@showAbout')->name('about');
+    // Route::get('/pricing', 'GuestController@showPricing')->name('pricing');
+    // Route::get('/solution', 'GuestController@showSolution')->name('solution');
+    // Route::get('/faq', 'GuestController@FAQ')->name('faq');
 
     Route::get('/login', 'AuthController@showLogin')->name('login');
     Route::get('/register', 'AuthController@showRegister')->name('register');
-    Route::get('/forgotpassword', 'AuthController@forgotPassword');
-    Route::get('/resetpassword', 'AuthController@resetPassword');
+    Route::get('/forgotpassword', 'AuthController@showForgotPassword')->name('forgotpassword');
+    Route::get('/resetpassword', 'AuthController@resetPassword')->name('resetpassword');
     Route::post('/login', 'AuthController@login');
     Route::post('/register', 'AuthController@register');
+    Route::post('/forgotpassword', 'AuthController@forgotPassword');
 
     
     Route::middleware(['web', 'auth'])->group(

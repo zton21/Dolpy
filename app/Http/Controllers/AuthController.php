@@ -17,14 +17,12 @@ class AuthController extends Controller
             return redirect()->intended('home');
         }
         // Salah
-        echo("SALAHH WOI");
         return back()->withErrors([
             'username' => $credentials['password']
         ]);
     }
 
     public function register(Request $request) {
-
         // Input Validasi
         $validatedData = $request->validate([
             'firstName' => 'required|max:20',
@@ -59,20 +57,27 @@ class AuthController extends Controller
     public function showRegister()
     {
         Auth::logout();
-        return view('register');
+        return view('authentication.register');
     }
     
     public function showLogin()
     {
         Auth::logout();
-        return view('login');
+        return view('authentication.login');
     }
+
+    public function showForgotPassword()
+    {
+        return view('authentication.forgotpass');
+    }
+
     public function forgotPassword()
     {
-        return view('forgotpass');
+        
     }
+
     public function resetPassword()
     {
-        return view('resetpass');
+        return view('authentication.resetpass');
     }
 }
