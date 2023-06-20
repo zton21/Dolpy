@@ -26,10 +26,10 @@
         <div class="form-group mt-2">
           <label for="password">Password</label>
           <div class="input-group">
-            <input value="" type="password" class="form-control form-control-sm" name="password" placeholder="*********">
+            <input value="" type="password" class="form-control form-control-sm" name="password" placeholder="*********" autocomplete="off">
           </div>
         </div>
-        @error('username')
+        @error('email')
           <div class="text-danger">{{ $message }}</div>
         @enderror
         <div class="d-flex justify-content-end mt-2">
