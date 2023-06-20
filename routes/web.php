@@ -46,6 +46,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
             Route::get('/profile', 'UserController@profile')->name('profile');
             Route::get('/topic', 'UserController@topic')->name('topic');
             Route::get('/setting', 'UserController@setting')->name('setting');
+            Route::get('/files', 'UserController@files')->name('files');
         }
     );
 });

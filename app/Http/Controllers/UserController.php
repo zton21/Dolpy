@@ -44,6 +44,10 @@ class UserController extends Controller
     {
         return view('topic');
     }
+    public function files()
+    {
+        return view('files');
+    }
 
     public function setting()
     {
