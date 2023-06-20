@@ -29,7 +29,7 @@
                                 @csrf
                                 <div class="card-text my-4">
                                     <label for="EmailPassword" class="form-label">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="EmailPassword" placeholder="name@example.com">
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="EmailPassword" name="email" placeholder="name@example.com">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

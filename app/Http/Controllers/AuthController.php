@@ -18,8 +18,8 @@ class AuthController extends Controller
         }
         // Salah
         return back()->withErrors([
-            'username' => $credentials['password']
-        ]);
+            'email' => 'Invalid credentials'
+        ])->withInput();
     }
 
     public function register(Request $request) {
@@ -71,13 +71,13 @@ class AuthController extends Controller
         return view('authentication.forgotpass');
     }
 
-    public function forgotPassword()
-    {
-        
-    }
-
-    public function resetPassword()
+    public function showResetPassword()
     {
         return view('authentication.resetpass');
+    }
+
+    public function showVerify()
+    {
+        return view('authentication.verify');
     }
 }

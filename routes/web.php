@@ -24,14 +24,21 @@ Route::namespace('App\Http\Controllers')->group(function() {
     // Route::get('/faq', 'GuestController@FAQ')->name('faq');
 
     Route::get('/login', 'AuthController@showLogin')->name('login');
-    Route::get('/register', 'AuthController@showRegister')->name('register');
-    Route::get('/forgotpassword', 'AuthController@showForgotPassword')->name('forgotpassword');
-    Route::get('/resetpassword', 'AuthController@resetPassword')->name('resetpassword');
     Route::post('/login', 'AuthController@login');
+
+    Route::get('/register', 'AuthController@showRegister')->name('register');
     Route::post('/register', 'AuthController@register');
-    Route::post('/forgotpassword', 'AuthController@forgotPassword');
+
+    Route::get('/forgotpassword', 'AuthController@showForgotPassword')->name('forgotpassword');
+    Route::post('/forgotpassword', 'ForgotPasswordController@sendResetPasswordEmail');
+
+    Route::get('/verify', 'AuthController@showVerify')->name('verify');
+    Route::post('/resend-reset-email', 'ForgotPasswordController@resendResetEmail')->name('resendResetEmail');
 
     
+    Route::get('/resetpassword', 'ResetPasswordController@showResetPassword')->name('password.reset');
+    Route::post('/resetpassword', 'ResetPasswordController@reset')->name('password.update');
+
     Route::middleware(['web', 'auth'])->group(
         function() {
             // Route that need auth
