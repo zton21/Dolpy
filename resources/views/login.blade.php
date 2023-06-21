@@ -32,7 +32,7 @@
             <label for="email">Email address</label>
             <div class="input-group">
               <span class="input-group-text" id="inputGroupPrepend2">@</span>
-              <input value="{{ old('email')}}" type="email" class="form-control  form-control-sm" name="email" placeholder="Enter your email...">
+              <input name="email" value="{{ old('email')}}" type="email" class="form-control  form-control-sm" placeholder="Enter your email...">
             </div>
             </div>
             <div class="form-group mt-2">
