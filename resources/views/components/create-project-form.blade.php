@@ -10,6 +10,7 @@
             </div>
             <div class="modal-body">
                 <form id="create-project-form">
+                    @csrf
                     <div class="mb-3">
                         <label for="project-name" class="form-label">Project Title</label>
                         <input type="text" class="form-control" id="project-name" name="project_name" placeholder="Enter project title" required>
