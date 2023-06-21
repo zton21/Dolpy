@@ -33,7 +33,7 @@
         </div>
         {{-- Register --}}
         <div class="col-md-2 my-auto ">
-            <a class="collapse navbar-collapse btn btn-primary nav-item nav-link my-auto px-md-2 px-lg-3 py-2 navs" href="/register" role="button">
+            <a class="collapse navbar-collapse btn btn-primary nav-item nav-link my-auto px-md-2 px-lg-3 py-2 navs" href="{{ route('register') }}" role="button">
                 <div class="text-center w-100">Get Started</div>
             </a>
         </div>
