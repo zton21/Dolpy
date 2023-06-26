@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\ProjectHeader;
+
 class TopicSection extends Model
 {
     use HasFactory;
@@ -13,4 +15,9 @@ class TopicSection extends Model
         'topicName',
         'topicDate',
     ];
+
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(ProjectHeader::class);
+    }
 }

@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProjectHeader;
-
+use App\Models\ProjectDetail;
 
 class UserController extends Controller
 {   
@@ -64,5 +64,47 @@ class UserController extends Controller
             'user' => Auth::user(),
             'project' => ProjectHeader::find($id),
         ]);
+    }
+
+    public function joinProject($project_id, $user_id, $role) {
+        // Validation?
+
+        // Check udah join belom
+        $data = DB::table('project_details')
+            ->where('user_id', $user_id)
+            ->where('project_id', $project_id)
+            ->first();
+        
+        if (!empty($data)) {
+            return redirect()->back()->withErrors(['error' => 'Already joined the Project'])->withInput();
+        }
+        else {
+            $ProjectDetail = new ProjectDetail;
+            $ProjectDetail->user_id = $user_id;
+            $ProjectDetail->project_id = $project_id;
+            $ProjectDetail->role = $role;
+            $ProjectDetail->save();
+        }
+        return redirect('home');
+    }
+
+    public function createProject(Request $request) {
+        $request->validate([
+            'project_name' => 'required',
+            'due_date' => 'required',
+        ]);
+
+        // Create the project
+        $project = new ProjectHeader;
+        $project->projectName = $request->project_name;
+        $project->projectDueDate = $request->due_date;
+        $project->projectDescription = $request->project_description;
+        $project->projectStatus = 'Designing';
+
+        $project->save();
+
+        // Insert current user as member
+        return UserController::joinProject($project->id, Auth::user()->id, "Creator");
+
     }
 }

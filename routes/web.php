@@ -47,6 +47,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
             Route::get('/project/{id}', 'UserController@project')->name('project');
             Route::get('/setting', 'UserController@setting')->name('setting');
             Route::get('/files', 'UserController@files')->name('files');
+
+            Route::post('/home', 'UserController@createProject');
         }
     );
 });
