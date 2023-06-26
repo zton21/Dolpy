@@ -107,4 +107,23 @@ class UserController extends Controller
         return UserController::joinProject($project->id, Auth::user()->id, "Creator");
 
     }
+
+    public function quitProject($project_id, $user_id) {
+        ProjectDetail::where('user_id', $user_id)
+            ->where('project_id', $project_id)
+            ->delete();
+        // Check udah join belom
+        // $data = DB::table('project_details')
+        //     ->where('user_id', $user_id)
+        //     ->where('project_id', $project_id)
+        //     ->first();
+        
+        // if (empty($data)) {
+        //     return redirect()->back();
+        // }
+        // else {
+        // }
+
+        // Cek kalo udah gaada member, delete project
+    }
 }
