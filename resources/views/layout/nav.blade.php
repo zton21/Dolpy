@@ -29,7 +29,7 @@
                     <a class="nav-link" href="{{ route('setting') }}">S</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('profile') }}">
                         <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                     </a>
                 </li>
