@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ProjectHeader;
 use App\Models\ProjectDetail;
 use App\Models\TopicSection;
+use App\Models\Comment;
 
 class UserController extends Controller
 {   
@@ -60,20 +61,29 @@ class UserController extends Controller
         return view('setting', $data);
     }
 
-    public function project($id) {
-
+    public function project(Request $request, $id) {
         $result = DB::select(
             "SELECT t.*, u.firstName, c.chatContent FROM topic_sections t
             JOIN users u ON t.user_id = u.id
             LEFT JOIN comments c ON t.last_comment_id = c.id
             WHERE t.project_id = :project_id"
         , ["project_id" => $id]);
+        
+        $topic_n = $request->query('topic', 0);
+        $topic = $result[$topic_n];
+        // $messages = Comment::where('topic_id', $topic->id)
+        //     ->get();
+        $messages = DB::select("SELECT c.*, u.firstName FROM comments c JOIN users u ON c.user_id = u.id WHERE c.topic_id = :topic_id ORDER BY c.created_at"
+        , ["topic_id" => $topic->id]);
         // dd($result);
         return view('topic', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($id),
             'topics' => $result,
+            'topic' => $topic,
+            'messages' => $messages,
         ]);
+        
     }
 
     public function joinProject($project_id, $user_id, $role) {
