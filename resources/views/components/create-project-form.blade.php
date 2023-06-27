@@ -8,25 +8,26 @@
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
             </div>
-            <div class="modal-body">
-                <form id="create-project-form">
-                    <div class="mb-3">
-                        <label for="project-name" class="form-label">Project Title</label>
-                        <input type="text" class="form-control" id="project-name" name="project_name" placeholder="Enter project title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="project-description" class="form-label">Project Description <span class="text-secondary">(Optional)</span></label>
-                        <textarea class="form-control" id="project-description" name="project_description" placeholder="Enter project description" rows="1"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="due-date" class="form-label">Due Date</label>
-                        <input type="date" class="form-control" id="due-date" name="due_date" placeholder="Enter end date of the project" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary w-100">Create New Project</button>
-            </div>
+            <form id="create-project-form" method="POST" action="">
+                <div class="modal-body">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="project-name" class="form-label">Project Title</label>
+                            <input type="text" class="form-control" id="project-name" name="project_name" placeholder="Enter project title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="project-description" class="form-label">Project Description <span class="text-secondary">(Optional)</span></label>
+                            <textarea class="form-control" id="project-description" name="project_description" placeholder="Enter project description" rows="1"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="due-date" class="form-label">Due Date</label>
+                            <input type="date" class="form-control" id="due-date" name="due_date" placeholder="Enter end date of the project" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-100">Create New Project</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
