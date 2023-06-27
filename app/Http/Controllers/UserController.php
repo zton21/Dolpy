@@ -18,13 +18,14 @@ class UserController extends Controller
         $results = DB::select("SELECT h.projectName, h.projectDueDate, u.firstName, h.id FROM 
             project_headers h JOIN project_details m ON h.ID = m.project_ID AND m.role = 'Creator' 
             AND h.id IN (SELECT id FROM project_headers h JOIN project_details m ON h.id = m.project_id AND m.user_id = :user_id) 
-            JOIN users u ON u.id = m.user_id", ["user_id" => $x]);
+            JOIN users u ON u.id = m.user_id ORDER BY h.created_at", ["user_id" => $x]);
         return $results;
     }
 
     public function home()
     {
         $userProjects = UserController::getProjects("");
+
         $data = [
             'user' => Auth::user(),
             'projects' => $userProjects,
