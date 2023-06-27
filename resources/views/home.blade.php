@@ -69,16 +69,11 @@
                     </div>
                 </div>
                 <div class="">
-                    <a class="btn btn-primary bg-primary-10 text-primary-70 px-5 py-3 border-0 rounded-pill">
-                        Create Project
-                    </a>
+                    {{-- Sort By --}}
+                    {{-- Button: Create Project --}}
+                    <button onclick="openCreateProjectFormModal()" class="btn btn-primary">Create Project</button>
+                    <x-create-project-form></x-create-project-form>
                 </div>
-            </div>
-            <div class="col-8 mx-0 px-0">
-                {{-- Sort By --}}
-                {{-- Button: Create Project --}}
-                <button onclick="openCreateProjectFormModal()" class="btn btn-primary">Create Project</button>
-                <x-create-project-form></x-create-project-form>
             </div>
         </div>
         <div class="row w-100 text-neutral-50 bg-primary-10 py-1 table-header mx-auto">
