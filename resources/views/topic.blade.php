@@ -31,8 +31,8 @@
                     </div>
                     <div class="row">
                         <div style="background: #D7E6FD" class="rounded-bottom px-3 py-4">
-                            <h3>Web Programming</h3>
-                            <span>Every Project has it own card too</span>
+                            <h3>{{$project->projectName}}</h3>
+                            <span>{{$project->projectDescription}}</span>
                         </div>
                     </div>
                     <div class="row py-2 align-items-center">
@@ -46,16 +46,18 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row d-flex align-items-start px-3">
-                        <div class="col-6">
-                            <h4 class="m-0">Brainstorming</h4>
-                            <div class="text-secondary">10/1/2023 - 02.39 PM</div>
-                        </div>
-                        <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
-                            <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                            <div>by Gundul Pacul</div>
-                        </div>
-                    </div>
+                    @foreach ($topics as $item)
+                        <div class="row d-flex align-items-start px-3">
+                            <div class="col-6">
+                                <h4 class="m-0">{{$item->topicName}}</h4>
+                                <div class="text-secondary"{{$item->topicDate}}</div>
+                            </div>
+                            <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
+                                <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                <div>by {{$item->firstName}}</div>
+                            </div>
+                        </div>                        
+                    @endforeach
                     <hr class="mt-1 mb-2 mx-3">
                     <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
                         <div class="col-12 d-flex flex-row align-items-center gap-2">

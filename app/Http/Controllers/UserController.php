@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProjectHeader;
 use App\Models\ProjectDetail;
+use App\Models\TopicSection;
 
 class UserController extends Controller
 {   
@@ -60,9 +61,17 @@ class UserController extends Controller
 
     public function project($id) {
 
+        $result = DB::select(
+            "SELECT t.*, u.firstName, c.chatContent FROM topic_sections t
+            JOIN users u ON t.user_id = u.id
+            JOIN comments c ON t.comment_id = c.id
+            WHERE t.project_id = :project_id"
+        , ["project_id" => $id]);
+        // dd($result);
         return view('topic', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($id),
+            'topics' => $result,
         ]);
     }
 
