@@ -10,9 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body {
-            padding-top: 5em;
-        }
         .text-neutral-50 {color: #858487}
         .text-primary-50 {color: #3980F3}
         .text-primary-70 {color: #0055DE}
@@ -35,18 +32,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top w-100 position-absolute">
-        <div class="container"><div class="row w-100">
-            {{-- Dolpy brand --}}
-            <div class="col-md-2 col-sm-6 navbar-brand d-flex flex-row">
-                <div style="width:2.5em; max-width:10vh;">
-                    <img src="{{URL::asset('img/logo-primary.png')}}" alt="Logo" class="img-fluid">
-                </div>
-                <div class="text-neutral-10 fw-bold fs-3 ms-2" href="/index">Dolpy</div>
-            </div>
-            
-        </div></div>
-    </nav>
+    @include('layout.nav')
 
     <div class="container">
         <div class="row fs-2 w-100 mx-auto">
@@ -83,16 +69,11 @@
                     </div>
                 </div>
                 <div class="">
-                    <a class="btn btn-primary bg-primary-10 text-primary-70 px-5 py-3 border-0 rounded-pill">
-                        Create Project
-                    </a>
+                    {{-- Sort By --}}
+                    {{-- Button: Create Project --}}
+                    <button onclick="openCreateProjectFormModal()" class="btn btn-primary">Create Project</button>
+                    <x-create-project-form></x-create-project-form>
                 </div>
-            </div>
-            <div class="col-8 mx-0 px-0">
-                {{-- Sort By --}}
-                {{-- Button: Create Project --}}
-                <button onclick="openCreateProjectFormModal()" class="btn btn-primary">Create Project</button>
-                <x-create-project-form></x-create-project-form>
             </div>
         </div>
         <div class="row w-100 text-neutral-50 bg-primary-10 py-1 table-header mx-auto">
