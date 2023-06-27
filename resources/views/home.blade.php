@@ -10,9 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body {
-            padding-top: 12vh;
-        }
         .text-neutral-50 {color: #858487}
         .text-primary-50 {color: #3980F3}
         .bg-primary-10 {background-color:#D7E6FD}
@@ -33,18 +30,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top w-100 position-absolute">
-        <div class="container"><div class="row w-100">
-            {{-- Dolpy brand --}}
-            <div class="col-md-2 col-sm-6 navbar-brand d-flex flex-row">
-                <div style="width:2.5em; max-width:10vh;">
-                    <img src="{{URL::asset('img/logo-primary.png')}}" alt="Logo" class="img-fluid">
-                </div>
-                <div class="text-neutral-10 fw-bold fs-3 ms-2" href="/index">Dolpy</div>
-            </div>
-            
-        </div></div>
-    </nav>
+    @include('layout.nav')
 
     <div class="container">
         <div class="row fs-2 w-100 mx-auto">
