@@ -46,7 +46,7 @@
                             </a>
                         </div>
                     </div>
-                    @foreach ($topics as $item)
+                    @forelse ($topics as $item)
                         <div class="row d-flex align-items-start px-3">
                             <div class="col-6">
                                 <h4 class="m-0">{{$item->topicName}}</h4>
@@ -74,7 +74,9 @@
                             </div>
                         </div>
                         @endempty
-                    @endforeach
+                    @empty
+                        No topic list, try to create one
+                    @endforelse
                 </div>
             </div>
             <div class="col-7 p-0" style="border: 1px solid #A3A3A5;">
