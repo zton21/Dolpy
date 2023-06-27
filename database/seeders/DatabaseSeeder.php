@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
         \App\Models\ProjectHeader::factory(20)->create();
         \App\Models\ProjectDetail::factory(50)->create();
-        \App\Models\TopicSection::factory(10)->create();
-        \App\Models\Comment::factory(100)->create();
+        \App\Models\TopicSection::factory(100)->create();
+        \App\Models\Comment::factory(1000)->create();
     }
 }

@@ -64,7 +64,7 @@ class UserController extends Controller
         $result = DB::select(
             "SELECT t.*, u.firstName, c.chatContent FROM topic_sections t
             JOIN users u ON t.user_id = u.id
-            JOIN comments c ON t.comment_id = c.id
+            LEFT JOIN comments c ON t.last_comment_id = c.id
             WHERE t.project_id = :project_id"
         , ["project_id" => $id]);
         // dd($result);

@@ -17,14 +17,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('project_id');
             $table->foreignId('user_id');
-            $table->foreignId('comment_id')->nullable();
+            $table->foreignId('last_comment_id')->nullable();
             $table->string('topicName');
             $table->date('topicDate');
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

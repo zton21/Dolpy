@@ -50,22 +50,31 @@
                         <div class="row d-flex align-items-start px-3">
                             <div class="col-6">
                                 <h4 class="m-0">{{$item->topicName}}</h4>
-                                <div class="text-secondary"{{$item->topicDate}}</div>
+                                <div class="text-secondary">{{$item->topicDate}}</div>
                             </div>
                             <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
                                 <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                                 <div>by {{$item->firstName}}</div>
                             </div>
-                        </div>                        
-                    @endforeach
-                    <hr class="mt-1 mb-2 mx-3">
-                    <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
-                        <div class="col-12 d-flex flex-row align-items-center gap-2">
-                            <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                            <div class="me-auto">I think a group work application is a good idea ...</div>
-                            <div class="rounded-circle text-white d-flex align-items-center justify-content-center" style="background: #3980F3; width: 32px; height: 32px">5+</div>
                         </div>
-                    </div>
+                        <hr class="mt-1 mb-2 mx-3">
+                        @isset($item->chatContent)
+                        <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                            <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                <div class="me-auto">{{$item->chatContent}}</div>
+                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center" style="background: #3980F3; width: 32px; height: 32px">5+</div>
+                            </div>
+                        </div>
+                        @endisset
+                        @empty($record)
+                        <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                            <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                <div class="me-auto">No Comment...</div>
+                            </div>
+                        </div>
+                        @endempty
+                    @endforeach
                 </div>
             </div>
             <div class="col-7 p-0" style="border: 1px solid #A3A3A5;">
