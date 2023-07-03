@@ -189,4 +189,8 @@ class UserController extends Controller
             return UserController::create_topic($request, $id);
         }
     }
+    public function calendar()
+    {
+        return view('calendar');
+    }
 }
