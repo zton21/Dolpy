@@ -146,4 +146,8 @@ class UserController extends Controller
 
         // Cek kalo udah gaada member, delete project
     }
+    public function calendar()
+    {
+        return view('calendar');
+    }
 }
