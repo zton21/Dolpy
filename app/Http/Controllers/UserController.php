@@ -61,6 +61,13 @@ class UserController extends Controller
         return view('setting', $data);
     }
 
+    public function get_current_topic(Request $request) {
+        $request->validate([
+            'topic' => 'numeric|min:0',
+        ]);
+        return $request->query('topic', 0);
+    }
+
     public function project(Request $request, $id) {
         $result = DB::select(
             "SELECT t.*, u.firstName, c.chatContent FROM topic_sections t
@@ -69,13 +76,19 @@ class UserController extends Controller
             WHERE t.project_id = :project_id"
         , ["project_id" => $id]);
         
-        $topic_n = $request->query('topic', 0);
-        $topic = $result[$topic_n];
-        // $messages = Comment::where('topic_id', $topic->id)
-        //     ->get();
-        $messages = DB::select("SELECT c.*, u.firstName FROM comments c JOIN users u ON c.user_id = u.id WHERE c.topic_id = :topic_id ORDER BY c.created_at"
-        , ["topic_id" => $topic->id]);
-        // dd($result);
+        $topic_n = UserController::get_current_topic($request);
+
+        if (count($result) == 0) {
+            $messages = null;
+            $topic = null;
+        }
+        else {
+            $topic = $result[$topic_n];
+            $messages = DB::select("SELECT c.*, u.firstName FROM comments c JOIN users u ON c.user_id = u.id 
+                WHERE c.topic_id = :topic_id ORDER BY c.created_at"
+            , ["topic_id" => $topic->id]);
+        }
+        
         return view('topic', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($id),
@@ -132,18 +145,48 @@ class UserController extends Controller
         ProjectDetail::where('user_id', $user_id)
             ->where('project_id', $project_id)
             ->delete();
-        // Check udah join belom
-        // $data = DB::table('project_details')
-        //     ->where('user_id', $user_id)
-        //     ->where('project_id', $project_id)
-        //     ->first();
-        
-        // if (empty($data)) {
-        //     return redirect()->back();
-        // }
-        // else {
-        // }
+    }
 
-        // Cek kalo udah gaada member, delete project
+    public function create_topic(Request $request, $id) {
+        $request->validate([
+            'topic_name' => 'required',
+            'topic_description' => '',
+        ]);
+
+        $topic = new TopicSection;
+        $topic->topicName = $request->topic_name;
+        $topic->topicDate = date("Y-m-d");
+        $topic->project_id = $id;
+        $topic->user_id = Auth::user()->id;
+        $topic->save();
+
+        return redirect()->back();
+    }
+
+    public function add_comment(Request $request, $id) {
+        $comment = new Comment;
+        $comment->chatContent = $request->comment;
+        $comment->user_id = Auth::user()->id;
+        #ini perlu fix date jadi time (keknya gakepake)
+        $comment->chatDate = date("Y-m-d");
+        
+        $comment->topic_id = $request->topic_id;
+        $comment->save();
+
+        # update last comment
+        $topic = TopicSection::find($request->topic);
+        $topic->last_comment_id = $comment->id;
+        $topic->save();
+
+        return redirect()->back();
+    }
+
+    public function topic_message_handler(Request $request, $id) {
+        if ($request->has('message')) {
+            return UserController::add_comment($request, $id);
+        }
+        if ($request->has('topic')) {
+            return UserController::create_topic($request, $id);
+        }
     }
 }

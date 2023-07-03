@@ -49,6 +49,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
             Route::get('/files', 'UserController@files')->name('files');
 
             Route::post('/home', 'UserController@createProject');
+            Route::post('/project/{id}', 'UserController@topic_message_handler');
         }
     );
 });

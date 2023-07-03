@@ -83,6 +83,7 @@
                     @endforelse
                 </div>
             </div>
+            @isset($topic)
             <div class="col-7 p-0" style="border: 1px solid #A3A3A5;">
                 <div class="container-fluid p-0" style="background: #F3F8FE">
                     <div class="row p-2 bg-white mx-0">
@@ -142,23 +143,27 @@
                     <hr class="p-0 my-0">
                     <div class="row px-2 py-3 mx-0 bg-white pb-3 d-flex">
                         <div class="col-12">
-                            <div class="d-flex flex-row gap-2 align-items-center">
-                                <form action="{{ route('add_comment') }}" method="post">
-                                    <a href="">
+                            <form method="POST">
+                                @csrf
+                                <div class="d-flex flex-row gap-2 align-items-center">
+                                    <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                                    <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M8 5v0a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v0M8 5v0a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v0"/></svg>
-                                    </a>
+                                    </div>
                                     <div class="input-group">
                                         <input type="text" class="py-2 form-control" id="comment" name="comment" placeholder="Type your comment..." aria-describedby="basic-addon1" required>
                                     </div>
-                                    <a href="">
+                                    <label>
+                                        <input type="submit" name="message" style="display: none">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l-.604-5.437C4.223 5.007 5.825 3.864 7.24 4.535l11.944 5.658c1.525.722 1.525 2.892 0 3.614L7.24 19.465c-1.415.67-3.017-.472-2.844-2.028L5 12Zm0 0h7"/></svg>
-                                    </a>
-                                </form>
-                            </div>
+                                    </label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+            @endisset
         </div>
     </div>
 
