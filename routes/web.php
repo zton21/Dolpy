@@ -34,7 +34,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::get('/verify', 'AuthController@showVerify')->name('verify');
     Route::post('/resend-reset-email', 'ForgotPasswordController@resendResetEmail')->name('resendResetEmail');
-
     
     Route::get('/resetpassword', 'ResetPasswordController@showResetPassword')->name('password.reset');
     Route::post('/resetpassword', 'ResetPasswordController@reset')->name('password.update');
@@ -51,6 +50,10 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
             Route::post('/home', 'UserController@createProject');
             Route::post('/project/{id}', 'UserController@topic_message_handler');
+            Route::post('/check_for_update', 'UserController@check_for_update');
+            Route::post('/request_messages', 'UserController@update_message_handler');
+
+            
         }
     );
 });

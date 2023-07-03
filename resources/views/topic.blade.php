@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ Session::token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -13,7 +14,20 @@
             background-image: url('img/WebProgrammingWallpaper.png');
             background-size: cover;
         }
+        .bg-custom {
+            background-color: #D7E6FD;
+        }
     </style>
+    <script>
+        var topic_id = "{{$topic->id}}";
+        var last_comment_id = '-1';
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script src="{{asset('js/app.js')}}"></script>
 </head>
 <body>
     <div class="container p-0">
@@ -100,8 +114,8 @@
                         </div>
                     </div>
                     <hr class="p-0 my-0">
-                    <div class="container-fluid p-0">
-                        @forelse ($messages as $item)
+                    <div class="container-fluid p-0 chatbox">
+                        {{-- @forelse ($messages as $item)
                             @if ($item->user_id == $user->id)
                                 <div class="row px-4 py-2">
                                     <div class="col-11">
@@ -136,14 +150,14 @@
                                 </div>
                                 
                             @endif
-                        @empty
+                        @empty 
                             
-                        @endforelse
+                        @endforelse--}}
                     </div>
                     <hr class="p-0 my-0">
                     <div class="row px-2 py-3 mx-0 bg-white pb-3 d-flex">
                         <div class="col-12">
-                            <form method="POST">
+                            <form method="POST" id='chat'>
                                 @csrf
                                 <div class="d-flex flex-row gap-2 align-items-center">
                                     <input type="hidden" name="topic_id" value="{{$topic->id}}">
