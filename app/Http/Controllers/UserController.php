@@ -174,7 +174,7 @@ class UserController extends Controller
         $comment->save();
 
         # update last comment
-        $topic = TopicSection::find($request->topic);
+        $topic = TopicSection::find($request->topic_id);
         $topic->last_comment_id = $comment->id;
         $topic->save();
 
@@ -182,13 +182,30 @@ class UserController extends Controller
     }
 
     public function topic_message_handler(Request $request, $id) {
-        if ($request->has('message')) {
+        if ($request->has('task') && $request->task == 'send_message') {
             return UserController::add_comment($request, $id);
         }
         if ($request->has('topic')) {
             return UserController::create_topic($request, $id);
         }
     }
+
+    public function check_for_update(Request $request) {
+        $data = TopicSection::find($request->topic_id);
+        return $data->last_comment_id;
+    }
+
+    public function update_message_handler(Request $request) {
+        # validate - not implemented
+        $user_id = Auth::user()->id;
+        $data = DB::select('select c.*, u.firstName from comments c JOIN users u ON c.user_id = u.id where c.id > ? and c.topic_id = ?;', [$request->last_comment_id, $request->topic_id]);
+        // dd($data);
+        foreach ($data as $key => $value) {
+            $data[$key]->own = ($data[$key]->user_id == $user_id);
+        }
+        return $data;
+    }
+
     public function calendar()
     {
         return view('calendar');
