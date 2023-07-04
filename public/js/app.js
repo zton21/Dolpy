@@ -59,4 +59,5 @@ $(document).ready(() => {
         })
     })
     setInterval(refresh, 1000);
+    refresh();
 });
