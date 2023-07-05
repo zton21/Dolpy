@@ -9,5 +9,8 @@ class ProjectDetail extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = null;
+    public $incrementing = false;
+    
     protected $guarded = [];
 }

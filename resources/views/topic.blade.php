@@ -10,17 +10,9 @@
     {{-- Pusher --}}
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('35ca343f2d20964f7bfb', {
-            cluster: 'ap1'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-        });
+        const project_id = {{$project->id}};
+        const user_id = {{$user->id}};
+        const data = {{Js::from($messages)}};
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -35,18 +27,14 @@
         }
     </style>
     <script>
-        @isset($topic)
-        var topic_id = "{{$topic->id}}";
-        @endisset
-
-        var last_comment_id = '-1';
+        // var last_comment_id = '-1';
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
     </script>
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/project.js')}}"></script>
 </head>
 <body>
     <div class="container p-0">

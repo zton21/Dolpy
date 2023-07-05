@@ -44,16 +44,14 @@ Route::namespace('App\Http\Controllers')->group(function() {
             // Route that need auth
             Route::get('/home', 'UserController@home')->name('dashboard');
             Route::get('/profile', 'UserController@profile')->name('profile');
-            Route::get('/project/{id}', 'UserController@project')->name('project');
             Route::get('/setting', 'UserController@setting')->name('setting');
             Route::get('/files', 'UserController@files')->name('files');
 
-            Route::post('/home', 'UserController@createProject');
-            Route::post('/project/{id}', 'UserController@topic_message_handler');
-            Route::post('/check_for_update', 'UserController@check_for_update');
-            Route::post('/request_messages', 'UserController@update_message_handler');
-
-            
+            Route::post('/home', 'ProjectController@create_project');
+            Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
+            Route::post('/project/{id}', 'ProjectController@project_request_handler');
+            Route::post('/check_for_update', 'CommentController@check_for_update');
+            Route::post('/request_messages', 'CommentController@update_message_handler');
         }
     );
 });
