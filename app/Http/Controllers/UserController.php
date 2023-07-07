@@ -74,6 +74,10 @@ class UserController extends Controller
     }
 
 
+    public function member()
+    {
+        return view('member');
+    }
 
     public static function calendar()
     {

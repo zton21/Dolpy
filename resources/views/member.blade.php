@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Members</title>
+</head>
+<body>
+    <div class="container vh-100" style="overflow: hidden">
+        <div class="row h-100 border">
+            <div class="col-5 p-0">
+                <div class="container-fluid p-0">
+                    <div class="card p-0">
+                        <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
+                        <div class="card-body" style="background: #D7E6FD;">
+                            <h3>Web Programming</h3>
+                            <span>Every Project has it own card too</span>
+                        </div>
+                    </div>
+                    <div class="row m-0 py-3 justify-content-between">
+                        <div class="col-auto">
+                            <h3 class="m-0">Members</h3>
+                        </div>
+                        <div class="col-auto gap-2">
+                            <button type="button" class="btn btn-primary ms-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
+                                <span class="text-white py-auto">Invite</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row rounded-2 my-3" style="background: #F3F8FE">
+                        <div class="py-2 px-3 m-0 h4">Project Members (5)</div>
+                    </div>
+
+                    <h4 class="px-3">Pending</h4>
+
+                </div>
+            </div>
+            <div class="col-7" style="background: #F3F8FE">
+                <div class="container h-100 my-2">
+                    <h3>Project Members (5)</h3>
+                    <div style="color: #858487">Project members can view all Project visible boards and create new boards in the Project.</div>
+                    <hr class="p-0 my-3">
+                    <h3>Invite members to join you</h3>
+                    <div style="color: #858487">Anyone with an invite link can join this Project. You can also disable and create a new invite link for this Project at any time.</div>
+                    <div class="d-flex flex-row justify-content-evenly my-3">
+                        <button type="button" class="btn btn-sm btn-danger px-4 rounded-3">Disable invite link</button>
+                        <button type="button" class="btn btn-sm btn-primary px-4 rounded-3">
+                            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.98242 10.9098H7.98589C7.65846 10.9098 7.38694 10.6737 7.38694 10.389C7.38694 10.1042 7.65846 9.86814 7.98589 9.86814H9.98242C12.0748 9.86814 13.7758 8.38897 13.7758 6.56953C13.7758 4.75008 12.0748 3.27091 9.98242 3.27091H5.98937C3.89701 3.27091 2.19596 4.75008 2.19596 6.56953C2.19596 7.33341 2.50742 8.07647 3.06645 8.66675C3.27409 8.88897 3.24214 9.21536 2.98659 9.40286C2.73103 9.58341 2.35569 9.55564 2.14006 9.33341C1.40534 8.55564 0.998047 7.57647 0.998047 6.56953C0.998047 4.17369 3.23416 2.22925 5.98937 2.22925H9.98242C12.7376 2.22925 14.9737 4.17369 14.9737 6.56953C14.9737 8.96536 12.7376 10.9098 9.98242 10.9098Z" fill="white"/><path d="M13.1768 15.7709H9.1837C6.42849 15.7709 4.19238 13.8264 4.19238 11.4306C4.19238 9.03478 6.42849 7.09033 9.1837 7.09033H11.1802C11.5077 7.09033 11.7792 7.32644 11.7792 7.61117C11.7792 7.89589 11.5077 8.132 11.1802 8.132H9.1837C7.09134 8.132 5.3903 9.61117 5.3903 11.4306C5.3903 13.2501 7.09134 14.7292 9.1837 14.7292H13.1768C15.2691 14.7292 16.9702 13.2501 16.9702 11.4306C16.9702 10.6667 16.6587 9.92367 16.0997 9.33339C15.892 9.11117 15.924 8.78478 16.1795 8.59728C16.4351 8.40978 16.8104 8.4445 17.0261 8.66672C17.7688 9.4445 18.1761 10.4237 18.1761 11.4306C18.1681 13.8264 15.932 15.7709 13.1768 15.7709Z" fill="white"/></svg>
+                            <span class="text-white py-auto">Invite with link</span>
+                        </button>
+                    </div>
+                    <hr class="p-0 my-3">
+                    <div class="border border-2 rounded-pill py-1 px-3 d-inline" style="color: #858487">
+                        Sort by Name
+                    </div>
+                    <hr class="p-0 my-3">
+                    <div class="d-flex flex-column my-2 overflow-x-hidden overflow-y-auto" style="height: calc(40vh - 1.5rem)">
+                        <div class="row my-1 align-items-center">
+                            <div class="col-auto">
+                                <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                            </div>
+                            <div class="col-8 p-0">
+                                <div>Brigita Vanessa Salim</div> 
+                                <div class="">brigitavanessa@gmail.com</div>
+                            </div>
+                            <div class="col-auto ms-auto">
+                                <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.3278 10.5425C24.1011 10.5425 25.5361 11.9444 25.5361 13.6768C25.5361 15.4092 24.1011 16.811 22.3278 16.811C20.5545 16.811 19.1195 15.4092 19.1195 13.6768C19.1195 11.9444 20.5545 10.5425 22.3278 10.5425ZM22.3278 15.1014C23.1328 15.1014 23.7861 14.4632 23.7861 13.6768C23.7861 12.8904 23.1328 12.2521 22.3278 12.2521C21.5228 12.2521 20.8695 12.8904 20.8695 13.6768C20.8695 14.4632 21.5228 15.1014 22.3278 15.1014Z" fill="#858487"/><path d="M5.99479 10.5425C7.76813 10.5425 9.20313 11.9444 9.20312 13.6768C9.20312 15.4092 7.76813 16.811 5.99479 16.811C4.22146 16.811 2.78646 15.4092 2.78646 13.6768C2.78646 11.9444 4.22146 10.5425 5.99479 10.5425ZM5.99479 15.1014C6.79979 15.1014 7.45313 14.4632 7.45313 13.6768C7.45313 12.8904 6.79979 12.2521 5.99479 12.2521C5.18979 12.2521 4.53646 12.8904 4.53646 13.6768C4.53646 14.4632 5.18979 15.1014 5.99479 15.1014Z" fill="#858487"/><path d="M14.1608 10.5427C15.9341 10.5427 17.3691 11.9445 17.3691 13.6769C17.3691 15.4093 15.9341 16.8112 14.1608 16.8112C12.3875 16.8112 10.9525 15.4093 10.9525 13.6769C10.9525 11.9445 12.3875 10.5427 14.1608 10.5427ZM14.1608 15.1016C14.9658 15.1016 15.6191 14.4633 15.6191 13.6769C15.6191 12.8905 14.9658 12.2522 14.1608 12.2522C13.3558 12.2522 12.7025 12.8905 12.7025 13.6769C12.7025 14.4633 13.3558 15.1016 14.1608 15.1016Z" fill="#858487"/></svg>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
