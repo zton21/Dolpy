@@ -39,6 +39,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::post('/resetpassword', 'ResetPasswordController@reset')->name('password.update');
 
     Route::get('/calendar', 'UserController@calendar')->name('calendar');
+    //
     Route::middleware(['web', 'auth'])->group(
         function() {
             // Route that need auth
