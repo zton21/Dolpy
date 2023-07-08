@@ -54,9 +54,9 @@ $(document).ready(() => {
             'comment': $form.find('input[name="comment"').val()
         });
         $('#comment').val('');
-        post.done(function(data) {
-            // Ok
-        })
+        // post.done(function(data) {
+            
+        // })
     })
     setInterval(refresh, 1000);
     refresh();

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
 use App\Models\TopicSection;
 use App\Events\NewCommentEvent;
+use Pusher\Pusher;
+use App\Http\Controllers\UserController;
 
 class CommentController extends Controller
 {
@@ -25,32 +27,35 @@ class CommentController extends Controller
         $topic->last_comment_id = $comment->id;
         $topic->save();
 
-        $comment_data = json_encode($comment->only(['chatContent', 'chatDate']));
-        $comment_data = $comment->only(['chatContent', 'chatDate']);
-
+        $comment_data = $comment->only(['chatContent', 'chatDate', 'topic_id']);
+        
         $user = Auth::user();
         # broadcast updatenya
-        broadcast(new NewCommentEvent([
-            'comment' => $comment_data,
-            'project_id' => $project_id,
-            'sender' => $user->only(['firstName', 'id']),
-        ]));
+        // $comment = new NewCommentEvent();
+        
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
+            ],
+        );
+
+        $pusher->trigger(
+            'private-project.'.$project_id,
+            'send-message',
+            [
+                'comment' => $comment_data,
+                'project_id' => $project_id,
+                'sender' => $user->only(['firstName', 'id']),
+            ]
+        );
+
+        // dd($comment);
+        # Semua yang udah connect diupdate
+        
     }
 
-    // Sementara:     
-    public static function check_for_update(Request $request) {
-        $data = TopicSection::find($request->topic_id);
-        return $data->last_comment_id;
-    }
-
-    public static function update_message_handler(Request $request) {
-        # validate - not implemented
-        $user_id = Auth::user()->id;
-        $data = DB::select('select c.*, u.firstName from comments c JOIN users u ON c.user_id = u.id where c.id > ? and c.topic_id = ?;', [$request->last_comment_id, $request->topic_id]);
-        // dd($data);
-        foreach ($data as $key => $value) {
-            $data[$key]->own = ($data[$key]->user_id == $user_id);
-        }
-        return $data;
-    }
 }

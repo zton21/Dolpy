@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('topic_sections', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('project_id');
+        Schema::create('topic_user', function (Blueprint $table) {
+            // $table->id();
+            $table->foreignId('topic_id');
             $table->foreignId('user_id');
-            $table->foreignId('last_comment_id')->nullable();
-            $table->integer('n_message')->default(0);
-            $table->string('topicName');
-            $table->date('topicDate');
-            $table->timestamps();
+            $table->integer('seen')->default(0);
+            $table->integer('online')->default(0);
 
-            $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('topic_id')->references('id')->on('topic_sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topic_sections');
+        Schema::dropIfExists('topic_user');
     }
 };

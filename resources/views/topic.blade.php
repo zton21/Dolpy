@@ -25,6 +25,13 @@
         .bg-custom {
             background-color: #D7E6FD;
         }
+        .active1 .notification {
+            display: none !important;
+        }
+
+        .notification:empty {
+            display: none !important;
+        }
     </style>
     <script>
         // var last_comment_id = '-1';
@@ -71,8 +78,8 @@
                         </div>
                     </div>
                     @forelse ($topics as $item)
-                    
-                        <div class="row d-flex align-items-start px-3">
+                    <div class="{{$item->id == $topic->id?'active1':''}}" id="t{{$item->id}}">
+                        <div class="row d-flex align-items-start px-3 topic_title">
                             <a class="col-6 text-decoration-none text-dark" href="?topic={{$loop->index}}">
                                 <h4 class="m-0">{{$item->topicName}}</h4>
                                 <div class="text-secondary">{{$item->topicDate}}</div>
@@ -87,18 +94,26 @@
                         <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
                             <div class="col-12 d-flex flex-row align-items-center gap-2">
                                 <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                                <div class="me-auto">{{$item->chatContent}}</div>
-                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center" style="background: #3980F3; width: 32px; height: 32px">5+</div>
+                                <div class="me-auto chatcontent">{{$item->chatContent}}</div>
+                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px"></div>
                             </div>
                         </div>
                         @endisset
-                        @empty($record)
+                        @empty($item->chatContent)
                         <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                            <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="d-none img-fluid rounded-circle" style="width: 40px">
+                                <div class="me-auto chatcontent">There is no comment yet...</div>
+                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px"></div>
+                            </div>
+                        </div>
+                        {{-- <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
                             <div class="col-12 d-flex flex-row align-items-center gap-2">
                                 <div class="me-auto">No Comment...</div>
                             </div>
-                        </div>
+                        </div> --}}
                         @endempty
+                    </div>
                     @empty
                         No topic list, try to create one
                     @endforelse

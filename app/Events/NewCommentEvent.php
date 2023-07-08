@@ -35,8 +35,9 @@ class NewCommentEvent implements ShouldBroadCast
     public function broadcastOn()
     {
         // dd('project.'.$this->data['project_id']);
+        // dd('private-project.'.$this->data['project_id']);
         return [
-            new ProjectChannel('project.'.$this->data['project_id']),
+            new PrivateChannel('private-project.'.$this->data['project_id']),
         ];
     }
 
