@@ -124,4 +124,12 @@ class UserController extends Controller
     {
         return view('calendar');
     }
+     public static function timeline()
+    {
+        return view('timeline');
+    }
+     public static function timeline_inner()
+    {
+        return view('timeline_inner');
+    }
 }
