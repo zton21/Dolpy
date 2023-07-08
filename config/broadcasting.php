@@ -42,6 +42,7 @@ return [
                 'encrypted' => true,
                 'cluster' => 'ap1',
                 'useTLS' => true,
+                'encryption_master_key' => env('ENCRYPTION_MASTER_KEY'),
             ],
             'client_options' => [
                 // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html

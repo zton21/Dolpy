@@ -11,10 +11,13 @@ class TopicSection extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'topicName',
-        'topicDate',
-    ];
+    // protected $fillable = [
+    //     'topicName',
+    //     'topicDate',
+    //     'n'
+    // ];
+
+    protected $guarded = [];
 
     public function project(): BelongsTo
     {

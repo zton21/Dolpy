@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProjectDetail;
+use App\Models\Connection;
+use App\Models\TopicUser;
+use Pusher\Pusher;
 
 class UserController extends Controller
 {   
@@ -14,9 +17,9 @@ class UserController extends Controller
         #JOIN users u ON u.id = m.user_id
         $x = Auth::user()->id;
         $results = DB::select("SELECT h.projectName, h.projectDueDate, u.firstName, h.id FROM 
-            project_headers h JOIN project_details m ON h.ID = m.project_ID AND m.role = 'Creator' 
-            AND h.id IN (SELECT id FROM project_headers h JOIN project_details m ON h.id = m.project_id AND m.user_id = :user_id) 
-            JOIN users u ON u.id = m.user_id ORDER BY h.created_at", ["user_id" => $x]);
+            project_headers h JOIN project_details d ON h.ID = d.project_ID AND d.role = 'Creator' 
+            AND EXISTS(SELECT id FROM project_headers ph JOIN project_details pd ON ph.id = pd.project_id AND pd.user_id = ? AND h.id = ph.id) 
+            JOIN users u ON u.id = d.user_id ORDER BY h.created_at", [$x]);
         return $results;
     }
 
@@ -73,13 +76,51 @@ class UserController extends Controller
         ProjectController::remove_member($project_id, $user_id);
     }
 
+    public static function pusher_authenticate(Request $request) {
+        $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
+        // dd(ProjectController::check_member($project_id, Auth::user()->id));
+        // dd($project_id, Auth::user()->id);
+        // dd(ProjectDetail::where('project_id', $project_id)->where('user_id', Auth::user()->id)->get());
+        if (!ProjectController::check_member($project_id, Auth::user()->id)['is_member']) return response('Forbidden', 403); # bukan member
+        
+        $result = Connection::where('socket_id', $request->socket_id)
+            ->where('user_id', Auth::user()->id)->first();
+        if (!$result) {
+            $conn = new Connection;
+            $conn->socket_id = $request->socket_id;
+            $conn->user_id = Auth::user()->id;
+            $conn->save();
+        }
 
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
+            ],
+        );
+        $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
+        
+        return response($x, 200);
+    }
+    
+    public static function read_all($user_id, $topic_id) {
+        $topicuser = TopicUser::where('user_id', $user_id)->where('topic_id', $topic_id)->first();
+        if (!topicuser) {
+            $topicuser = new TopicUser;
+            $topicuser->user_id = $user_id;
+            $topicuser->topic_id = $topic_id;
+        }
+        
+    }
+    
     public function member()
     {
         return view('member');
     }
-
-    public static function calendar()
+     public static function calendar()
     {
         return view('calendar');
     }

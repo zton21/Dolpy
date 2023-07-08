@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use Illuminate\Support\Facades\Broadcast;
 
 
 /*a
@@ -53,8 +54,11 @@ Route::namespace('App\Http\Controllers')->group(function() {
             Route::post('/home', 'ProjectController@create_project');
             Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
             Route::post('/project/{id}', 'ProjectController@project_request_handler');
-            Route::post('/check_for_update', 'CommentController@check_for_update');
-            Route::post('/request_messages', 'CommentController@update_message_handler');
+
+            // Route::post('/pusher/auth', 'UserController@pusher_authenticate');
+            Route::post('/query', 'UserController@handle_ajax');
+            Route::post('/broadcasting/auth', 'UserController@pusher_authenticate');
         }
     );
+    
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProjectHeader;
@@ -38,10 +39,15 @@ class ProjectController extends Controller
     // View Project
     // Notes: Message gw ilangin karena rencananya mau pake local storage sama sync perubahan pake websocket
     public static function view_project(Request $request, $project_id) {
+        $project = ProjectHeader::find($project_id);
+        if (!$project) return response('Forbidden', 404);
+        if (!ProjectController::check_member($project_id, Auth::user()->id)['is_member']) return response('Forbidden', 404);
+
         $result = DB::select(
-            "SELECT t.*, u.firstName, c.chatContent FROM topic_sections t
+            "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t
             JOIN users u ON t.user_id = u.id
             LEFT JOIN comments c ON t.last_comment_id = c.id
+            LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id
             WHERE t.project_id = :project_id"
         , ["project_id" => $project_id]);
         
@@ -56,7 +62,11 @@ class ProjectController extends Controller
             $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
                 WHERE c.topic_id = :topic_id ORDER BY c.created_at"
             , ["topic_id" => $topic->id]);
+
+            // Update topic_user 
         }
+
+        
 
         
         return view('topic', [
@@ -87,11 +97,11 @@ class ProjectController extends Controller
 
     // Untuk Authorization
     public static function check_member($project_id, $user_id) {
-        $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->get();
-        if (count($ProjectDetail) == 0) {
-            return ['is_member' => FALSE, 'role' => "NONE"];
+        $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();
+        if ($ProjectDetail) {
+            return ['is_member' => TRUE, 'role' => $ProjectDetail->role];
         }
-        return ['is_member' => TRUE, 'role' => $ProjectDetail->role];
+        return ['is_member' => FALSE, 'role' => "NONE"];
     }
 
     // Set member sebagai creator
@@ -133,4 +143,6 @@ class ProjectController extends Controller
             return ProjectController::create_topic($request, $id);
         }
     }
+
+    
 }

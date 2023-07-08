@@ -25,6 +25,29 @@
         .bg-custom {
             background-color: #D7E6FD;
         }
+        .active1 .notification {
+            display: none !important;
+        }
+
+        .notification:empty {
+            display: none !important;
+        }
+        /* width */
+        ::-webkit-scrollbar {
+        width: 12px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #D7E6FD;
+        border-radius: 20px;
+        border: 3px solid #F3F8FE;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #88B3F8; 
+        }
     </style>
     <script>
         // var last_comment_id = '-1';
@@ -37,13 +60,12 @@
     <script src="{{asset('js/project.js')}}"></script>
 </head>
 <body>
-    <div class="container p-0">
-        <div class="row">
-            <div class="col-5" style="border: 1px solid #A3A3A5;">
-                <div class="container-fluid p-0">
+    <div class="container vh-100" style="padding-top: 120px;">
+        <div class="row h-100">
+            <div class="col-5 h-100" style="border: 1px solid #A3A3A5;">
+                <div class="container-fluid p-0 h-100 d-flex flex-column overflow-hidden">
                     <div class="row card-bg p-1 align-items-end" style="height: 96px">
-                        <div class="col-6"></div>
-                        <div class="col-6 d-flex justify-content-end">
+                        <div class="col-12 d-flex justify-content-end">
                             <a class="btn btn-primary d-inline-flex flex-row gap-2 align-items-center" style="background: #3980F3; font-size: 14px" href="#" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1l1-4l9.5-9.5z"/></g></svg>
                                 <div class="text-white">Modify Theme</div>
@@ -70,43 +92,53 @@
                             <x-create-topic-form></x-create-topic-form>
                         </div>
                     </div>
-                    @forelse ($topics as $item)
-                    
-                        <div class="row d-flex align-items-start px-3">
-                            <a class="col-6 text-decoration-none text-dark" href="?topic={{$loop->index}}">
-                                <h4 class="m-0">{{$item->topicName}}</h4>
-                                <div class="text-secondary">{{$item->topicDate}}</div>
-                            </a>
-                            <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
-                                <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                                <div>by {{$item->firstName}}</div>
+                    <div class="container-fluid h-100 mx-auto" style="width: 100%; flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
+                        @forelse ($topics as $item)
+                        <div class="{{$item->id == $topic->id?'active1':''}}" id="t{{$item->id}}">
+                            <div class="row d-flex align-items-start px-3 topic_title">
+                                <a class="col-6 text-decoration-none text-dark" href="?topic={{$loop->index}}">
+                                    <h4 class="m-0">{{$item->topicName}}</h4>
+                                    <div class="text-secondary">{{$item->topicDate}}</div>
+                                </a>
+                                <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
+                                    <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                    <div>by {{$item->firstName}}</div>
+                                </div>
                             </div>
-                        </div>
-                        <hr class="mt-1 mb-2 mx-3">
-                        @isset($item->chatContent)
-                        <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
-                            <div class="col-12 d-flex flex-row align-items-center gap-2">
-                                <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                                <div class="me-auto">{{$item->chatContent}}</div>
-                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center" style="background: #3980F3; width: 32px; height: 32px">5+</div>
+                            <hr class="mt-1 mb-2 mx-3">
+                            @isset($item->chatContent)
+                            <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                                <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                    <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                    <div class="me-auto chatcontent">{{$item->chatContent}}</div>
+                                    <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px">{{$item->new_message == 0? '' : $item->new_message}}</div>
+                                </div>
                             </div>
-                        </div>
-                        @endisset
-                        @empty($record)
-                        <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
-                            <div class="col-12 d-flex flex-row align-items-center gap-2">
-                                <div class="me-auto">No Comment...</div>
+                            @endisset
+                            @empty($item->chatContent)
+                            <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                                <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                    <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="d-none img-fluid rounded-circle" style="width: 40px">
+                                    <div class="me-auto chatcontent">There is no comment yet...</div>
+                                    <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px"></div>
+                                </div>
                             </div>
+                            {{-- <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                                <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                    <div class="me-auto">No Comment...</div>
+                                </div>
+                            </div> --}}
+                            @endempty
                         </div>
-                        @endempty
-                    @empty
-                        No topic list, try to create one
-                    @endforelse
+                        @empty
+                            No topic list, try to create one
+                        @endforelse
+                    </div>
                 </div>
             </div>
             @isset($topic)
-            <div class="col-7 p-0" style="border: 1px solid #A3A3A5;">
-                <div class="container-fluid p-0" style="background: #F3F8FE">
+            <div class="col-7 p-0 h-100" style="border: 1px solid #A3A3A5;">
+                <div class="container-fluid p-0 h-100 d-flex flex-column" style="background: #F3F8FE">
                     <div class="row p-2 bg-white mx-0">
                         <div class="col-12 d-flex flex-row gap-2">
                             <h1>{{$topic->topicName}}</h1>
@@ -121,8 +153,8 @@
                         </div>
                     </div>
                     <hr class="p-0 my-0">
-                    <div class="container-fluid p-0 chatbox">
-                        {{-- @forelse ($messages as $item)
+                    <div class="container-fluid p-0 chatbox" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
+                        @forelse ($messages as $item)
                             @if ($item->user_id == $user->id)
                                 <div class="row px-4 py-2">
                                     <div class="col-11">
@@ -159,7 +191,7 @@
                             @endif
                         @empty 
                             
-                        @endforelse--}}
+                        @endforelse
                     </div>
                     <hr class="p-0 my-0">
                     <div class="row px-2 py-3 mx-0 bg-white pb-3 d-flex">
