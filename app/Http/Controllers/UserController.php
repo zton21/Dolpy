@@ -91,7 +91,16 @@ class UserController extends Controller
             $conn->save();
         }
 
-        $x = UserController::$pusher->authorizeChannel($request->channel_name, $request->socket_id);
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
+            ],
+        );
+        $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
         
         return response($x, 200);
     }
