@@ -63,10 +63,9 @@
     <div class="container vh-100" style="padding-top: 120px;">
         <div class="row h-100">
             <div class="col-5 h-100" style="border: 1px solid #A3A3A5;">
-                <div class="container-fluid p-0">
+                <div class="container-fluid p-0 h-100 d-flex flex-column overflow-hidden">
                     <div class="row card-bg p-1 align-items-end" style="height: 96px">
-                        <div class="col-6"></div>
-                        <div class="col-6 d-flex justify-content-end">
+                        <div class="col-12 d-flex justify-content-end">
                             <a class="btn btn-primary d-inline-flex flex-row gap-2 align-items-center" style="background: #3980F3; font-size: 14px" href="#" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1l1-4l9.5-9.5z"/></g></svg>
                                 <div class="text-white">Modify Theme</div>
@@ -93,7 +92,7 @@
                             <x-create-topic-form></x-create-topic-form>
                         </div>
                     </div>
-                    <div class="container-fluid h-100 mx-auto" style="width: 100%;">
+                    <div class="container-fluid h-100 mx-auto" style="width: 100%; flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($topics as $item)
                         <div class="{{$item->id == $topic->id?'active1':''}}" id="t{{$item->id}}">
                             <div class="row d-flex align-items-start px-3 topic_title">
@@ -139,7 +138,7 @@
             </div>
             @isset($topic)
             <div class="col-7 p-0 h-100" style="border: 1px solid #A3A3A5;">
-                <div class="container-fluid p-0 h-100" style="background: #F3F8FE">
+                <div class="container-fluid p-0 h-100 d-flex flex-column" style="background: #F3F8FE">
                     <div class="row p-2 bg-white mx-0">
                         <div class="col-12 d-flex flex-row gap-2">
                             <h1>{{$topic->topicName}}</h1>
@@ -154,7 +153,7 @@
                         </div>
                     </div>
                     <hr class="p-0 my-0">
-                    <div class="container-fluid p-0 chatbox overflow-x-hidden overflow-y-auto h-100">
+                    <div class="container-fluid p-0 chatbox" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($messages as $item)
                             @if ($item->user_id == $user->id)
                                 <div class="row px-4 py-2">
