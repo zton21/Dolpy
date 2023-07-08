@@ -75,26 +75,6 @@ class UserController extends Controller
         ProjectController::remove_member($project_id, $user_id);
     }
 
-    public static function handle_ajax(Request $request) {
-        if (!$request->has('task')) return;
-        switch ($request->task) {
-            case '': break;
-        }
-    }
-    public static Pusher $pusher;
-    
-    public function __construct() {
-        UserController::$pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
-            ],
-        );
-    }
-
     public static function pusher_authenticate(Request $request) {
         $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
         // dd(ProjectController::check_member($project_id, Auth::user()->id));
@@ -127,7 +107,10 @@ class UserController extends Controller
         
     // }); 
     
-
+    public function member()
+    {
+        return view('member');
+    }
      public static function calendar()
     {
         return view('calendar');

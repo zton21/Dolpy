@@ -8,9 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Files</title>
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+        width: 12px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #D7E6FD;
+        border-radius: 20px;
+        border: 3px solid #F3F8FE;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #88B3F8; 
+        }
+    </style>
 </head>
 <body>
-    <div class="container vh-100">
+    <div class="container vh-100" style="overflow: hidden">
         <div class="row h-100">
             <div class="col-5 p-0">
                 <div class="container-fluid p-0">
@@ -25,28 +43,26 @@
                         <div class="col-6">
                             <h3 class="m-0">Section List</h3>
                         </div>
-                        <div class="col-auto">
-                            <button type="button" class="btn btn-primary ms-auto">
+                        <div class="col-auto com-sm-3">
+                            <button type="button" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                                 <span class="text-white my-auto">Add File Section</span>
                             </button>
                         </div>
                     </div>
-                    <div class="container h-100 overflow-y-auto">
-                        <div class="row p-2 mx-1 border rounded-3 align-items-center">
+                    <div class="d-flex flex-column overflow-y-auto m-2" style="height: 60vh;">
+                        <div class="row p-2 m-1 border rounded-3 align-items-center">
                             <div class="col-6">
                                 <h4>Brainstroming</h4>
                                 <div class="text-secondary">10/1/2023 - 02:39 PM</div>
                             </div>
                             <div class="col-6">
                                 <div class="row align-items-center justify-content-end">
-                                    <div class="col-auto">
+                                    <div class="col-auto p-0">
                                         <img src="{{URL::asset('img/profilePicture.png')}}" class="img-fluid rounded-circle" style="width: 40px;">
                                     </div>
-                                    <div class="col-auto">
-                                        <div class="">
-                                            by Gundul Pacul
-                                        </div>
+                                    <div class="col-8">
+                                        by Gundul Pacul
                                     </div>
                                 </div>
                             </div>
