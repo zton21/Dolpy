@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ProjectDetail;
 use App\Models\Connection;
+use App\Models\TopicUser;
 use Pusher\Pusher;
 
 class UserController extends Controller
@@ -104,17 +105,16 @@ class UserController extends Controller
         
         return response($x, 200);
     }
-    // Broadcast::channel('project.{project_id}', function(Request $request, User $user, $project_id) {
-    //     // if (!Auth::user()) return false; # belom login
-    //     if (Auth::user()->id != $user->id) return false;
-    //     dd($project_id);
-    //     $user = Auth::user();
-    //     $channel_id = $request->channel_name;
-    //     $socket_id = $request->socket_id;
-    //     if (!ProjectController::check_member($project_id, $user_id)->is_member) return false; # bukan member
     
+    public static function read_all($user_id, $topic_id) {
+        $topicuser = TopicUser::where('user_id', $user_id)->where('topic_id', $topic_id)->first();
+        if (!topicuser) {
+            $topicuser = new TopicUser;
+            $topicuser->user_id = $user_id;
+            $topicuser->topic_id = $topic_id;
+        }
         
-    // }); 
+    }
     
     public function member()
     {

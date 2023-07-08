@@ -95,7 +95,7 @@
                             <div class="col-12 d-flex flex-row align-items-center gap-2">
                                 <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                                 <div class="me-auto chatcontent">{{$item->chatContent}}</div>
-                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px"></div>
+                                <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px">{{$item->new_message == 0? '' : $item->new_message}}</div>
                             </div>
                         </div>
                         @endisset

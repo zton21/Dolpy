@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('topic_id');
             $table->foreignId('user_id');
             $table->integer('seen')->default(0);
-            $table->integer('online')->default(0);
+            // $table->integer('online')->default(0);
 
             $table->foreign('topic_id')->references('id')->on('topic_sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

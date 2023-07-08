@@ -25,14 +25,14 @@ class CommentController extends Controller
         # update last comment
         $topic = TopicSection::find($request->topic_id);
         $topic->last_comment_id = $comment->id;
+        $topic->n_message += 1;
         $topic->save();
 
         $comment_data = $comment->only(['chatContent', 'chatDate', 'topic_id']);
         
         $user = Auth::user();
-        # broadcast updatenya
-        // $comment = new NewCommentEvent();
         
+        // Push event
         $pusher = new Pusher(
             env('PUSHER_APP_KEY'),
             env('PUSHER_APP_SECRET'),
@@ -53,8 +53,6 @@ class CommentController extends Controller
             ]
         );
 
-        // dd($comment);
-        # Semua yang udah connect diupdate
         
     }
 
