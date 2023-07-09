@@ -78,19 +78,14 @@ class UserController extends Controller
 
     public static function pusher_authenticate(Request $request) {
         $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
-        // dd(ProjectController::check_member($project_id, Auth::user()->id));
-        // dd($project_id, Auth::user()->id);
-        // dd(ProjectDetail::where('project_id', $project_id)->where('user_id', Auth::user()->id)->get());
-        if (!ProjectController::check_member($project_id, Auth::user()->id)['is_member']) return response('Forbidden', 403); # bukan member
-        
-        $result = Connection::where('socket_id', $request->socket_id)
-            ->where('user_id', Auth::user()->id)->first();
-        if (!$result) {
-            $conn = new Connection;
-            $conn->socket_id = $request->socket_id;
-            $conn->user_id = Auth::user()->id;
-            $conn->save();
-        }
+        // $result = Connection::where('socket_id', $request->socket_id)
+        //     ->where('user_id', Auth::user()->id)->first();
+        // if (!$result) {
+        //     $conn = new Connection;
+        //     $conn->socket_id = $request->socket_id;
+        //     $conn->user_id = Auth::user()->id;
+        //     $conn->save();
+        // }
 
         $pusher = new Pusher(
             env('PUSHER_APP_KEY'),

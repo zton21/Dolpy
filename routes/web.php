@@ -52,12 +52,16 @@ Route::namespace('App\Http\Controllers')->group(function() {
             Route::get('/files', 'UserController@files')->name('files');
 
             Route::post('/home', 'ProjectController@create_project');
-            Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
-            Route::post('/project/{id}', 'ProjectController@project_request_handler');
+
+            // Perlu Project Authorization
+            Route::middleware(['auth.project'])->group(function() {
+                Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
+                Route::post('/project/{id}', 'ProjectController@project_request_handler');
+                Route::post('/pusher/auth/{id}', 'UserController@pusher_authenticate');
+            });
 
             // Route::post('/pusher/auth', 'UserController@pusher_authenticate');
             Route::post('/query', 'UserController@handle_ajax');
-            Route::post('/broadcasting/auth', 'UserController@pusher_authenticate');
         }
     );
     

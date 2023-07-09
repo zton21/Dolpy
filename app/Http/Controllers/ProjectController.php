@@ -39,10 +39,6 @@ class ProjectController extends Controller
     // View Project
     // Notes: Message gw ilangin karena rencananya mau pake local storage sama sync perubahan pake websocket
     public static function view_project(Request $request, $project_id) {
-        $project = ProjectHeader::find($project_id);
-        if (!$project) return response('Forbidden', 404);
-        if (!ProjectController::check_member($project_id, Auth::user()->id)['is_member']) return response('Forbidden', 404);
-
         $result = DB::select(
             "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t
             JOIN users u ON t.user_id = u.id
@@ -93,15 +89,6 @@ class ProjectController extends Controller
         $ProjectDetail->project_id = $project_id;
         $ProjectDetail->role = "Member";
         $ProjectDetail->save();
-    }
-
-    // Untuk Authorization
-    public static function check_member($project_id, $user_id) {
-        $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();
-        if ($ProjectDetail) {
-            return ['is_member' => TRUE, 'role' => $ProjectDetail->role];
-        }
-        return ['is_member' => FALSE, 'role' => "NONE"];
     }
 
     // Set member sebagai creator

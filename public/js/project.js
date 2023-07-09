@@ -61,7 +61,7 @@ $(window).on('load', () => {
         forceTLS: true,
         encrypted: true,
         channelAuthorization: { 
-            endpoint: "/broadcasting/auth",
+            endpoint: "/pusher/auth/"+project_id,
             headers: { "X-CSRF-Token": $('meta[name="csrf-token"]').attr('content'), 'topic_id': topic_id },
         },
         // auth: {

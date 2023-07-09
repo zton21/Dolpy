@@ -60,7 +60,7 @@
     <script src="{{asset('js/project.js')}}"></script>
 </head>
 <body>
-    <div class="container vh-100" style="padding-top: 120px;">
+    <div class="container vh-100" style="padding-top: 90px;">
         <div class="row h-100">
             <div class="col-5 h-100" style="border: 1px solid #A3A3A5;">
                 <div class="container-fluid p-0 h-100 d-flex flex-column overflow-hidden">
