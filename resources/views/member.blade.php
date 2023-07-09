@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Members</title>
 </head>
-<body>
+<body style="padding-top:90px;">
     @include('layout.project-nav')
     <div class="container vh-100" style="overflow: hidden">
         <div class="row h-100 border">
