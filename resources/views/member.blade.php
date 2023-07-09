@@ -10,6 +10,7 @@
     <title>Members</title>
 </head>
 <body>
+    @include('layout.project-nav')
     <div class="container vh-100" style="overflow: hidden">
         <div class="row h-100 border">
             <div class="col-5 p-0">

@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+    @include('layout.project-nav')
     <div class="container mt-4">
         <div class="row">
             <div class="col-5">
