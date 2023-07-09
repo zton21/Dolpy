@@ -42,6 +42,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/calendar', 'UserController@calendar')->name('calendar');
     
     Route::get('/member', 'UserController@member')->name('member');
+    Route::get('/timeline', 'UserController@timeline')->name('timeline');
+    Route::get('/timeline_inner', 'UserController@timeline_inner')->name('timeline_inner');
     
     Route::middleware(['web', 'auth'])->group(
         function() {
