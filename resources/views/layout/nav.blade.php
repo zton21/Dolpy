@@ -14,7 +14,7 @@
             <img src="{{ asset('/img/logo-primary.png') }}" alt="Logo" height="40px">
             <div class="text-primary-50 fw-bold fs-4 ms-2">Dolpy</div>
         </a>
-        <div class="d-flex flex-row gap-2">
+        <div class="d-flex flex-row">
             <form class="d-flex m-0">
                 <input class="form-control me-2 my-2 d-none d-md-block" type="search" placeholder="Search" aria-label="Search">
             </form>
