@@ -41,10 +41,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::get('/calendar', 'UserController@calendar')->name('calendar');
     
-    Route::get('/member', 'UserController@member')->name('member');
-    Route::get('/timeline', 'UserController@timeline')->name('timeline');
-    Route::get('/timeline_inner', 'UserController@timeline_inner')->name('timeline_inner');
-    
     Route::middleware(['web', 'auth'])->group(
         function() {
             // Berhubungan dengan User
@@ -52,23 +48,25 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 Route::get('/home', 'home')->name('dashboard');
                 Route::get('/profile', 'profile')->name('profile');
                 Route::get('/setting', 'setting')->name('setting');
-                Route::get('/files', 'files')->name('files');
             });
 
             // Berhubungan dengan User, Project
             Route::controller(ProjectController::class)->group(function () {
                 Route::post('/home', 'create_project');
+                Route::post('/pusher/auth/{id}', 'pusher_authenticate');
 
                 // Perlu Project Authorization
                 Route::middleware(['auth.project'])->group(function() {
-                    Route::get('/project/{id}', 'view_project')->name('project');
-                    Route::post('/project/{id}', 'project_request_handler');
-                    Route::get('/project/{id}/members', 'view_members');
-
-                    Route::post('/pusher/auth/{id}', 'pusher_authenticate');
+                    Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
+                    Route::post('/project/{id}', 'ProjectController@project_request_handler');
+                    Route::post('/pusher/auth/{id}', 'UserController@pusher_authenticate');
+                    
+                    Route::get('/project/{id}/files', 'ProjectController@files')->name('files');
+                    Route::get('/project/{id}/member', 'ProjectController@member')->name('member');
+                    Route::get('/project/{id}/timeline', 'ProjectController@timeline')->name('timeline');
+                    Route::get('/project/{id}/timeline_inner', 'ProjectController@timeline_inner')->name('timeline_inner');
                 });
             });
-            // Route::post('/query', 'UserController@handle_ajax');
         }
     );
     

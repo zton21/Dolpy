@@ -148,7 +148,7 @@ class ProjectController extends Controller
         return response($x, 200);
     }
 
-    public static function view_members(Request $request, $project_id) {
+    public static function member(Request $request, $project_id) {
         $members = ProjectDetail::where('project_id', $project_id)->where('role', '!=', 'pending')
                     ->join('users', 'users.id', 'id')->get();
         $pending = ProjectDetail::where('project_id', $project_id)->where('role', '=', 'pending')
@@ -164,5 +164,30 @@ class ProjectController extends Controller
             'invite_link' => 'invite-link',
             'role' => $request->role->role,
         ]);
+    }
+    public static function files($project_id)
+    {
+        return view('files', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
+    }
+    
+     public static function calendar()
+    {
+        return view('calendar');
+    }
+
+     public static function timeline($project_id)
+    {
+        return view('timeline', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
+    }
+
+     public static function timeline_inner()
+    {
+        return view('timeline_inner');
     }
 }

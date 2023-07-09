@@ -44,11 +44,6 @@ class UserController extends Controller
         return view('profile', $data);
     }
 
-    public static function files()
-    {
-        return view('files');
-    }
-
     public static function setting()
     {
         $data = [
@@ -84,22 +79,5 @@ class UserController extends Controller
             $topicuser->topic_id = $topic_id;
         }
         
-    }
-    
-    public function member()
-    {
-        return view('member');
-    }
-     public static function calendar()
-    {
-        return view('calendar');
-    }
-     public static function timeline()
-    {
-        return view('timeline');
-    }
-     public static function timeline_inner()
-    {
-        return view('timeline_inner');
     }
 }

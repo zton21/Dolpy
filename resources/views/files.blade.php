@@ -28,6 +28,7 @@
     </style>
 </head>
 <body>
+    @include('layout.project-nav')
     <div class="container vh-100" style="overflow: hidden">
         <div class="row h-100">
             <div class="col-5 p-0">
