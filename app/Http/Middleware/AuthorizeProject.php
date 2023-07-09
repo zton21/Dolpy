@@ -30,6 +30,7 @@ class AuthorizeProject
         // Authorized?
         $member = ProjectDetail::where('project_id', $project_id)->where('user_id', Auth::user()->id)->first();
         if (!$member) return response('You dont have access to this project.', 403);
+        if ($member->role == 'pending') return response('Please check your email and accept the project invitation.', 200);
         
         // Add member role to the response
         $request->role = $member;

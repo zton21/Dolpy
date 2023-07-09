@@ -33,14 +33,16 @@
                         </div>
                     </div>
                     <div class="d-flex flex-row rounded-2 my-3" style="background: #F3F8FE">
-                        <div class="py-2 px-3 m-0 h4">Project Members (5)</div>
+                        <div class="py-2 px-3 m-0 h4">Project Members ({{$n_members}})</div>
                     </div>
-                    <h4 class="px-3">Pending</h4>
+                    @if($n_pending > 0) 
+                    <h4 class="px-3">Pending {{$n_pending}}</h4>
+                    @endif
                 </div>
             </div>
             <div class="col-7 p-0" style="background: #F3F8FE">
                 <div class="container-fluid h-100 my-2 p-0">
-                    <h2 class="mx-3">Project Members (5)</h2>
+                    <h2 class="mx-3">Project Members {{$n_members}}</h2>
                     <div class="mx-3 fs-4" style="color: #858487">Project members can view all Project visible boards and create new boards in the Project.</div>
                     <hr class="p-0 my-3 d-block">
                     <div class="container px-4">
@@ -58,24 +60,29 @@
                         </div>
                         <hr class="p-0 my-3">
                         <div class="d-flex flex-column my-2 overflow-x-hidden overflow-y-auto" style="height: calc(50vh - 1rem)">
-                            <div class="row my-2 align-items-center">
-                                <div class="col-auto">
-                                    <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
-                                </div>
-                                <div class="col-8 p-0">
-                                    <div class="fs-6"><strong>Brigita Vanessa Salim</strong></div> 
-                                    <div class="">brigitavanessa@gmail.com</div>
-                                </div>
-                                <div class="col-auto ms-auto align-items-center justify-content-center">
-                                    <div class="row">
-                                        <div class="col-auto fs-6 p-0 m-0" style="color: #A3A3A5"><strong>CREATOR</strong></div>
-                                        <div class="col-auto">
-                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1253_1400)"><path d="M22.5 10.75C24.2964 10.75 25.75 12.2036 25.75 14C25.75 15.7964 24.2964 17.25 22.5 17.25C20.7036 17.25 19.25 15.7964 19.25 14C19.25 12.2036 20.7036 10.75 22.5 10.75ZM22.5 15.4773C23.3155 15.4773 23.9773 14.8155 23.9773 14C23.9773 13.1845 23.3155 12.5227 22.5 12.5227C21.6845 12.5227 21.0227 13.1845 21.0227 14C21.0227 14.8155 21.6845 15.4773 22.5 15.4773Z" fill="#858487"/><path d="M14 10.75C15.7964 10.75 17.25 12.2036 17.25 14C17.25 15.7964 15.7964 17.25 14 17.25C12.2036 17.25 10.75 15.7964 10.75 14C10.75 12.2036 12.2036 10.75 14 10.75ZM14 15.4773C14.8155 15.4773 15.4773 14.8155 15.4773 14C15.4773 13.1845 14.8155 12.5227 14 12.5227C13.1845 12.5227 12.5227 13.1845 12.5227 14C12.5227 14.8155 13.1845 15.4773 14 15.4773Z" fill="#858487"/><path d="M5.5 10.75C7.29636 10.75 8.75 12.2036 8.75 14C8.75 15.7964 7.29636 17.25 5.5 17.25C3.70364 17.25 2.25 15.7964 2.25 14C2.25 12.2036 3.70364 10.75 5.5 10.75ZM5.5 15.4773C6.31545 15.4773 6.97727 14.8155 6.97727 14C6.97727 13.1845 6.31545 12.5227 5.5 12.5227C4.68455 12.5227 4.02273 13.1845 4.02273 14C4.02273 14.8155 4.68455 15.4773 5.5 15.4773Z" fill="#858487"/></g><defs><clipPath id="clip0_1253_1400"><rect width="28" height="28" fill="white" transform="matrix(-1 0 0 -1 28 28)"/></clipPath></defs></svg>
-                                        </div>
+                        @foreach ($members as $item)
+                        <div class="row my-2 align-items-center member">
+                            <div class="col-auto">
+                                <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                            </div>
+                            <div class="col-8 p-0">
+                            <div class="fs-6"><strong>{{$item->firstName}}</strong></div> 
+                                <div class="">{{$item->email}}</div>
+                            </div>
+                            <div class="col-auto ms-auto align-items-center justify-content-center">
+                                <div class="row">
+                                    @if ($item->role == "Creator")
+                                    <div class="col-auto fs-6 p-0 m-0" style="color: #A3A3A5"><strong>CREATOR</strong></div>
+                                    @endif
+                                    <div class="col-auto">
+                                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1253_1400)"><path d="M22.5 10.75C24.2964 10.75 25.75 12.2036 25.75 14C25.75 15.7964 24.2964 17.25 22.5 17.25C20.7036 17.25 19.25 15.7964 19.25 14C19.25 12.2036 20.7036 10.75 22.5 10.75ZM22.5 15.4773C23.3155 15.4773 23.9773 14.8155 23.9773 14C23.9773 13.1845 23.3155 12.5227 22.5 12.5227C21.6845 12.5227 21.0227 13.1845 21.0227 14C21.0227 14.8155 21.6845 15.4773 22.5 15.4773Z" fill="#858487"/><path d="M14 10.75C15.7964 10.75 17.25 12.2036 17.25 14C17.25 15.7964 15.7964 17.25 14 17.25C12.2036 17.25 10.75 15.7964 10.75 14C10.75 12.2036 12.2036 10.75 14 10.75ZM14 15.4773C14.8155 15.4773 15.4773 14.8155 15.4773 14C15.4773 13.1845 14.8155 12.5227 14 12.5227C13.1845 12.5227 12.5227 13.1845 12.5227 14C12.5227 14.8155 13.1845 15.4773 14 15.4773Z" fill="#858487"/><path d="M5.5 10.75C7.29636 10.75 8.75 12.2036 8.75 14C8.75 15.7964 7.29636 17.25 5.5 17.25C3.70364 17.25 2.25 15.7964 2.25 14C2.25 12.2036 3.70364 10.75 5.5 10.75ZM5.5 15.4773C6.31545 15.4773 6.97727 14.8155 6.97727 14C6.97727 13.1845 6.31545 12.5227 5.5 12.5227C4.68455 12.5227 4.02273 13.1845 4.02273 14C4.02273 14.8155 4.68455 15.4773 5.5 15.4773Z" fill="#858487"/></g><defs><clipPath id="clip0_1253_1400"><rect width="28" height="28" fill="white" transform="matrix(-1 0 0 -1 28 28)"/></clipPath></defs></svg>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row my-2 align-items-center">
+                        </div>                            
+                        @endforeach
+                            
+                            {{-- <div class="row my-2 align-items-center">
                                 <div class="col-auto">
                                     <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
                                 </div>
@@ -86,7 +93,7 @@
                                 <div class="col-auto ms-auto">
                                     <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.3278 10.5425C24.1011 10.5425 25.5361 11.9444 25.5361 13.6768C25.5361 15.4092 24.1011 16.811 22.3278 16.811C20.5545 16.811 19.1195 15.4092 19.1195 13.6768C19.1195 11.9444 20.5545 10.5425 22.3278 10.5425ZM22.3278 15.1014C23.1328 15.1014 23.7861 14.4632 23.7861 13.6768C23.7861 12.8904 23.1328 12.2521 22.3278 12.2521C21.5228 12.2521 20.8695 12.8904 20.8695 13.6768C20.8695 14.4632 21.5228 15.1014 22.3278 15.1014Z" fill="#858487"/><path d="M5.99479 10.5425C7.76813 10.5425 9.20313 11.9444 9.20312 13.6768C9.20312 15.4092 7.76813 16.811 5.99479 16.811C4.22146 16.811 2.78646 15.4092 2.78646 13.6768C2.78646 11.9444 4.22146 10.5425 5.99479 10.5425ZM5.99479 15.1014C6.79979 15.1014 7.45313 14.4632 7.45313 13.6768C7.45313 12.8904 6.79979 12.2521 5.99479 12.2521C5.18979 12.2521 4.53646 12.8904 4.53646 13.6768C4.53646 14.4632 5.18979 15.1014 5.99479 15.1014Z" fill="#858487"/><path d="M14.1608 10.5427C15.9341 10.5427 17.3691 11.9445 17.3691 13.6769C17.3691 15.4093 15.9341 16.8112 14.1608 16.8112C12.3875 16.8112 10.9525 15.4093 10.9525 13.6769C10.9525 11.9445 12.3875 10.5427 14.1608 10.5427ZM14.1608 15.1016C14.9658 15.1016 15.6191 14.4633 15.6191 13.6769C15.6191 12.8905 14.9658 12.2522 14.1608 12.2522C13.3558 12.2522 12.7025 12.8905 12.7025 13.6769C12.7025 14.4633 13.3558 15.1016 14.1608 15.1016Z" fill="#858487"/></svg>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -131,5 +131,38 @@ class ProjectController extends Controller
         }
     }
 
-    
+
+    public static function pusher_authenticate(Request $request) {
+        $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
+            ],
+        );
+        $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
+        
+        return response($x, 200);
+    }
+
+    public static function view_members(Request $request, $project_id) {
+        $members = ProjectDetail::where('project_id', $project_id)->where('role', '!=', 'pending')
+                    ->join('users', 'users.id', 'id')->get();
+        $pending = ProjectDetail::where('project_id', $project_id)->where('role', '=', 'pending')
+                    ->join('users', 'users.id', 'id')->get();;
+        return view('member', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+
+            'members' => $members,
+            'pending' => $pending,
+            'n_members' => count($members),
+            'n_pending' => count($pending),
+            'invite_link' => 'invite-link',
+            'role' => $request->role->role,
+        ]);
+    }
 }

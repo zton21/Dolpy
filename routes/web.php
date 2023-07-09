@@ -47,23 +47,28 @@ Route::namespace('App\Http\Controllers')->group(function() {
     
     Route::middleware(['web', 'auth'])->group(
         function() {
-            // Route that need auth
-            Route::get('/home', 'UserController@home')->name('dashboard');
-            Route::get('/profile', 'UserController@profile')->name('profile');
-            Route::get('/setting', 'UserController@setting')->name('setting');
-            Route::get('/files', 'UserController@files')->name('files');
-
-            Route::post('/home', 'ProjectController@create_project');
-
-            // Perlu Project Authorization
-            Route::middleware(['auth.project'])->group(function() {
-                Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
-                Route::post('/project/{id}', 'ProjectController@project_request_handler');
-                Route::post('/pusher/auth/{id}', 'UserController@pusher_authenticate');
+            // Berhubungan dengan User
+            Route::controller(UserController::class)->group(function () {
+                Route::get('/home', 'home')->name('dashboard');
+                Route::get('/profile', 'profile')->name('profile');
+                Route::get('/setting', 'setting')->name('setting');
+                Route::get('/files', 'files')->name('files');
             });
 
-            // Route::post('/pusher/auth', 'UserController@pusher_authenticate');
-            Route::post('/query', 'UserController@handle_ajax');
+            // Berhubungan dengan User, Project
+            Route::controller(ProjectController::class)->group(function () {
+                Route::post('/home', 'create_project');
+
+                // Perlu Project Authorization
+                Route::middleware(['auth.project'])->group(function() {
+                    Route::get('/project/{id}', 'view_project')->name('project');
+                    Route::post('/project/{id}', 'project_request_handler');
+                    Route::get('/project/{id}/members', 'view_members');
+
+                    Route::post('/pusher/auth/{id}', 'pusher_authenticate');
+                });
+            });
+            // Route::post('/query', 'UserController@handle_ajax');
         }
     );
     

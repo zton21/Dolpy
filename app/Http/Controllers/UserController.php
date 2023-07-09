@@ -75,31 +75,6 @@ class UserController extends Controller
         $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id);
         ProjectController::remove_member($project_id, $user_id);
     }
-
-    public static function pusher_authenticate(Request $request) {
-        $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
-        // $result = Connection::where('socket_id', $request->socket_id)
-        //     ->where('user_id', Auth::user()->id)->first();
-        // if (!$result) {
-        //     $conn = new Connection;
-        //     $conn->socket_id = $request->socket_id;
-        //     $conn->user_id = Auth::user()->id;
-        //     $conn->save();
-        // }
-
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
-            ],
-        );
-        $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
-        
-        return response($x, 200);
-    }
     
     public static function read_all($user_id, $topic_id) {
         $topicuser = TopicUser::where('user_id', $user_id)->where('topic_id', $topic_id)->first();
