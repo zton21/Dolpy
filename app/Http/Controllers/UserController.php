@@ -80,4 +80,10 @@ class UserController extends Controller
         }
         
     }
+    
+    public static function calendar()
+    {
+        return view('calendar');
+    }
+
 }

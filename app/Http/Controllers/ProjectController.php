@@ -172,11 +172,6 @@ class ProjectController extends Controller
             'project' => ProjectHeader::find($project_id),
         ]);
     }
-    
-     public static function calendar()
-    {
-        return view('calendar');
-    }
 
      public static function timeline($project_id)
     {
