@@ -131,5 +131,37 @@ class ProjectController extends Controller
         }
     }
 
+    public static function files($project_id)
+    {
+        return view('files', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
+    }
     
+    public function member($project_id)
+    {
+        return view('member', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
+    }
+
+     public static function calendar()
+    {
+        return view('calendar');
+    }
+
+     public static function timeline($project_id)
+    {
+        return view('timeline', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
+    }
+
+     public static function timeline_inner()
+    {
+        return view('timeline_inner');
+    }
 }
