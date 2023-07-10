@@ -1,6 +1,7 @@
+const LAZY_READ_TIMEOUT = 5000;
+
 $(window).on('load', () => {
     let topic_id = $('.active1').attr('id')
-    // alert(topic_id);
     topic_id = topic_id.substring(1);
 
     // Append Message
@@ -24,9 +25,31 @@ $(window).on('load', () => {
         if (!own) x.reverse();        
         $('.chatbox').append(div("row px-4 py-2").append(x));
     }
-    
-    for (let x of data) {
-        append_data(x);
+
+    const send_read_event = function() {
+        console.log('read:' + topic_id);
+        lazy_read = false;
+        $.post('', {
+            'task': 'read',
+            'topic_id': topic_id,
+        });
+    }
+    var lazy_read = false;
+    send_read_event();
+    document.onvisibilitychange = function(e) {
+        if (lazy_read === 'waiting' && document.visibilityState) lazy_read = setTimeout(send_read_event, LAZY_READ_TIMEOUT);
+        if (lazy_read !== 'waiting' && lazy_read && !document.visibilityState) {
+            clearTimeout(lazy_read);
+            send_read_event();
+            lazy_read = false;
+        }
+    }
+
+    const read_message = function() {
+        if (lazy_read === false) {
+            if (document.visibilityState) lazy_read = setTimeout(send_read_event, LAZY_READ_TIMEOUT);
+            else lazy_read = 'waiting';
+        }
     }
 
     // Recieve Message
@@ -55,7 +78,6 @@ $(window).on('load', () => {
     
     // Pusher
     Pusher.logToConsole = true;
-// {"comment":{"chatContent":"Test","chatDate":"2023-07-08 00-59-08","topic_id":"101"},"project_id":"21","sender":{"firstName":"Admin","id":1}}
     var pusher = new Pusher('35ca343f2d20964f7bfb', {
         cluster: 'ap1',
         forceTLS: true,
@@ -77,13 +99,14 @@ $(window).on('load', () => {
     // Custom Send Message
     $('#chat').on('submit', function(e) {
         e.preventDefault();
-        let $form = $(this);
-        url = $form.attr('action');
 
-        let post = $.post(url, {
+        let $form = $(this);
+        console.log('send_message:' + $form.find('input[name="comment"]').val());
+
+        let post = $.post($form.attr('action'), {
             'task': 'send_message',
-            'topic_id': $form.find('input[name="topic_id"').val(),
-            'comment': $form.find('input[name="comment"').val()
+            'topic_id': topic_id,
+            'comment': $form.find('input[name="comment"]').val(),
         });
         $('#comment').val('');
         post.done(function(data) {

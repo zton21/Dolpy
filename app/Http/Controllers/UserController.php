@@ -71,16 +71,6 @@ class UserController extends Controller
         ProjectController::remove_member($project_id, $user_id);
     }
     
-    public static function read_all($user_id, $topic_id) {
-        $topicuser = TopicUser::where('user_id', $user_id)->where('topic_id', $topic_id)->first();
-        if (!topicuser) {
-            $topicuser = new TopicUser;
-            $topicuser->user_id = $user_id;
-            $topicuser->topic_id = $topic_id;
-        }
-        
-    }
-    
     public static function calendar()
     {
         return view('calendar');

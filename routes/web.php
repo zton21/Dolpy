@@ -59,7 +59,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 Route::middleware(['auth.project'])->group(function() {
                     Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
                     Route::post('/project/{id}', 'ProjectController@project_request_handler');
-                    Route::post('/pusher/auth/{id}', 'UserController@pusher_authenticate');
+                    Route::post('/pusher/auth/{id}', 'ProjectController@pusher_authenticate');
                     
                     Route::get('/project/{id}/files', 'ProjectController@files')->name('files');
                     Route::get('/project/{id}/member', 'ProjectController@member')->name('member');

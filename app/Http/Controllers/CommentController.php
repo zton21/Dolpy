@@ -19,13 +19,16 @@ class CommentController extends Controller
         $comment->chatContent = $request->comment;
         $comment->user_id = Auth::user()->id;
         $comment->chatDate = date("Y-m-d H-i-s");
+
         $comment->topic_id = $request->topic_id;
         $comment->save();
+        $comment->chatDate = date('d/m/Y - g:i A', strtotime($comment->created_at)); // Ubah format
 
         # update last comment
         $topic = TopicSection::find($request->topic_id);
         $topic->last_comment_id = $comment->id;
         $topic->n_message += 1;
+        // dd($topic, $comment);
         $topic->save();
 
         $comment_data = $comment->only(['chatContent', 'chatDate', 'topic_id']);
