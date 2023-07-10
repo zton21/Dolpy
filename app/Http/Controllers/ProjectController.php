@@ -31,6 +31,7 @@ class ProjectController extends Controller
         $project->projectDueDate = $request->due_date;
         $project->projectDescription = $request->project_description;
         $project->projectStatus = 'Designing';
+        $project->projectWallpaperURL = 'img/project_wallpaper/Wallpaper1.png';
 
         $project->save();
 
@@ -203,11 +204,6 @@ class ProjectController extends Controller
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
         ]);
-    }
-    
-     public static function calendar()
-    {
-        return view('calendar');
     }
 
      public static function timeline($project_id)

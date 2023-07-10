@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,12 @@
     <title>Calendar</title>
 </head>
 <body>
-    @include('layout.nav')
+    @include('layout.nav') --}}
 
+@extends('layout.master')
+@section('title', 'Dolpy Calendar')
+
+@section('content')
     <div class="container">
         <div class="row d-flex justify-content-between">
             <div class="border-start border-5 border-primary pr-3 rounded-2" style="width: 68%; background: #F3F8FE">
@@ -130,5 +134,4 @@
             <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
         </div>
     </div>
-</body>
-</html>
+@endsection

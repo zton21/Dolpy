@@ -9,8 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Members</title>
 </head>
-<body style="padding-top:90px;">
-    @include('layout.project-nav')
+<body>
+    @include('layout.project-nav', ['peopleActive' => "active"])
+
     <div class="container vh-100" style="overflow: hidden">
         <div class="row h-100 border">
             <div class="col-5 p-0">
@@ -27,10 +28,11 @@
                             <h3 class="m-0">Members</h3>
                         </div>
                         <div class="col-auto gap-2">
-                            <button type="button" class="btn btn-primary ms-auto">
+                            <button onclick="openInviteMemberFormModal()" class="btn btn-primary ms-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                                 <span class="text-white py-auto">Invite</span>
                             </button>
+                            <x-invite-member-form></x-invite-member-form>
                         </div>
                     </div>
                     <div class="d-flex flex-row rounded-2 my-3" style="background: #F3F8FE">
