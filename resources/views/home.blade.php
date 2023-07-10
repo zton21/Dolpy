@@ -1,25 +1,6 @@
 @extends('layout.master')
 @section('title', 'Home | Dolpy')
 
-<style>
-    .text-neutral-50 {color: #858487}
-    .text-primary-50 {color: #3980F3}
-    .text-primary-70 {color: #0055DE}
-    .bg-neutral-10 {background-color: #EDEDED}
-    .bg-primary-10 {background-color:#D7E6FD}
-    .bg-primary-70 {background-color: #0055DE}
-    .table-header {
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
-        border-radius: 5px 5px 0px 0px;
-    }
-    .project-item {
-        border-width: 2px 2px 2px 2px;
-        border-style: solid;
-        border-color: #D7E6FD;
-        border-radius: 0px 5px 5px 0px;
-    }
-</style>
-
 @section('content')
 <div class="container">
     <div class="row fs-2 w-100 mx-auto">
