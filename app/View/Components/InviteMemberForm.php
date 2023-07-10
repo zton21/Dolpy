@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class create-topic-form extends Component
+class InviteMemberForm extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class create-topic-form extends Component
      */
     public function render()
     {
-        return view('components.create-topic-form');
+        return view('components.invite-member-form');
     }
 }
