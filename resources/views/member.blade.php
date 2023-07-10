@@ -8,6 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Members</title>
+    <style>
+        /* .myself {
+            background-color: #D7E6FD !important;
+        } */
+        body {
+            padding-top: 90px;
+        }
+    </style>
 </head>
 <body>
     @include('layout.project-nav', ['peopleActive' => "active"])
@@ -28,10 +36,12 @@
                             <h3 class="m-0">Members</h3>
                         </div>
                         <div class="col-auto gap-2">
+                            @if ($role == 'Creator')
                             <button onclick="openInviteMemberFormModal()" class="btn btn-primary ms-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                                 <span class="text-white py-auto">Invite</span>
                             </button>
+                            @endif
                             <x-invite-member-form></x-invite-member-form>
                         </div>
                     </div>
@@ -45,10 +55,15 @@
             </div>
             <div class="col-7 p-0" style="background: #F3F8FE">
                 <div class="container-fluid h-100 my-2 p-0">
-                    <h2 class="mx-3">Project Members {{$n_members}}</h2>
+                    <h2 class="mx-3">Project Members ({{$n_members}})</h2>
+                    
+                    @if ($role == "Creator")
                     <div class="mx-3 fs-4" style="color: #858487">Project members can view all Project visible boards and create new boards in the Project.</div>
+                    @endif
                     <hr class="p-0 my-3 d-block">
                     <div class="container px-4">
+                        
+                    @if ($role == "Creator")
                         <div class="fs-6" style="color: #858487">Anyone with an invite link can join this Project. You can also disable and create a new invite link for this Project at any time.</div>
                         <div class="d-flex flex-row justify-content-evenly my-3">
                             <button type="button" class="btn btn-sm btn-danger px-4 rounded-3">Disable invite link</button>
@@ -58,13 +73,14 @@
                             </button>
                         </div>
                         <hr class="p-0 my-3">
+                    @endif
                         <div class="border border-2 rounded-pill py-1 px-3 d-inline" style="color: #858487">
                             Sort by Name
                         </div>
                         <hr class="p-0 my-3">
                         <div class="d-flex flex-column my-2 overflow-x-hidden overflow-y-auto" style="height: calc(50vh - 1rem)">
                         @foreach ($members as $item)
-                        <div class="row my-2 align-items-center member">
+                        <div class="row my-2 align-items-center member p-1 {{$item->id == $user->id?'myself':''}}">
                             <div class="col-auto">
                                 <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
                             </div>

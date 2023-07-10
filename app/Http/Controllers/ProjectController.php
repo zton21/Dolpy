@@ -13,6 +13,7 @@ use App\Models\ProjectDetail;
 use App\Models\TopicSection;
 use App\Models\Comment;
 use App\Models\TopicUser;
+use App\Models\User;
 
 use Pusher\Pusher;
 
@@ -94,9 +95,10 @@ class ProjectController extends Controller
 
     // Set member sebagai creator
     public static function set_creator($project_id, $user_id) {
-        $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();
-        $ProjectDetail->role = "Creator";
-        $ProjectDetail->save();
+        DB::update('UPDATE project_details SET role = "Creator" WHERE project_id = ? AND user_id = ?', [$project_id, $user_id]);
+        // $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();
+        // $ProjectDetail->role = "Creator";
+        // $ProjectDetail->save();
     }
 
     // Remove member
@@ -123,17 +125,6 @@ class ProjectController extends Controller
     }
     
     
-    public static function project_request_handler(Request $request, $id) {
-        if ($request->has('task') && $request->task == 'send_message') {
-            return CommentController::add_comment($request, $id);
-        }
-        if ($request->has('task') && $request->task == 'read') {
-            return ProjectController::read_message($request, $id);
-        }
-        if ($request->has('topic')) {
-            return ProjectController::create_topic($request, $id);
-        }
-    }
 
 
     public static function pusher_authenticate(Request $request) {
@@ -206,7 +197,7 @@ class ProjectController extends Controller
         ]);
     }
 
-     public static function timeline($project_id)
+    public static function timeline($project_id)
     {
         return view('timeline', [
             'user' => Auth::user(),
@@ -214,8 +205,35 @@ class ProjectController extends Controller
         ]);
     }
 
-     public static function timeline_inner()
+    public static function timeline_inner()
     {
         return view('timeline_inner');
+    }
+
+    public static function chat_request_handler(Request $request, $id) {
+        if ($request->has('task') && $request->task == 'send_message') {
+            return CommentController::add_comment($request, $id);
+        }
+        if ($request->has('task') && $request->task == 'read') {
+            return ProjectController::read_message($request, $id);
+        }
+        if ($request->has('topic')) {
+            return ProjectController::create_topic($request, $id);
+        }
+    }
+
+    public static function member_request_handler(Request $request, $id) {
+        if ($request->has('task') && $request->task == 'invite') return ProjectController::invite_member($request, $id);
+    }
+
+    public static function invite_member(Request $request, $project_id) {
+        if ($request->role->role != 'Creator') return response('Only creator can invite member', 403);
+        
+        // Langsung add :
+        $to_invite = User::where('email', $request->member_email);
+        if (!$to_invite) return redirect()->back()->withErrors(['member_email' => 'Member not found']);
+
+        ProjectController::add_member($project_id, $to_invite->id);
+        return redirect::back()->with([['success' => 'Successfully invited member']]);
     }
 }
