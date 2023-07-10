@@ -144,10 +144,12 @@ class ProjectController extends Controller
     }
 
     public static function member(Request $request, $project_id) {
-        $members = ProjectDetail::where('project_id', $project_id)->where('role', '!=', 'pending')
-                    ->join('users', 'users.id', 'id')->get();
-        $pending = ProjectDetail::where('project_id', $project_id)->where('role', '=', 'pending')
-                    ->join('users', 'users.id', 'id')->get();;
+        $members = DB::select('SELECT * FROM project_details d 
+            JOIN users u ON d.user_id = u.id
+            WHERE d.project_id = ? AND d.role != "pending"', [$project_id]);
+        $pending = DB::select('SELECT * FROM project_details d 
+            JOIN users u ON d.user_id = u.id
+            WHERE d.project_id = ? AND d.role = "pending"', [$project_id]);
         return view('member', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
