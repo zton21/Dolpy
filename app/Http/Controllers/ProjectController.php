@@ -7,10 +7,14 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 use App\Models\ProjectHeader;
 use App\Models\ProjectDetail;
 use App\Models\TopicSection;
 use App\Models\Comment;
+use App\Models\TopicUser;
+
+use Pusher\Pusher;
 
 class ProjectController extends Controller
 {
@@ -27,6 +31,7 @@ class ProjectController extends Controller
         $project->projectDueDate = $request->due_date;
         $project->projectDescription = $request->project_description;
         $project->projectStatus = 'Designing';
+        $project->projectWallpaperURL = 'img/project_wallpaper/Wallpaper1.png';
 
         $project->save();
 
@@ -40,12 +45,13 @@ class ProjectController extends Controller
     // Notes: Message gw ilangin karena rencananya mau pake local storage sama sync perubahan pake websocket
     public static function view_project(Request $request, $project_id) {
         $result = DB::select(
-            "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t
-            JOIN users u ON t.user_id = u.id
-            LEFT JOIN comments c ON t.last_comment_id = c.id
-            LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id
-            WHERE t.project_id = :project_id"
-        , ["project_id" => $project_id]);
+            "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message 
+            FROM topic_sections t                     # data message terakhir
+            JOIN users u                                               # 
+            LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id     # data 
+            LEFT JOIN comments c ON t.last_comment_id = c.id   
+            WHERE t.project_id = :project_id AND u.id = :user_id" 
+        , ['user_id' => Auth::user()->id, 'project_id' => $project_id]);
         
         $topic_n = ProjectController::get_current_topic($request);
 
@@ -58,13 +64,8 @@ class ProjectController extends Controller
             $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
                 WHERE c.topic_id = :topic_id ORDER BY c.created_at"
             , ["topic_id" => $topic->id]);
+        };
 
-            // Update topic_user 
-        }
-
-        
-
-        
         return view('topic', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
@@ -126,6 +127,9 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'send_message') {
             return CommentController::add_comment($request, $id);
         }
+        if ($request->has('task') && $request->task == 'read') {
+            return ProjectController::read_message($request, $id);
+        }
         if ($request->has('topic')) {
             return ProjectController::create_topic($request, $id);
         }
@@ -165,6 +169,35 @@ class ProjectController extends Controller
             'role' => $request->role->role,
         ]);
     }
+
+    public static function read_message(Request $request, $project_id) {
+        // Validasi
+        \DB::enableQueryLog();
+        $topic = TopicSection::find($request->topic_id);
+        if (!$topic) return response('Forbidden', 403);
+        if ($topic->project_id != $project_id) response('Forbidden', 403);
+        
+        $user_id = Auth::user()->id;
+
+        $data = TopicUser::where('topic_id', $topic->id)->where('user_id', $user_id)->first();
+        if (!$data) {
+            $data = new TopicUser; 
+            $data->topic_id = $topic->id; 
+            $data->user_id = $user_id;
+            $data->seen = $topic->n_message;
+            $data->save();
+        }
+        else {
+            // TopicUser::where('topic_id', $topic->id)->where('user_id', $user_id)
+            //     ->update(['seen', $topic->n_message]);
+
+            DB::update('UPDATE topic_user SET seen = ? where topic_id = ? AND user_id = ?', [$topic->n_message, $topic->id, $user_id]);
+        }
+        // dd($topic, $data);
+
+        dd(\DB::getQueryLog());
+    }
+
     public static function files($project_id)
     {
         return view('files', [

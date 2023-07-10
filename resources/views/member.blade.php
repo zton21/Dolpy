@@ -19,8 +19,8 @@
                     <div class="card p-0">
                         <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
                         <div class="card-body" style="background: #D7E6FD;">
-                            <h3>Web Programming</h3>
-                            <span>Every Project has it own card too</span>
+                            <h3>{{$project->projectName}}</h3>
+                            <span>{{$project->projectDescription}}</span>
                         </div>
                     </div>
                     <div class="row m-0 py-3 justify-content-between">

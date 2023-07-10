@@ -12,12 +12,20 @@
     <script>
         const project_id = {{$project->id}};
         const user_id = {{$user->id}};
-        const data = {{Js::from($messages)}};
+        {{-- const data = {{Js::from($messages)}}; --}}
+        
+@isset($topic) 
+        // const topic_id = {{$topic->id}};
+@endisset
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Topic</title>
     <style>
+        .fs-7 {
+            font-size: 12px;
+        }
+
         .card-bg{
             background-image: url('img/WebProgrammingWallpaper.png');
             background-size: cover;
@@ -57,7 +65,9 @@
             }
         });
     </script>
+@isset($topic) 
     <script src="{{asset('js/project.js')}}"></script>
+@endisset
 </head>
 <body>
     @include('layout.project-nav', ['chatsActive' => "active"])
@@ -162,7 +172,7 @@
                                     <div class="col-11">
                                         <div class="d-flex flex-row-reverse gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div class="text-secondary fs-7">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex text-break" style="background: #D7E6FD">
@@ -182,7 +192,7 @@
                                     <div class="col-11">
                                         <div class="d-flex flex-row gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div class="text-secondary fs-7">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                             {{$item->chatContent}}
@@ -201,7 +211,7 @@
                             <form method="POST" id='chat'>
                                 @csrf
                                 <div class="d-flex flex-row gap-2 align-items-center">
-                                    <input type="hidden" name="topic_id" value="{{$topic->id}}">
+                                    {{-- <input type="hidden" name="topic_id" value="{{$topic->id}}"> --}}
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M8 5v0a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v0M8 5v0a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v0"/></svg>
                                     </div>
