@@ -60,7 +60,8 @@
     <script src="{{asset('js/project.js')}}"></script>
 </head>
 <body>
-    @include('layout.project-nav')
+    @include('layout.project-nav', ['chatsActive' => "active"])
+
     <div class="container vh-100" style="padding-top: 90px;">
         <div class="row h-100">
             <div class="col-5 h-100" style="border: 1px solid #A3A3A5;">

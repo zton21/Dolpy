@@ -15,7 +15,8 @@
     </style>
 </head>
 <body>
-    @include('layout.project-nav')
+    @include('layout.project-nav', ['timelineActive' => "active"])
+
     <div class="container mt-4">
         <div class="row">
             <div class="col-5">
