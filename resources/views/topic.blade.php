@@ -22,6 +22,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Topic</title>
     <style>
+        .fs-7 {
+            font-size: 12px;
+        }
+
         .card-bg{
             background-image: url('img/WebProgrammingWallpaper.png');
             background-size: cover;
@@ -168,7 +172,7 @@
                                     <div class="col-11">
                                         <div class="d-flex flex-row-reverse gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
+                                            <div class="text-secondary fs-7">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex text-break" style="background: #D7E6FD">
@@ -188,7 +192,7 @@
                                     <div class="col-11">
                                         <div class="d-flex flex-row gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
+                                            <div class="text-secondary fs-7">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                             {{$item->chatContent}}
