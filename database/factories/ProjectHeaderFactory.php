@@ -21,6 +21,7 @@ class ProjectHeaderFactory extends Factory
             'projectDueDate' => fake()->dateTimeThisYear(),
             'projectDescription' => fake()->sentence($nbWords = fake()->numberBetween($min = 3, $max = 6), $variableNbWords = true),
             'projectStatus' => fake()->randomElement(['In Progress', 'Developing', 'Designing', 'Implementing']),
+            'projectWallpaperURL' => fake()->randomElement(['img/project_wallpaper/Wallpaper1.png', 'img/project_wallpaper/Wallpaper2.png', 'img/project_wallpaper/Wallpaper3.png']),
         ];
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('projectDueDate');
             $table->text('projectDescription')->nullable();
             $table->string('projectStatus');
+            $table->string('projectWallpaperURL');
             $table->timestamps();
         });
     }
