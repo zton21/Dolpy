@@ -57,12 +57,19 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
                 // Perlu Project Authorization
                 Route::middleware(['auth.project'])->group(function() {
+                    // Chat
                     Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
-                    Route::post('/project/{id}', 'ProjectController@project_request_handler');
-                    Route::post('/pusher/auth/{id}', 'UserController@pusher_authenticate');
+                    Route::post('/project/{id}', 'ProjectController@chat_request_handler');
+                    Route::post('/pusher/auth/{id}', 'ProjectController@pusher_authenticate');
                     
+                    // Files
                     Route::get('/project/{id}/files', 'ProjectController@files')->name('files');
+
+                    // Member
                     Route::get('/project/{id}/member', 'ProjectController@member')->name('member');
+                    Route::post('/project/{id}/member', 'ProjectController@member_request_handler')->name('member');
+
+                    // Timeline
                     Route::get('/project/{id}/timeline', 'ProjectController@timeline')->name('timeline');
                     Route::get('/project/{id}/timeline_inner', 'ProjectController@timeline_inner')->name('timeline_inner');
                 });

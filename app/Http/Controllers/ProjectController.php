@@ -7,10 +7,15 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 use App\Models\ProjectHeader;
 use App\Models\ProjectDetail;
 use App\Models\TopicSection;
 use App\Models\Comment;
+use App\Models\TopicUser;
+use App\Models\User;
+
+use Pusher\Pusher;
 
 class ProjectController extends Controller
 {
@@ -27,6 +32,7 @@ class ProjectController extends Controller
         $project->projectDueDate = $request->due_date;
         $project->projectDescription = $request->project_description;
         $project->projectStatus = 'Designing';
+        $project->projectWallpaperURL = 'img/project_wallpaper/Wallpaper1.png';
 
         $project->save();
 
@@ -40,12 +46,13 @@ class ProjectController extends Controller
     // Notes: Message gw ilangin karena rencananya mau pake local storage sama sync perubahan pake websocket
     public static function view_project(Request $request, $project_id) {
         $result = DB::select(
-            "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t
-            JOIN users u ON t.user_id = u.id
-            LEFT JOIN comments c ON t.last_comment_id = c.id
-            LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id
-            WHERE t.project_id = :project_id"
-        , ["project_id" => $project_id]);
+            "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message 
+            FROM topic_sections t                     # data message terakhir
+            JOIN users u                                               # 
+            LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id     # data 
+            LEFT JOIN comments c ON t.last_comment_id = c.id   
+            WHERE t.project_id = :project_id AND u.id = :user_id" 
+        , ['user_id' => Auth::user()->id, 'project_id' => $project_id]);
         
         $topic_n = ProjectController::get_current_topic($request);
 
@@ -58,13 +65,8 @@ class ProjectController extends Controller
             $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
                 WHERE c.topic_id = :topic_id ORDER BY c.created_at"
             , ["topic_id" => $topic->id]);
+        };
 
-            // Update topic_user 
-        }
-
-        
-
-        
         return view('topic', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
@@ -93,9 +95,10 @@ class ProjectController extends Controller
 
     // Set member sebagai creator
     public static function set_creator($project_id, $user_id) {
-        $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();
-        $ProjectDetail->role = "Creator";
-        $ProjectDetail->save();
+        DB::update('UPDATE project_details SET role = "Creator" WHERE project_id = ? AND user_id = ?', [$project_id, $user_id]);
+        // $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();
+        // $ProjectDetail->role = "Creator";
+        // $ProjectDetail->save();
     }
 
     // Remove member
@@ -122,14 +125,6 @@ class ProjectController extends Controller
     }
     
     
-    public static function project_request_handler(Request $request, $id) {
-        if ($request->has('task') && $request->task == 'send_message') {
-            return CommentController::add_comment($request, $id);
-        }
-        if ($request->has('topic')) {
-            return ProjectController::create_topic($request, $id);
-        }
-    }
 
 
     public static function pusher_authenticate(Request $request) {
@@ -149,10 +144,12 @@ class ProjectController extends Controller
     }
 
     public static function member(Request $request, $project_id) {
-        $members = ProjectDetail::where('project_id', $project_id)->where('role', '!=', 'pending')
-                    ->join('users', 'users.id', 'id')->get();
-        $pending = ProjectDetail::where('project_id', $project_id)->where('role', '=', 'pending')
-                    ->join('users', 'users.id', 'id')->get();;
+        $members = DB::select('SELECT * FROM project_details d 
+            JOIN users u ON d.user_id = u.id
+            WHERE d.project_id = ? AND d.role != "pending"', [$project_id]);
+        $pending = DB::select('SELECT * FROM project_details d 
+            JOIN users u ON d.user_id = u.id
+            WHERE d.project_id = ? AND d.role = "pending"', [$project_id]);
         return view('member', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
@@ -165,6 +162,35 @@ class ProjectController extends Controller
             'role' => $request->role->role,
         ]);
     }
+
+    public static function read_message(Request $request, $project_id) {
+        // Validasi
+        \DB::enableQueryLog();
+        $topic = TopicSection::find($request->topic_id);
+        if (!$topic) return response('Forbidden', 403);
+        if ($topic->project_id != $project_id) response('Forbidden', 403);
+        
+        $user_id = Auth::user()->id;
+
+        $data = TopicUser::where('topic_id', $topic->id)->where('user_id', $user_id)->first();
+        if (!$data) {
+            $data = new TopicUser; 
+            $data->topic_id = $topic->id; 
+            $data->user_id = $user_id;
+            $data->seen = $topic->n_message;
+            $data->save();
+        }
+        else {
+            // TopicUser::where('topic_id', $topic->id)->where('user_id', $user_id)
+            //     ->update(['seen', $topic->n_message]);
+
+            DB::update('UPDATE topic_user SET seen = ? where topic_id = ? AND user_id = ?', [$topic->n_message, $topic->id, $user_id]);
+        }
+        // dd($topic, $data);
+
+        dd(\DB::getQueryLog());
+    }
+
     public static function files($project_id)
     {
         return view('files', [
@@ -173,7 +199,7 @@ class ProjectController extends Controller
         ]);
     }
 
-     public static function timeline($project_id)
+    public static function timeline($project_id)
     {
         return view('timeline', [
             'user' => Auth::user(),
@@ -181,8 +207,35 @@ class ProjectController extends Controller
         ]);
     }
 
-     public static function timeline_inner()
+    public static function timeline_inner()
     {
         return view('timeline_inner');
+    }
+
+    public static function chat_request_handler(Request $request, $id) {
+        if ($request->has('task') && $request->task == 'send_message') {
+            return CommentController::add_comment($request, $id);
+        }
+        if ($request->has('task') && $request->task == 'read') {
+            return ProjectController::read_message($request, $id);
+        }
+        if ($request->has('topic')) {
+            return ProjectController::create_topic($request, $id);
+        }
+    }
+
+    public static function member_request_handler(Request $request, $id) {
+        if ($request->has('task') && $request->task == 'invite') return ProjectController::invite_member($request, $id);
+    }
+
+    public static function invite_member(Request $request, $project_id) {
+        if ($request->role->role != 'Creator') return response('Only creator can invite member', 403);
+        
+        // Langsung add :
+        $to_invite = User::where('email', $request->member_email);
+        if (!$to_invite) return redirect()->back()->withErrors(['member_email' => 'Member not found']);
+
+        ProjectController::add_member($project_id, $to_invite->id);
+        return redirect::back()->with([['success' => 'Successfully invited member']]);
     }
 }
