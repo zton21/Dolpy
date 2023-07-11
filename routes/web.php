@@ -43,11 +43,14 @@ Route::namespace('App\Http\Controllers')->group(function() {
     
     Route::middleware(['web', 'auth'])->group(
         function() {
+            Route::get('/logout', 'AuthController@logout')->middleware('auth.logout')->name('logout');
+
             // Berhubungan dengan User
             Route::controller(UserController::class)->group(function () {
                 Route::get('/home', 'home')->name('dashboard');
                 Route::get('/profile', 'profile')->name('profile');
                 Route::get('/setting', 'setting')->name('setting');
+                Route::get('/faq', 'faq')->name('faq');
             });
 
             // Berhubungan dengan User, Project
