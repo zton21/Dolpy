@@ -51,7 +51,13 @@ class AuthController extends Controller
     
         // Logout 
         Auth::logout();
-        return redirect('/index');
+
+        // Clear cache-control headers
+        header('Cache-Control: no-store, no-cache, must-revalidate');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+
+        return redirect('/login');
     }
 
     public function showRegister()

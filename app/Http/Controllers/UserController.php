@@ -52,6 +52,14 @@ class UserController extends Controller
         return view('setting', $data);
     }
 
+    public static function faq()
+    {
+        $data = [
+            'user' => Auth::user(),
+        ];
+        return view('faq', $data);
+    }
+
     // Join Project sebagai member
     public static function join_project($project_id, $user_id) {
         $ProjectDetail = ProjectDetail::where('project_id', $project_id)->where('user_id', $user_id)->first();        
