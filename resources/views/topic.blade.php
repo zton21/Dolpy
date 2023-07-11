@@ -48,6 +48,14 @@
         ::-webkit-scrollbar-thumb:hover {
         background: #88B3F8; 
         }
+        .truncate {
+            max-width: 100%;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            }
     </style>
     <script>
         // var last_comment_id = '-1';
@@ -77,7 +85,8 @@
                     <div class="row">
                         <div style="background: #D7E6FD" class="rounded-bottom px-3 py-4">
                             <h3>{{$project->projectName}}</h3>
-                            <span>{{$project->projectDescription}}</span>
+                            <div class="truncate" style="max-width: 100%;">{{$project->projectDescription}}</div>
+                            <div class="btn btn-primary btn-sm">Read More</div>
                         </div>
                     </div>
                     <div class="row py-2 align-items-center">
