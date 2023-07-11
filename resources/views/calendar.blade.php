@@ -1,29 +1,15 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calendar</title>
-</head>
-<body>
-    @include('layout.nav') --}}
-
 @extends('layout.master')
 @section('title', 'Dolpy Calendar')
 
 @section('content')
     <div class="container">
         <div class="row d-flex justify-content-between">
-            <div class="border-start border-5 border-primary pr-3 rounded-2" style="width: 68%; background: #F3F8FE">
+            <div class="border-start border-5 border-primary pr-3 rounded-2 bg-primary-5" style="width: 68%">
                 <div class="row d-flex justify-content-around p-2" style="height: 12vh;">
                     <div class="col-9 p">
                         <h4 class="m-0">Montly</h4>
                         <h1 class="m-0">
-                            <span style="color:blue">User very long</span> Event calendar
+                            <span class="text-primary-70">User very long</span> Event calendar
                         </h1>
                     </div>
                     <div class="col-3 d-flex flex-column justify-content-around align-items-center">
@@ -45,9 +31,9 @@
                 </div>
             </div>
             
-            <div class="pr-3 rounded-2" style="width: 30%; background: #F3F8FE">
+            <div class="pr-3 rounded-2 bg-primary-5" style="width: 30%;">
                 <h4 class="m-0">
-                    <span style="color:blue">31 September</span> events:
+                    <span class="text-primary-70">31 September</span> events:
                 </h4>
                 {{-- @foreach ($collection as $item)
                     
@@ -67,7 +53,7 @@
         </div>
     </div>
     
-    <div class="container text-center" style="color: #88B3F8">
+    <div class="container text-primary-50 text-center my-2" style="font-weight: 500">
         <div class="row">
             <div class="col">Sunday</div>
             <div class="col">Monday</div>
@@ -80,7 +66,7 @@
     </div>
     <div class="container text-center">
         <div class="row" style="height: 15vh">
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">
+            <div class="col text-primary-50 border-primary-50">
                 <p class="m-0">1</p>
                 <div class="row d-flex flex-column align-content-around text-start" style="height: 10vh">
                     <div class="col bg-primary my-1 rounded-2" style="width:95%">
@@ -90,48 +76,48 @@
                     <div class="col bg-primary my-1 rounded-2" style="width:95%"></div>
                 </div>
             </div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
-            <div class="col" style="border: 1px solid #88B3F8; color:#3980F3">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
         </div>
     </div>
 @endsection
