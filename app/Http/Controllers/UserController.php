@@ -81,7 +81,10 @@ class UserController extends Controller
     
     public static function calendar()
     {
-        return view('calendar');
+        $data = [
+            'user' => Auth::user(),
+        ];
+        return view('calendar', $data);
     }
 
 }
