@@ -97,7 +97,7 @@
         </div>
     </div>
     @forelse ($projects as $item)
-        <a class="row project-item mx-0 px-0 my-2 text-decoration-none text-dark" href="{{Route('project', $item->id)}}">
+        <a class="hover-5 row project-item mx-0 px-0 my-2 text-decoration-none text-dark" href="{{Route('project', $item->id)}}">
             <div class="col-4 p-0">
                 <div class="d-flex flex-row mx-0 w-100 h-100 px-0">
                     <svg class="bg-primary-70" class="h-100" width="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
