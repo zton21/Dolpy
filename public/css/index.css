@@ -32,6 +32,7 @@
  --Error-90: #851616;
 }
 
+ .bg-primary-5{background-color: #F3F8FE};
  .bg-primary-10{background-color: #D7E6FD};
  .bg-primary-30{background-color: #88B3F8};
  .bg-primary-50{background-color: #3980F3};
@@ -61,6 +62,37 @@
  .bg-Error-50 {background-color: #DD2525};
  .bg-Error-70 {background-color: #B11E1E};
  .bg-Error-90 {background-color: #851616};
+
+ .border-primary-5{border: 1px solid #F3F8FE !important};
+ .border-primary-10{border: 1px solid #D7E6FD !important};
+ .border-primary-30{border: 1px solid #88B3F8 !important};
+ .border-primary-50{border: 1px solid #3980F3 !important};
+ .border-primary-70{border: 1px solid #0055DE !important};
+ .border-primary-90{border: 1px solid #1D407A !important};
+
+ .border-neutral-10 {border: 1px solid #EDEDED};
+ .border-neutral-30 {border: 1px solid #A3A3A5};
+ .border-neutral-50 {border: 1px solid #858487};
+ .border-neutral-70 {border: 1px solid #333237};
+ .border-neutral-90 {border: 1px solid #1D1D1D};
+ 
+ .border-success-10 {border: 1px solid #B9EDB8};
+ .border-success-30 {border: 1px solid #84E082};
+ .border-success-50 {border: 1px solid #4FD34D};
+ .border-success-70 {border: 1px solid #379436};
+ .border-success-90 {border: 1px solid #286A27};
+
+ .border-warning-10 {border: 1px solid #FFDC99};
+ .border-warning-30 {border: 1px solid #FFC24D};
+ .border-warning-50 {border: 1px solid #FFA800};
+ .border-warning-70 {border: 1px solid #CC8600};
+ .border-warning-90 {border: 1px solid #B37600};
+ 
+ .border-Error-10 {border: 1px solid #F1A8A8};
+ .border-Error-30 {border: 1px solid #E45151};
+ .border-Error-50 {border: 1px solid #DD2525};
+ .border-Error-70 {border: 1px solid #B11E1E};
+ .border-Error-90 {border: 1px solid #851616};
 
 * {
     font-family: 'Source Sans Pro';
