@@ -7,34 +7,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- Style --}}
+    <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
     {{-- Pusher --}}
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
         const project_id = {{$project->id}};
         const user_id = {{$user->id}};
-        {{-- const data = {{Js::from($messages)}}; --}}
-        
-@isset($topic) 
-        // const topic_id = {{$topic->id}};
-@endisset
+        const data = {{Js::from($messages)}};
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Topic</title>
     <style>
-        .fs-7 {
-            font-size: 12px;
-        }
-
         .card-bg{
             background-image: url('img/WebProgrammingWallpaper.png');
             background-size: cover;
         }
-        .bg-custom {
-            background-color: #D7E6FD;
-        }
         .active1 .notification {
             display: none !important;
+        }
+        .active1 {
+            background-color: var(--primary-5) !important;
         }
 
         .notification:empty {
@@ -65,9 +60,7 @@
             }
         });
     </script>
-@isset($topic) 
     <script src="{{asset('js/project.js')}}"></script>
-@endisset
 </head>
 <body>
     @include('layout.project-nav', ['chatsActive' => "active"])
@@ -106,41 +99,38 @@
                     </div>
                     <div class="container-fluid h-100 mx-auto" style="width: 100%; flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($topics as $item)
-                        <div class="{{$item->id == $topic->id?'active1':''}}" id="t{{$item->id}}">
-                            <div class="row d-flex align-items-start px-3 topic_title">
-                                <a class="col-6 text-decoration-none text-dark" href="?topic={{$loop->index}}">
-                                    <h4 class="m-0">{{$item->topicName}}</h4>
-                                    <div class="text-secondary">{{$item->topicDate}}</div>
-                                </a>
-                                <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
-                                    <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                                    <div>by {{$item->firstName}}</div>
+                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}}" id="t{{$item->id}}">
+                            <a class="text-decoration-none text-dark" href="?topic={{$loop->index}}">
+                                <div class="row d-flex align-items-start px-3 topic">
+                                    <div class="col-6">
+                                        <h4 class="m-0">{{$item->topicName}}</h4>
+                                        <div class="text-secondary">{{$item->topicDate}}</div>
+                                    </div>
+                                    <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
+                                        <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                        <div>by {{$item->firstName}}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr class="mt-1 mb-2 mx-3">
-                            @isset($item->chatContent)
-                            <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
-                                <div class="col-12 d-flex flex-row align-items-center gap-2">
-                                    <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                                    <div class="me-auto chatcontent">{{$item->chatContent}}</div>
-                                    <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px">{{$item->new_message == 0? '' : $item->new_message}}</div>
+                                <hr class="mt-1 mb-2 mx-3">
+                                @isset($item->chatContent)
+                                <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                                    <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                        <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                        <div class="me-auto chatcontent">{{$item->chatContent}}</div>
+                                        <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px">{{$item->new_message == 0? '' : $item->new_message}}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            @endisset
-                            @empty($item->chatContent)
-                            <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
-                                <div class="col-12 d-flex flex-row align-items-center gap-2">
-                                    <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="d-none img-fluid rounded-circle" style="width: 40px">
-                                    <div class="me-auto chatcontent">There is no comment yet...</div>
-                                    <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px"></div>
+                                @endisset
+                                @empty($item->chatContent)
+                                <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
+                                    <div class="col-12 d-flex flex-row align-items-center gap-2">
+                                        <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="d-none img-fluid rounded-circle" style="width: 40px">
+                                        <div class="me-auto chatcontent">There is no comment yet...</div>
+                                        <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
-                                <div class="col-12 d-flex flex-row align-items-center gap-2">
-                                    <div class="me-auto">No Comment...</div>
-                                </div>
-                            </div> --}}
-                            @endempty
+                                @endempty
+                            </a>
                         </div>
                         @empty
                             No topic list, try to create one
@@ -172,7 +162,7 @@
                                     <div class="col-11">
                                         <div class="d-flex flex-row-reverse gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary fs-7">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex text-break" style="background: #D7E6FD">
@@ -192,7 +182,7 @@
                                     <div class="col-11">
                                         <div class="d-flex flex-row gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary fs-7">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
                                         </div>
                                         <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                             {{$item->chatContent}}
@@ -211,7 +201,7 @@
                             <form method="POST" id='chat'>
                                 @csrf
                                 <div class="d-flex flex-row gap-2 align-items-center">
-                                    {{-- <input type="hidden" name="topic_id" value="{{$topic->id}}"> --}}
+                                    <input type="hidden" name="topic_id" value="{{$topic->id}}">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M8 5v0a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v0M8 5v0a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v0"/></svg>
                                     </div>

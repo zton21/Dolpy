@@ -160,3 +160,5 @@ nav::before {
     border-color: #D7E6FD;
     border-radius: 0px 5px 5px 0px;
 }
+
+.hover-5:hover {background-color: var(--primary-5) !important;}
