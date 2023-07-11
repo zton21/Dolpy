@@ -50,6 +50,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 Route::get('/home', 'home')->name('dashboard');
                 Route::get('/profile', 'profile')->name('profile');
                 Route::get('/setting', 'setting')->name('setting');
+                Route::get('/faq', 'faq')->name('faq');
             });
 
             // Berhubungan dengan User, Project

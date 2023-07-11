@@ -16,6 +16,8 @@
     }
 </style>
 
+@section('title', "Manage Your Account | Dolpy")
+
 @section('content')
 
 <div class="container">
