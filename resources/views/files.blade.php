@@ -30,7 +30,7 @@
 <body>
     @include('layout.project-nav', ['filesActive' => "active"])
 
-    <div class="container vh-100" style="overflow: hidden">
+    <div class="container vh-100" style="padding-top: 90px;">
         <div class="row h-100">
             <div class="col-5 p-0">
                 <div class="container-fluid p-0">

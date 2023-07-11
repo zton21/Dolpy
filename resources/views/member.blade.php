@@ -8,11 +8,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Members</title>
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+        width: 12px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: #D7E6FD;
+        border-radius: 20px;
+        border: 3px solid #F3F8FE;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: #88B3F8; 
+        }
+
+        /* .myself {
+            background-color: #D7E6FD !important;
+        } */
+        body {
+            padding-top: 90px;
+        }
+    </style>
 </head>
 <body>
     @include('layout.project-nav', ['peopleActive' => "active"])
 
-    <div class="container vh-100" style="overflow: hidden">
+    <div class="container vh-100" style="padding-top: 90px;">
         <div class="row h-100 border">
             <div class="col-5 p-0">
                 <div class="container-fluid p-0">
@@ -28,10 +53,12 @@
                             <h3 class="m-0">Members</h3>
                         </div>
                         <div class="col-auto gap-2">
+                            @if ($role == 'Creator')
                             <button onclick="openInviteMemberFormModal()" class="btn btn-primary ms-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                                 <span class="text-white py-auto">Invite</span>
                             </button>
+                            @endif
                             <x-invite-member-form></x-invite-member-form>
                         </div>
                     </div>
@@ -45,10 +72,15 @@
             </div>
             <div class="col-7 p-0" style="background: #F3F8FE">
                 <div class="container-fluid h-100 my-2 p-0">
-                    <h2 class="mx-3">Project Members {{$n_members}}</h2>
+                    <h2 class="mx-3">Project Members ({{$n_members}})</h2>
+                    
+                    @if ($role == "Creator")
                     <div class="mx-3 fs-4" style="color: #858487">Project members can view all Project visible boards and create new boards in the Project.</div>
+                    @endif
                     <hr class="p-0 my-3 d-block">
                     <div class="container px-4">
+                        
+                    @if ($role == "Creator")
                         <div class="fs-6" style="color: #858487">Anyone with an invite link can join this Project. You can also disable and create a new invite link for this Project at any time.</div>
                         <div class="d-flex flex-row justify-content-evenly my-3">
                             <button type="button" class="btn btn-sm btn-danger px-4 rounded-3">Disable invite link</button>
@@ -58,13 +90,14 @@
                             </button>
                         </div>
                         <hr class="p-0 my-3">
+                    @endif
                         <div class="border border-2 rounded-pill py-1 px-3 d-inline" style="color: #858487">
                             Sort by Name
                         </div>
                         <hr class="p-0 my-3">
                         <div class="d-flex flex-column my-2 overflow-x-hidden overflow-y-auto" style="height: calc(50vh - 1rem)">
                         @foreach ($members as $item)
-                        <div class="row my-2 align-items-center member">
+                        <div class="row my-2 align-items-center member p-1 {{$item->id == $user->id?'myself':''}}">
                             <div class="col-auto">
                                 <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
                             </div>
@@ -84,20 +117,19 @@
                             </div>
                         </div>                            
                         @endforeach
-                            
-                            {{-- <div class="row my-2 align-items-center">
-                                <div class="col-auto">
-                                    <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
-                                </div>
-                                <div class="col-8 p-0">
-                                    <div><strong>Erwin Gunawan</strong></div> 
-                                    <div class="">erwingunawan@gmail.com</div>
-                                </div>
-                                <div class="col-auto ms-auto">
-                                    <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.3278 10.5425C24.1011 10.5425 25.5361 11.9444 25.5361 13.6768C25.5361 15.4092 24.1011 16.811 22.3278 16.811C20.5545 16.811 19.1195 15.4092 19.1195 13.6768C19.1195 11.9444 20.5545 10.5425 22.3278 10.5425ZM22.3278 15.1014C23.1328 15.1014 23.7861 14.4632 23.7861 13.6768C23.7861 12.8904 23.1328 12.2521 22.3278 12.2521C21.5228 12.2521 20.8695 12.8904 20.8695 13.6768C20.8695 14.4632 21.5228 15.1014 22.3278 15.1014Z" fill="#858487"/><path d="M5.99479 10.5425C7.76813 10.5425 9.20313 11.9444 9.20312 13.6768C9.20312 15.4092 7.76813 16.811 5.99479 16.811C4.22146 16.811 2.78646 15.4092 2.78646 13.6768C2.78646 11.9444 4.22146 10.5425 5.99479 10.5425ZM5.99479 15.1014C6.79979 15.1014 7.45313 14.4632 7.45313 13.6768C7.45313 12.8904 6.79979 12.2521 5.99479 12.2521C5.18979 12.2521 4.53646 12.8904 4.53646 13.6768C4.53646 14.4632 5.18979 15.1014 5.99479 15.1014Z" fill="#858487"/><path d="M14.1608 10.5427C15.9341 10.5427 17.3691 11.9445 17.3691 13.6769C17.3691 15.4093 15.9341 16.8112 14.1608 16.8112C12.3875 16.8112 10.9525 15.4093 10.9525 13.6769C10.9525 11.9445 12.3875 10.5427 14.1608 10.5427ZM14.1608 15.1016C14.9658 15.1016 15.6191 14.4633 15.6191 13.6769C15.6191 12.8905 14.9658 12.2522 14.1608 12.2522C13.3558 12.2522 12.7025 12.8905 12.7025 13.6769C12.7025 14.4633 13.3558 15.1016 14.1608 15.1016Z" fill="#858487"/></svg>
-                                </div>
-                            </div> --}}
-                        </div>
+                        
+                        {{-- <div class="row my-2 align-items-center">
+                            <div class="col-auto">
+                                <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                            </div>
+                            <div class="col-8 p-0">
+                                <div><strong>Erwin Gunawan</strong></div> 
+                                <div class="">erwingunawan@gmail.com</div>
+                            </div>
+                            <div class="col-auto ms-auto">
+                                <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.3278 10.5425C24.1011 10.5425 25.5361 11.9444 25.5361 13.6768C25.5361 15.4092 24.1011 16.811 22.3278 16.811C20.5545 16.811 19.1195 15.4092 19.1195 13.6768C19.1195 11.9444 20.5545 10.5425 22.3278 10.5425ZM22.3278 15.1014C23.1328 15.1014 23.7861 14.4632 23.7861 13.6768C23.7861 12.8904 23.1328 12.2521 22.3278 12.2521C21.5228 12.2521 20.8695 12.8904 20.8695 13.6768C20.8695 14.4632 21.5228 15.1014 22.3278 15.1014Z" fill="#858487"/><path d="M5.99479 10.5425C7.76813 10.5425 9.20313 11.9444 9.20312 13.6768C9.20312 15.4092 7.76813 16.811 5.99479 16.811C4.22146 16.811 2.78646 15.4092 2.78646 13.6768C2.78646 11.9444 4.22146 10.5425 5.99479 10.5425ZM5.99479 15.1014C6.79979 15.1014 7.45313 14.4632 7.45313 13.6768C7.45313 12.8904 6.79979 12.2521 5.99479 12.2521C5.18979 12.2521 4.53646 12.8904 4.53646 13.6768C4.53646 14.4632 5.18979 15.1014 5.99479 15.1014Z" fill="#858487"/><path d="M14.1608 10.5427C15.9341 10.5427 17.3691 11.9445 17.3691 13.6769C17.3691 15.4093 15.9341 16.8112 14.1608 16.8112C12.3875 16.8112 10.9525 15.4093 10.9525 13.6769C10.9525 11.9445 12.3875 10.5427 14.1608 10.5427ZM14.1608 15.1016C14.9658 15.1016 15.6191 14.4633 15.6191 13.6769C15.6191 12.8905 14.9658 12.2522 14.1608 12.2522C13.3558 12.2522 12.7025 12.8905 12.7025 13.6769C12.7025 14.4633 13.3558 15.1016 14.1608 15.1016Z" fill="#858487"/></svg>
+                            </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
