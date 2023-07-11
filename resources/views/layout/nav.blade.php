@@ -40,7 +40,7 @@
                 </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile') }}">
-                        <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                        <img src="{{ asset($user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                     </a>
                 </li>
             </ul>
