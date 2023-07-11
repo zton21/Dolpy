@@ -21,7 +21,7 @@ class ProjectDetailFactory extends Factory
         return [
             'project_id' => ProjectHeader::all()->random()->id,
             'user_id' => User::all()->random()->id,
-            'role' => fake()->randomElement(['Creator', 'Member']),
+            'role' => fake()->randomElement(['Creator', 'Member', 'Member', 'Member']),
         ];
     }
 }

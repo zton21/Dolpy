@@ -9,6 +9,7 @@
                 </div>
             </div>
             <form id="invite-member-form" method="POST" action="">
+                <input type="hidden" name="task" value="invite"/>
                 <div class="modal-body">
                         @csrf
                         <div class="mb-3">
