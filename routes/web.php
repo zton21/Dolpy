@@ -43,6 +43,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
     
     Route::middleware(['web', 'auth'])->group(
         function() {
+            Route::get('/logout', 'AuthController@logout')->middleware('auth.logout')->name('logout');
+
             // Berhubungan dengan User
             Route::controller(UserController::class)->group(function () {
                 Route::get('/home', 'home')->name('dashboard');

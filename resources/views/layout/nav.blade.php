@@ -39,9 +39,15 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('profile') }}">
-                        <img src="{{ asset($user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                    </a>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ asset($user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="{{ route('profile') }}">Manage Account</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
