@@ -29,4 +29,8 @@
     .close {
       font-size: calc(1.275rem + 0.3vw) ;
     }
+    
+    .small {
+      font-size: calc(0.8rem + 2vw) ;
+    }
 }
