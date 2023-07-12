@@ -79,8 +79,8 @@
                             <path d="M7.33301 11H14.6663" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M11 14.6667V7.33333" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M8.24967 20.1667H13.7497C18.333 20.1667 20.1663 18.3333 20.1663 13.75V8.25C20.1663 3.66666 18.333 1.83333 13.7497 1.83333H8.24967C3.66634 1.83333 1.83301 3.66666 1.83301 8.25V13.75C1.83301 18.3333 3.66634 20.1667 8.24967 20.1667Z" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                        
-                            <p class="text-neutral-50"> Add another task...</p>
+                            </svg>                
+                            <span class=" m-1 p-0 text-neutral-50"> Add micro task...</span>
                         </a>
                     </div>
                 </div>
@@ -88,12 +88,12 @@
                 <div class="card p-0 mx-3" style="width: 18rem; height:max-content">
                     <div class="card-footer">
                         <a href="#" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.33301 11H14.6663" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M11 14.6667V7.33333" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M8.24967 20.1667H13.7497C18.333 20.1667 20.1663 18.3333 20.1663 13.75V8.25C20.1663 3.66666 18.333 1.83333 13.7497 1.83333H8.24967C3.66634 1.83333 1.83301 3.66666 1.83301 8.25V13.75C1.83301 18.3333 3.66634 20.1667 8.24967 20.1667Z" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>                        
-                        Add another task list...</a>
+                            <span class=" m-1 p-0 text-neutral-50"> Add another micro task list...</span>
                     </div>
                 </div>
             </div>    

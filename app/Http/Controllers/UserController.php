@@ -87,4 +87,9 @@ class UserController extends Controller
         return view('calendar', $data);
     }
 
+    public static function test()
+    {
+       return view('test');
+    }
+
 }
