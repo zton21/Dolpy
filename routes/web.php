@@ -76,7 +76,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
                     // Timeline
                     Route::get('/project/{id}/timeline', 'ProjectController@timeline')->name('timeline');
-                    Route::get('/project/{id}/timeline_inner', 'ProjectController@timeline_inner')->name('timeline_inner');
+                    Route::get('/project/{id}/timeline/1/timeline_inner', 'ProjectController@timeline_inner')->name('timeline_inner');
                 });
             });
         }

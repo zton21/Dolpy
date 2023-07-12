@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {{-- Style --}}
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
-    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/master.css" rel="stylesheet">
     {{-- Pusher --}}
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
