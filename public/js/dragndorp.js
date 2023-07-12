@@ -1,45 +1,57 @@
-const { main } = require("@popperjs/core")
-const { sortedIndexOf } = require("lodash")
+/* draggable element */
+let items = document.querySelectorAll('.task_card');
 
-let tasks = document.getElementsByClassName("task_card")
-let toDo = document.getElementById("todo")
-let onProgress = document.getElementById("onprogress")
-let done = document.getElementById("done")
+items.forEach(item => {
+    item.addEventListener('dragstart', dragStart);
+});
 
+const toDo =  document.getElementById('todo');
+toDo.addEventListener('dragenter', dragEnter)
+toDo.addEventListener('dragover', dragOver);
+toDo.addEventListener('dragleave', dragLeave);
+toDo.addEventListener('drop', drop);
 
-for(task of tasks){
-    task.addEventListener("dragenter", function(e){
-        let selected = e.target;
-        console.log(selected);
-        
-        onProgress.addEventListener("dragover", function(e){
-            e.preventDefault();
-        });
-        
-        onProgress.addEventListener("drop", function(e){
-            onProgress.appendChild(selected);
-            selected = null;
-        });
+const onProgress = document.getElementById("onprogress")
+onProgress.addEventListener('dragenter', dragEnter)
+onProgress.addEventListener('dragover', dragOver);
+onProgress.addEventListener('dragleave', dragLeave);
+onProgress.addEventListener('drop', drop);
 
-        done.addEventListener("dragover", function(e){
-            e.preventDefault();
-        });
-        
-        done.addEventListener("drop", function(e){
-            done.appendChild(selected);
-            selected = null;
-        });
+const done = document.getElementById("done")
+done.addEventListener('dragenter', dragEnter)
+done.addEventListener('dragover', dragOver);
+done.addEventListener('dragleave', dragLeave);
+done.addEventListener('drop', drop);
 
-        toDo.addEventListener("dragover", function(e){
-            e.preventDefault();
-        });
-        
-        toDo.addEventListener("drop", function(e){
-            toDo.appendChild(selected);
-            selected = null;
-        });
-        
-    })
-
+function dragStart(e) {
+    e.dataTransfer.setData('element', e.target.id);
+    setTimeout(() => {
+        e.target.classList.add('hide');
+    }, 0);
+}
+function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
 }
 
+function dragOver(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+    e.target.classList.remove('drag-over');
+}
+
+function drop(e) {
+    if (e.target.classList == "card_box drag-over") {
+        e.target.classList.remove('drag-over');
+    
+        const id = e.dataTransfer.getData('element');
+        const draggable = document.getElementById(id);
+    
+        e.target.appendChild(draggable);
+        
+        draggable.classList.remove('hide');
+    }
+}
