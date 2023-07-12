@@ -206,10 +206,13 @@ class ProjectController extends Controller
             'project' => ProjectHeader::find($project_id),
         ]);
     }
-
-    public static function timeline_inner()
+    
+    public static function timeline_inner($project_id)
     {
-        return view('timeline_inner');
+        return view('timeline_inner', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
     }
 
     public static function chat_request_handler(Request $request, $id) {
