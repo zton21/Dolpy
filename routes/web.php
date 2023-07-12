@@ -51,6 +51,8 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 Route::get('/profile', 'profile')->name('profile');
                 Route::get('/setting', 'setting')->name('setting');
                 Route::get('/faq', 'faq')->name('faq');
+
+                Route::post('/profile', 'updateProfilePicture');
             });
 
             // Berhubungan dengan User, Project

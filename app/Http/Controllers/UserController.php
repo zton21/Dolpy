@@ -8,6 +8,7 @@ use App\Models\ProjectDetail;
 use App\Models\Connection;
 use App\Models\TopicUser;
 use Pusher\Pusher;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {   
@@ -82,6 +83,31 @@ class UserController extends Controller
     public static function calendar()
     {
         return view('calendar');
+    }
+
+    public function updateProfilePicture(Request $request)
+    {
+        $user = Auth::user();
+        
+        if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
+            $file = $request->file('profile_picture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $user->id . '_' . time() . '.' . $extension;
+
+            // Delete previous profile picture if exists
+            if($user->profileURL !== 'blankProfilePic.png') {
+                Storage::disk('public')->delete($user->profileURL);
+            }
+
+            // Store the new profile picture with the specified filename
+            $path = $file->storeAs('/profile_pictures', $filename, 'public');
+            
+            // Update the profile picture path in the database
+            $user->profileURL = $path;
+            $user->save();
+        }
+
+        return response()->json(['success' => true]);
     }
 
 }
