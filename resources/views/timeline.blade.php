@@ -4,6 +4,7 @@
     <title>Board Page</title>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="/css/master.css" rel="stylesheet" >
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +16,14 @@
     </style>
 </head>
 <body>
-    @include('layout.project-nav', ['timelineActive' => "active"])
-
+    
+@include('layout.project-nav', ['timelineActive' => "active"])
     <div class="container" style="padding-top: 90px;">
         <div class="row">
             <div class="col-5">
                 <div class="card p-0">
                     <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
-                    <div class="card-body" style="background: #D7E6FD;">
+                    <div class="card-body bg-primary-10">
                         <h3>Web Programming</h3>
                         <span>Every Project has it own card too</span>
                     </div>
@@ -55,7 +56,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 border rounded-3" style="background: #F3F8FE">
+            <div class="col-md-4 border rounded-3 bg-primary-5">
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <div class="d-flex flex-row p-2">
                         <div class="h3">To Do <span class="badge rounded-pill text-bg-primary px-2 py-1" style="font-size: 0.5em">3</span></div>
@@ -73,7 +74,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card" style="background: #F3F8FE">
+                <div class="card bg-primary-5">
                     <div class="card-header">
                         <h3>In Progress</h3>
                         <div class="badge rounded-pill text-bg-primary">3</div>
@@ -128,5 +129,6 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+
+{{-- </body>
+</html> --}}

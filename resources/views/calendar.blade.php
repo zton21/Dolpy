@@ -66,7 +66,7 @@
     </div>
     <div class="container text-center">
         <div class="row" style="height: 15vh">
-            <div class="col text-primary-50 border-primary-50">
+            <div class="col text-primary-50 border-primary-30">
                 <p class="m-0">1</p>
                 <div class="row d-flex flex-column align-content-around text-start" style="height: 10vh">
                     <div class="col bg-primary my-1 rounded-2" style="width:95%">
@@ -76,48 +76,48 @@
                     <div class="col bg-primary my-1 rounded-2" style="width:95%"></div>
                 </div>
             </div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
         </div>
         <div class="row" style="height: 12vh">
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
-            <div class="col text-primary-50" style="border: 1px solid #88B3F8;">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
+            <div class="col text-primary-50 border-primary-30">1</div>
         </div>
     </div>
 @endsection
