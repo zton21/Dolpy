@@ -75,7 +75,7 @@
                 <li class="nav-item">
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset($user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                            <img id="profileImage" src="{{ asset('storage/' . $user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="{{ route('profile') }}">Manage Account</a>

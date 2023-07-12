@@ -14,6 +14,40 @@
         background-color: #f2f2f2;
         transition: background-color 0.3s;
     }
+    .profile-picture-container {
+        position: relative;
+        display: inline-block;
+    }
+    img {
+        object-fit: cover;
+    }
+    .profile-picture-label {
+        position: relative;
+        cursor: pointer;
+    }
+    .profile-picture-overlay {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        background-color: #f2f2f2b7;
+        transition: opacity 0.3s;
+        text-align: center;
+    }
+    .profile-picture-overlay i {
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+    .profile-picture-overlay-text {
+        color: #ffffff;
+    }
+    .profile-picture-container:hover .profile-picture-overlay {
+        opacity: 1;
+    }
 </style>
 
 @section('title', "Manage Your Account | Dolpy")
@@ -23,11 +57,18 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-lg-6 col-md-12">
-            <div class="row align-items-center justify-content-center my-4">
-                <div class="col-2">
-                    <img src="{{ asset($user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
+            <div class="d-flex flex-row align-items-center justify-content-center gap-3 my-4">
+                <div class="profile-picture-container">
+                    <label for="profilePicture" class="profile-picture-label">
+                        <img id="profileImage" style="width: 3em; height: 3em;" src="{{ asset('storage/' . $user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle fs-1">
+                        <div class="profile-picture-overlay d-flex flex-column justify-content-center align-items-center rounded-circle">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_15_137)"> <rect width="24" height="24"></rect> <path d="M3 8C3 7.44772 3.44772 7 4 7H8.5L9.5 4H14.5L15.5 7H20C20.5523 7 21 7.44772 21 8V19C21 19.5523 20.5523 20 20 20H4C3.44772 20 3 19.5523 3 19V8Z" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> <circle cx="12" cy="13" r="3" stroke="#000000" stroke-linejoin="round"></circle> </g> <defs> <clipPath id="clip0_15_137"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+                            <span class="profile-picture-overlay-text text-black" style="font-size: 0.8em">Change Image</span>
+                        </div>
+                    </label>
+                    <input type="file" id="profilePicture" class="d-none" accept="image/*">
                 </div>
-                <div class="col-5 py-auto">
+                <div class="d-flex flex-column py-auto">
                     <h4 class="m-0">{{ $user->firstName }} {{ $user->lastName }}</h4>
                     <p class="m-0">{{ $user->email }}</p>
                 </div>
@@ -156,4 +197,29 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(() => {
+        $('#profilePicture:file').change(function(e) {
+            // let url = URL.createObjectURL(e.target.files[0]);
+            let fd = new FormData();
+            fd.append('profile_picture', e.target.files[0]);
+            
+            $.post({
+                url: '{{ route('profile') }}',
+                data: fd,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    let url = URL.createObjectURL(e.target.files[0]);
+                    $('#profileImage').attr('src', url);
+                    $('#profileImageNav').attr('src', url);
+                },
+            });
+        });
+    });
+</script>
+
+
 @endsection
