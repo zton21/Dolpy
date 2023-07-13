@@ -26,32 +26,31 @@ done.addEventListener('drop', drop);
 function dragStart(e) {
     e.dataTransfer.setData('element', e.target.id);
     setTimeout(() => {
-        e.target.classList.add('hide');
+        console.log('hide');
+        // e.target.classList.add('hide');
     }, 0);
 }
+
 function dragEnter(e) {
     e.preventDefault();
-    e.target.classList.add('drag-over');
+    e.currentTarget.classList.add('drag-over');
 }
 
 function dragOver(e) {
     e.preventDefault();
-    e.target.classList.add('drag-over');
+    e.currentTarget.classList.add('drag-over');
 }
 
 function dragLeave(e) {
-    e.target.classList.remove('drag-over');
+    e.preventDefault();
+    e.currentTarget.classList.remove('drag-over');
 }
 
 function drop(e) {
-    if (e.target.classList == "card_box drag-over") {
-        e.target.classList.remove('drag-over');
-    
-        const id = e.dataTransfer.getData('element');
-        const draggable = document.getElementById(id);
-    
-        e.target.appendChild(draggable);
-        
-        draggable.classList.remove('hide');
-    }
+    console.log(3);
+    const id = e.dataTransfer.getData('element');
+    const draggable = document.getElementById(id);
+
+    e.currentTarget.classList.remove('drag-over');       
+    e.currentTarget.appendChild(draggable);
 }

@@ -132,7 +132,7 @@
                             <div class="card shadow rounded-4 mx-3">
                                 <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Task1</h5>
+                                    <h5 class="card-title">Task2</h5>
                                     <p class="card-text text-truncate m-0">every timeline cards will looks like this this this this this this </p>
                                     <hr class="p-0 my-3">
                                     <div class="d-flex flex-row justify-content-between gap-2">
@@ -183,7 +183,7 @@
                         <div class="card rounded-4 mx-3 opacity-75">
                             <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Task1</h5>
+                                <h5 class="card-title">Task3</h5>
                                 <p class="card-text text-truncate m-0">every timeline cards will looks like this this this this this this </p>
                                 <hr class="p-0 my-3">
                                 <div class="d-flex flex-row justify-content-between">
