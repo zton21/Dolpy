@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreignId('project_id');
-            $table->foreign('project_id')->references('id')->on('projectHeaders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
 
             $table->integer('next')->nullable();
             $table->string('group')->default('todo');
