@@ -11,13 +11,7 @@
     <link rel="shortcut icon" href="{{ asset('/img/logo-primary.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
+    <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
 </head>
 <body class="min-vh-100 d-flex flex-column">
     @include('layout.nav')

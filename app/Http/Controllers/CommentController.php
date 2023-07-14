@@ -36,16 +36,7 @@ class CommentController extends Controller
         $user = Auth::user();
         
         // Push event
-        $pusher = new Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
-            ],
-        );
-
+        $pusher = ProjectController::pusher();
         $pusher->trigger(
             'private-project.'.$project_id,
             'send-message',
