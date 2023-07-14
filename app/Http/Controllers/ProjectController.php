@@ -249,8 +249,21 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'modify') {
             // Validasi
             dd($request);
+        }
+        if ($request->has('task') && $request->task == 'add_timeline') {
+            // Validate request
+            dd($request);
+            
+            $request->validate([
+                'timeline_name' => 'required',
+                'timeline_description' => '',
+                'timeline_color' => '',
+                'start_date' => 'required',
+                'end_date' => 'required',
+            ]);
+
+            // 
             
         }
-
     }
 }
