@@ -9,6 +9,7 @@
                 </div>
             </div>
             <form id="add-timeline-form" method="POST" action="">
+                <input type="hidden" name="task" value="add_timeline">
                 <div class="modal-body">
                         @csrf
                         <div class="mb-3">
