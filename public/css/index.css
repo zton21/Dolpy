@@ -31,6 +31,99 @@
     --Error-90: #851616;
 }
 
+.text-primary-5{color: var(--primary-5)}
+.text-primary-10{color: var(--primary-10)}
+.text-primary-30{color: var(--primary-30)}
+.text-primary-50{color: var(--primary-50)}
+.text-primary-70{color: var(--primary-70)}
+.text-primary-90{color: var(--primary-90)}
+
+.text-neutral-10 {color: var(--neutral-10)}
+.text-neutral-30 {color: var(--neutral-30)}
+.text-neutral-50 {color: var(--neutral-50)}
+.text-neutral-70 {color: var(--neutral-70)}
+.text-neutral-90 {color: var(--neutral-90)}
+
+.text-success-10 {color: var(--success-10)}
+.text-success-30 {color: var(--success-30)}
+.text-success-50 {color: var(--success-50)}
+.text-success-70 {color: var(--success-70)}
+.text-success-90 {color: var(--success-90)}
+
+.text-warning-10 {color: var(--warning-10)}
+.text-warning-30 {color: var(--warning-30)}
+.text-warning-50 {color: var(--warning-50)}
+.text-warning-70 {color: var(--warning-70)}
+.text-warning-90 {color: var(--warning-90)}
+
+.text-Error-10 {color: var(--Error-10)}
+.text-Error-30 {color: var(--Error-30)}
+.text-Error-50 {color: var(--Error-50)}
+.text-Error-70 {color: var(--Error-70)}
+.text-Error-90 {color: var(--Error-90)}
+
+.bg-primary-5{background-color: var(--primary-5)}
+.bg-primary-10{background-color: var(--primary-10)}
+.bg-primary-30{background-color: var(--primary-30)}
+.bg-primary-50{background-color: var(--primary-50)}
+.bg-primary-70{background-color: var(--primary-70)}
+.bg-primary-90{background-color: var(--primary-90)}
+
+.bg-neutral-10 {background-color: var(--neutral-10)}
+.bg-neutral-30 {background-color: var(--neutral-30)}
+.bg-neutral-50 {background-color: var(--neutral-50)}
+.bg-neutral-70 {background-color: var(--neutral-70)}
+.bg-neutral-90 {background-color: var(--neutral-90)}
+
+.bg-success-10 {background-color: var(--success-10)}
+.bg-success-30 {background-color: var(--success-30)}
+.bg-success-50 {background-color: var(--success-50)}
+.bg-success-70 {background-color: var(--success-70)}
+.bg-success-90 {background-color: var(--success-90)}
+
+.bg-warning-10 {background-color: var(--warning-10)}
+.bg-warning-30 {background-color: var(--warning-30)}
+.bg-warning-50 {background-color: var(--warning-50)}
+.bg-warning-70 {background-color: var(--warning-70)}
+.bg-warning-90 {background-color: var(--warning-90)}
+
+.bg-Error-10 {background-color: var(--Error-10)}
+.bg-Error-30 {background-color: var(--Error-30)}
+.bg-Error-50 {background-color: var(--Error-50)}
+.bg-Error-70 {background-color: var(--Error-70)}
+.bg-Error-90 {background-color: var(--Error-90)}
+
+.border-primary-5{border: 1px solid var(--primary-5)}
+.border-primary-10{border: 1px solid var(--primary-10)}
+.border-primary-30{border: 1px solid var(--primary-30)}
+.border-primary-50{border: 1px solid var(--primary-50)}
+.border-primary-70{border: 1px solid var(--primary-70)}
+.border-primary-90{border: 1px solid var(--primary-90)}
+
+.border-neutral-10 {border: 1px solid var(--neutral-10)}
+.border-neutral-30 {border: 1px solid var(--neutral-30)}
+.border-neutral-50 {border: 1px solid var(--neutral-50)}
+.border-neutral-70 {border: 1px solid var(--neutral-70)}
+.border-neutral-90 {border: 1px solid var(--neutral-90)}
+
+.border-success-10 {border: 1px solid var(--success-10)}
+.border-success-30 {border: 1px solid var(--success-30)}
+.border-success-50 {border: 1px solid var(--success-50)}
+.border-success-70 {border: 1px solid var(--success-70)}
+.border-success-90 {border: 1px solid var(--success-90)}
+
+.border-warning-10 {border: 1px solid var(--warning-10)}
+.border-warning-30 {border: 1px solid var(--warning-30)}
+.border-warning-50 {border: 1px solid var(--warning-50)}
+.border-warning-70 {border: 1px solid var(--warning-70)}
+.border-warning-90 {border: 1px solid var(--warning-90)}
+
+.border-Error-10 {border: 1px solid var(--Error-10)}
+.border-Error-30 {border: 1px solid var(--Error-30)}
+.border-Error-50 {border: 1px solid var(--Error-50)}
+.border-Error-70 {border: 1px solid var(--Error-70)}
+.border-Error-90 {border: 1px solid var(--Error-90)}
+
 * {
     font-family: 'Source Sans Pro';
     font-style: normal;
