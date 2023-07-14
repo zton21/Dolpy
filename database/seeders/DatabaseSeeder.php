@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\ProjectHeader::factory(20)->create();
         \App\Models\ProjectDetail::factory(50)->create();
         \App\Models\TopicSection::factory(100)->create();
-        \App\Models\Comment::factory(1000)->create();
+        \App\Models\Comment::factory(100)->create();
+        \App\Models\Timeline::factory(50)->create();
+        \App\Models\FileSection::factory(100)->create();
+        \App\Models\Attachment::factory(100)->create();
     }
 }

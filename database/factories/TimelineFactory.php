@@ -3,13 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 use App\Models\ProjectHeader;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FileSection>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Timeline>
  */
-class FileSectionFactory extends Factory
+class TimelineFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,9 +19,8 @@ class FileSectionFactory extends Factory
     {
         return [
             'project_id' => ProjectHeader::all()->random()->id,
-            'user_id' => User::all()->random()->id,
-            'fileSectionName' => fake()->words(2,true),
-            'fileSectionDate' => fake()->dateTimeThisYear(),
+            'timelineTitle' => fake()->words(2,true),
+            'timelineDesc' => fake()->sentence($nbWords = fake()->numberBetween($min = 3, $max = 6), $variableNbWords = true),
         ];
     }
 }

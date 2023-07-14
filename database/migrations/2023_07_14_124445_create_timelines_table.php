@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
+            $table->string('timelineTitle');
+            $table->text('timelineDesc')->nullable();
+
             $table->foreignId('project_id');
             $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');
 
