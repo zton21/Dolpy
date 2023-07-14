@@ -66,6 +66,7 @@ $(window).on('load', () => {
                 'id': data.sender.id,
             }
             append_data(x);
+            read_message();
         }
         else {
             let notifcount = $('#t'+id+' .notification');

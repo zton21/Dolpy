@@ -125,19 +125,20 @@ class ProjectController extends Controller
     }
     
     
-
-
-    public static function pusher_authenticate(Request $request) {
-        $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
-        $pusher = new Pusher(
+    public static function pusher() {
+        return new Pusher(
             env('PUSHER_APP_KEY'),
             env('PUSHER_APP_SECRET'),
             env('PUSHER_APP_ID'),
             [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                // 'encryption_master_key_base64' => 'JG5Nd21WbEt7L19wVkIkKixuSG50XktW'
             ],
         );
+    }
+
+    public static function pusher_authenticate(Request $request) {
+        $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
+        $pusher = pusher();
         $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
         
         return response($x, 200);
@@ -215,7 +216,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    public static function chat_request_handler(Request $request, $id) {
+    public static function post_chat(Request $request, $id) {
         if ($request->has('task') && $request->task == 'send_message') {
             return CommentController::add_comment($request, $id);
         }
@@ -227,7 +228,7 @@ class ProjectController extends Controller
         }
     }
 
-    public static function member_request_handler(Request $request, $id) {
+    public static function post_member(Request $request, $id) {
         if ($request->has('task') && $request->task == 'invite') return ProjectController::invite_member($request, $id);
         return response('Request not recognized', 200);
     }
@@ -241,5 +242,15 @@ class ProjectController extends Controller
 
         ProjectController::add_member($project_id, $to_invite->id);
         return redirect()->back()->with([['success' => 'Successfully invited member']]);
+    }
+
+    public static function post_timeline(Request $request, $project_id) {
+        // Drag n drop task
+        if ($request->has('task') && $request->task == 'modify') {
+            // Validasi
+            dd($request);
+            
+        }
+
     }
 }

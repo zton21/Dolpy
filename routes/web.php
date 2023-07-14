@@ -64,20 +64,22 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 // Perlu Project Authorization
                 Route::middleware(['auth.project'])->group(function() {
                     // Chat
-                    Route::get('/project/{id}', 'ProjectController@view_project')->name('project');
-                    Route::post('/project/{id}', 'ProjectController@chat_request_handler');
-                    Route::post('/pusher/auth/{id}', 'ProjectController@pusher_authenticate');
+                    Route::get('/project/{id}', 'view_project')->name('project');
+                    Route::post('/project/{id}', 'post_chat');
+                    Route::post('/pusher/auth/{id}', 'pusher_authenticate');
                     
                     // Files
-                    Route::get('/project/{id}/files', 'ProjectController@files')->name('files');
+                    Route::get('/project/{id}/files', 'files')->name('files');
 
                     // Member
-                    Route::get('/project/{id}/member', 'ProjectController@member')->name('member');
-                    Route::post('/project/{id}/member', 'ProjectController@member_request_handler')->name('member');
+                    Route::get('/project/{id}/member', 'member')->name('member');
+                    Route::post('/project/{id}/member', 'post_member')->name('member');
 
                     // Timeline
-                    Route::get('/project/{id}/timeline', 'ProjectController@timeline')->name('timeline');
-                    Route::get('/project/{id}/timeline/1/timeline_inner', 'ProjectController@timeline_inner')->name('timeline_inner');
+                    Route::get('/project/{id}/timeline', 'timeline')->name('timeline');
+                    Route::get('/project/{id}/timeline/1/timeline_inner', 'timeline_inner')->name('timeline_inner');
+                    
+                    Route::post('/project/{id}/timeline', 'post_timeline')->name('timeline');
                 });
             });
         }
