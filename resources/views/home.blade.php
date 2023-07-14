@@ -2,6 +2,16 @@
 @section('title', 'Home | Dolpy')
 
 @section('content')
+<style>
+    .truncate {
+        max-width: 100%;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+    }
+</style>
 <div class="container">
     <div class="row fs-2 w-100 mx-auto">
         <div class="col-12 d-flex flex-row mx-0 px-0" style="font-weight:600">
@@ -106,9 +116,9 @@
                         <path d="M7.70816 10.2363C7.70816 8.93973 8.73317 7.8905 9.99983 7.8905C11.2665 7.8905 12.2915 8.93973 12.2915 10.2363C12.2915 11.5329 11.2665 12.5822 9.99983 12.5822C8.73317 12.5822 7.70816 11.5329 7.70816 10.2363ZM11.0415 10.2363C11.0415 9.64775 10.5748 9.17005 9.99983 9.17005C9.42483 9.17005 8.95817 9.64775 8.95817 10.2363C8.95817 10.8249 9.42483 11.3026 9.99983 11.3026C10.5748 11.3026 11.0415 10.8249 11.0415 10.2363Z" fill="white"/>
                     </svg>    
                     <img class="img-fluid w-25" src="{{ asset($item->projectWallpaperURL) }}">
-                    <div class="px-3">
+                    <div class="px-3 flex-grow-1">
                         <div class="fs-3 fw-semibold">{{$item->projectName}}</div>
-                        <div class="">{{$item->projectDescription ?? ""}}</div>
+                        <div class="truncate">{{$item->projectDescription ?? ""}}</div>
                     </div>
                 </div>
             </div>

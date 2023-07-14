@@ -58,7 +58,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            }
+        }
     </style>
     <script>
         $.ajaxSetup({

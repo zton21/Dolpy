@@ -183,28 +183,46 @@
                 <div class="card_box" id="done" style="min-height: 550px;">
                     {{-- @for($x=0; $x<3; $x++) --}}
                     <a class="task_card text-decoration-none" id="3" draggable="true">
-                        <div class="card rounded-4 mx-3 opacity-75">
+                        <div class="card rounded-4 mx-3 shadow">
                             <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Task3</h5>
+                                <div class="d-flex flex-row card-title align-items-center gap-2">
+                                    <h5 class="m-0">Task 3</h5>
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1428_1163)">
+                                        <mask id="mask0_1428_1163" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
+                                        <path d="M9.00001 16.5C9.98511 16.5013 10.9607 16.3079 11.8709 15.9309C12.781 15.5539 13.6076 15.0007 14.3033 14.3033C15.0007 13.6076 15.5539 12.781 15.9309 11.8709C16.3079 10.9607 16.5013 9.98511 16.5 9.00001C16.5013 8.01491 16.3078 7.03927 15.9308 6.12917C15.5539 5.21906 15.0007 4.39242 14.3033 3.69676C13.6076 2.99927 12.781 2.44613 11.8709 2.06914C10.9607 1.69215 9.98511 1.49873 9.00001 1.50001C8.01491 1.49875 7.03927 1.69218 6.12917 2.06917C5.21906 2.44616 4.39242 2.99928 3.69676 3.69676C2.99928 4.39242 2.44616 5.21906 2.06917 6.12917C1.69218 7.03927 1.49875 8.01491 1.50001 9.00001C1.49873 9.98511 1.69215 10.9607 2.06914 11.8709C2.44613 12.781 2.99927 13.6076 3.69676 14.3033C4.39242 15.0007 5.21906 15.5539 6.12917 15.9308C7.03927 16.3078 8.01491 16.5013 9.00001 16.5Z" fill="white" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+                                        <path d="M6 9L8.25 11.25L12.75 6.75" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </mask>
+                                        <g mask="url(#mask0_1428_1163)">
+                                        <path d="M0 0H18V18H0V0Z" fill="#4FD34D"/>
+                                        </g>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_1428_1163">
+                                        <rect width="18" height="18" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>                                        
+                                </div>
                                 <p class="card-text text-truncate m-0">every timeline cards will looks like this this this this this this </p>
                                 <hr class="p-0 my-3">
                                 <div class="d-flex flex-row justify-content-between">
                                     <div class="d-flex flex-row align-items-center gap-1">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke="#88B3F8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#88B3F8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#88B3F8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke="#3980F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <div style="color: #88B3F8">5/5</div>
+                                        <div class="text-primary-50">5/5</div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center gap-1">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke="#88B3F8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#88B3F8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#88B3F8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke="#3980F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <div style="color: #88B3F8">end at 10/2/2023 </div>
+                                        <div class="text-primary-50">end at 10/2/2023</div>
                                     </div>
                                 </div>
                             </div>
