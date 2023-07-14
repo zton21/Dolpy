@@ -13,6 +13,7 @@
     --neutral-70: #333237;
     --neutral-90: #1D1D1D;
     
+    --success-5: #DCF6DB;
     --success-10: #B9EDB8;
     --success-30: #84E082;
     --success-50: #4FD34D;
@@ -45,6 +46,7 @@
 .text-neutral-70 {color: var(--neutral-70)}
 .text-neutral-90 {color: var(--neutral-90)}
 
+.text-success-5 {color: var(--success-5)}
 .text-success-10 {color: var(--success-10)}
 .text-success-30 {color: var(--success-30)}
 .text-success-50 {color: var(--success-50)}
@@ -76,6 +78,7 @@
 .bg-neutral-70 {background-color: var(--neutral-70)}
 .bg-neutral-90 {background-color: var(--neutral-90)}
 
+.bg-success-5 {background-color: var(--success-5)}
 .bg-success-10 {background-color: var(--success-10)}
 .bg-success-30 {background-color: var(--success-30)}
 .bg-success-50 {background-color: var(--success-50)}
