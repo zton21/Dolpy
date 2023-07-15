@@ -29,20 +29,7 @@
     }
 </style>
 
-<div class="container-fluid phone-bg mb-3" style="color:white">    
-    <div class="container position-relative">
-        <div class="row p-5">
-            <div class="col-md-12 col-sm-12 col-lg-offside-2 p-5">
-                <h2>Proyek seluler untuk tim seluler</h2>
-                <p class="fs-5 col-md-5 col-sm-12 mb-0">Lorem ipsum dolor sit amet. Non laboriosam voluptates ut illo ipsum sed quia accusantium sed autem placeat! Sit delectus numquam beatae</p>
-            </div>
-        </div>
-        <div class="position-absolute bottom-0 end-0">
-            <img src="{{URL::asset('img/Phone Element.png')}}" alt="Phone" class="img-fluid">
-        </div>
-    </div>
-</div>
-<div class="container p-4 mt-5">
+<div class="container p-4">
     <div class="row align-item-center clearfix">
         <div class="col mx-2"></div>
         <div class="col mx-2">
@@ -79,10 +66,12 @@
             <div class="pt-3">
                 <ul>
                     <li>Collaborative workspace </li>
+                    <li>Limited 3 active projects</li>
+                    <li>Limited chat and file section</li>
                     <li>Integrate with all team member</li>
                     <li>Basic page analytics</li>
                     <li>7 day page history</li>
-                    <li>Invite 5 member</li>
+                    <li>Invite up to 5 member</li>
                 </ul>
             </div>
         </div>
@@ -114,10 +103,12 @@
             <div class="pt-3">
                 <ul>
                     <li>Collaborative workspace </li>
+                    <li>Limited 20 active projects</li>
+                    <li>Unlimited chat and file section</li>
                     <li>Integrate with all team member</li>
                     <li>Basic page analytics</li>
-                    <li>7 day page history</li>
-                    <li>Invite 5 member</li>
+                    <li>1 month page history</li>
+                    <li>Invite up to 15 member</li>
                 </ul>
             </div>
         </div>
@@ -148,10 +139,12 @@
             <div class="pt-3">
                 <ul>
                     <li>Collaborative workspace </li>
+                    <li>Unlimited active projects</li>
+                    <li>Unlimited chat and file section</li>
                     <li>Integrate with all team member</li>
                     <li>Basic page analytics</li>
-                    <li>7 day page history</li>
-                    <li>Invite 5 member</li>
+                    <li>1 year page history</li>
+                    <li>Invite up to 30 member</li>
                 </ul>
             </div>
         </div>
