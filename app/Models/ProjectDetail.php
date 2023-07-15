@@ -17,7 +17,7 @@ class ProjectDetail extends Model
     
     protected $guarded = [];
 
-    public function user() {
-        return $this->belongsToMany(User::class);
-    }
+    // public function user() {
+    //     return $this->belongsToMany(User::class);
+    // }
 }

@@ -115,10 +115,10 @@
             <div class="dropdown-menu" aria-labelledby="dotMenuButton">
                 @if ($user->id == $item->userID)
                     <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-project-modal" data-action="edit" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}" data-project-description="{{ $item->projectDescription }}" data-project-due-date="{{ $item->projectDueDate }}">Edit Project</button>
-                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="delete" data-project-name="{{ $item->projectName }}">Delete Project</button>
-                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="complete" data-project-name="{{ $item->projectName }}">Complete Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="delete" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}">Delete Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="complete" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}">Complete Project</button>
                 @else
-                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="leave" data-project-name="{{ $item->projectName }}">Leave Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="leave" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}">Leave Project</button>
                 @endif
             </div>
         </div>
@@ -181,7 +181,7 @@
         </div>
     </div>
     <div class="row w-100 text-dark bg-neutral-10 py-1 table-header mx-auto">
-        <div class="col-6 text-center">
+        <div class="col-4 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 23.3438H8C4.35 23.3438 2.25 21.2437 2.25 17.5938V7.59375C2.25 3.94375 4.35 1.84375 8 1.84375H16C19.65 1.84375 21.75 3.94375 21.75 7.59375V17.5938C21.75 21.2437 19.65 23.3438 16 23.3438ZM8 3.34375C5.14 3.34375 3.75 4.73375 3.75 7.59375V17.5938C3.75 20.4538 5.14 21.8438 8 21.8438H16C18.86 21.8438 20.25 20.4538 20.25 17.5938V7.59375C20.25 4.73375 18.86 3.34375 16 3.34375H8Z" fill="#858487"/>
                 <path d="M18.5 9.84375H16.5C14.98 9.84375 13.75 8.61375 13.75 7.09375V5.09375C13.75 4.68375 14.09 4.34375 14.5 4.34375C14.91 4.34375 15.25 4.68375 15.25 5.09375V7.09375C15.25 7.78375 15.81 8.34375 16.5 8.34375H18.5C18.91 8.34375 19.25 8.68375 19.25 9.09375C19.25 9.50375 18.91 9.84375 18.5 9.84375Z" fill="#858487"/>
@@ -197,7 +197,7 @@
             </svg>                        
             Status
         </div> --}}
-        <div class="col-2">
+        <div class="col-3 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.15957 12.12C9.12957 12.12 9.10957 12.12 9.07957 12.12C9.02957 12.11 8.95957 12.11 8.89957 12.12C5.99957 12.03 3.80957 9.75 3.80957 6.94C3.80957 4.08 6.13957 1.75 8.99957 1.75C11.8596 1.75 14.1896 4.08 14.1896 6.94C14.1796 9.75 11.9796 12.03 9.18957 12.12C9.17957 12.12 9.16957 12.12 9.15957 12.12ZM8.99957 3.25C6.96957 3.25 5.30957 4.91 5.30957 6.94C5.30957 8.94 6.86957 10.55 8.85957 10.62C8.91957 10.61 9.04957 10.61 9.17957 10.62C11.1396 10.53 12.6796 8.92 12.6896 6.94C12.6896 4.91 11.0296 3.25 8.99957 3.25Z" fill="#858487"/>
                 <path d="M16.5394 12.25C16.5094 12.25 16.4794 12.25 16.4494 12.24C16.0394 12.28 15.6194 11.99 15.5794 11.58C15.5394 11.17 15.7894 10.8 16.1994 10.75C16.3194 10.74 16.4494 10.74 16.5594 10.74C18.0194 10.66 19.1594 9.46 19.1594 7.99C19.1594 6.47 17.9294 5.24 16.4094 5.24C15.9994 5.25 15.6594 4.91 15.6594 4.5C15.6594 4.09 15.9994 3.75 16.4094 3.75C18.7494 3.75 20.6594 5.66 20.6594 8C20.6594 10.3 18.8594 12.16 16.5694 12.25C16.5594 12.25 16.5494 12.25 16.5394 12.25Z" fill="#858487"/>
@@ -206,7 +206,7 @@
             </svg>
             Owner
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 2.5V5.5" stroke="#A3A3A5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M16 2.5V5.5" stroke="#A3A3A5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -221,7 +221,7 @@
             </svg>                        
             Due Date
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.50977 7C4.95977 7 4.50977 6.55 4.50977 6C4.50977 5.45 4.94977 5 5.50977 5H5.51977C6.06977 5 6.51977 5.45 6.51977 6C6.51977 6.55 6.06977 7 5.50977 7Z" fill="#858487"/>
                 <path d="M18.5098 20C17.9598 20 17.5098 19.55 17.5098 19C17.5098 18.45 17.9498 18 18.5098 18H18.5198C19.0698 18 19.5198 18.45 19.5198 19C19.5198 19.55 19.0698 20 18.5098 20Z" fill="#858487"/>
@@ -233,23 +233,61 @@
         </div>
     </div>
     @forelse ($completed as $item)
-    <div class="row project-item mx-0 px-0 my-2">
-        <div class="col-4 p-0">
-            <div class="d-flex flex-row mx-0 w-100 h-100 px-0">
-                <svg class="bg-primary-70" class="h-100" width="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7.70816 4.26515C7.70816 2.96854 8.73317 1.91931 9.99983 1.91931C11.2665 1.91931 12.2915 2.96854 12.2915 4.26515C12.2915 5.56176 11.2665 6.61098 9.99983 6.61098C8.73317 6.61098 7.70816 5.56176 7.70816 4.26515ZM11.0415 4.26515C11.0415 3.67656 10.5748 3.19886 9.99983 3.19886C9.42483 3.19886 8.95817 3.67656 8.95817 4.26515C8.95817 4.85374 9.42483 5.33144 9.99983 5.33144C10.5748 5.33144 11.0415 4.85374 11.0415 4.26515Z" fill="white"/>
-                    <path d="M7.70816 16.2077C7.70816 14.911 8.73317 13.8618 9.99983 13.8618C11.2665 13.8618 12.2915 14.911 12.2915 16.2077C12.2915 17.5043 11.2665 18.5535 9.99983 18.5535C8.73317 18.5535 7.70816 17.5043 7.70816 16.2077ZM11.0415 16.2077C11.0415 15.6191 10.5748 15.1414 9.99983 15.1414C9.42483 15.1414 8.95817 15.6191 8.95817 16.2077C8.95817 16.7962 9.42483 17.2739 9.99983 17.2739C10.5748 17.2739 11.0415 16.7962 11.0415 16.2077Z" fill="white"/>
-                    <path d="M7.70816 10.2363C7.70816 8.93973 8.73317 7.8905 9.99983 7.8905C11.2665 7.8905 12.2915 8.93973 12.2915 10.2363C12.2915 11.5329 11.2665 12.5822 9.99983 12.5822C8.73317 12.5822 7.70816 11.5329 7.70816 10.2363ZM11.0415 10.2363C11.0415 9.64775 10.5748 9.17005 9.99983 9.17005C9.42483 9.17005 8.95817 9.64775 8.95817 10.2363C8.95817 10.8249 9.42483 11.3026 9.99983 11.3026C10.5748 11.3026 11.0415 10.8249 11.0415 10.2363Z" fill="white"/>
-                </svg>    
-                <img class="img-fluid w-25">
-                <div class="my-auto ms-2">{{$item->projectName}}</div>
+    <div class="wrapper position-relative">
+        <div class="dropdown position-absolute top-0 end-0">
+            <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dotMenuButton">
+                @if ($user->id == $item->userID)
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-project-modal" data-action="edit" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}" data-project-description="{{ $item->projectDescription }}" data-project-due-date="{{ $item->projectDueDate }}">Edit Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="delete" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}">Delete Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="complete" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}">Complete Project</button>
+                @else
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="leave" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}">Leave Project</button>
+                @endif
             </div>
         </div>
-        {{-- <div class="col-2 p-0 py-2">Status</div> --}}
-        <div class="col-2 p-0 py-2">{{$item->firstName}}</div>
-        <div class="col-2 p-0 py-2">{{$item->projectDueDate}}</div>
-        <div class="col-2 p-0 py-2">Progress</div>
-    </div>
+        @include('components.edit-project-form')
+        @include('components.project-action-form')
+        <a class="hover-5 row project-item mx-0 px-0 my-2 text-decoration-none text-dark" href="{{Route('project', $item->id)}}">
+            <div class="col-4 p-0">
+                <div class="d-flex flex-row mx-0 w-100 h-100 px-0">
+                    <svg class="bg-primary-70" class="h-100" width="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.70816 4.26515C7.70816 2.96854 8.73317 1.91931 9.99983 1.91931C11.2665 1.91931 12.2915 2.96854 12.2915 4.26515C12.2915 5.56176 11.2665 6.61098 9.99983 6.61098C8.73317 6.61098 7.70816 5.56176 7.70816 4.26515ZM11.0415 4.26515C11.0415 3.67656 10.5748 3.19886 9.99983 3.19886C9.42483 3.19886 8.95817 3.67656 8.95817 4.26515C8.95817 4.85374 9.42483 5.33144 9.99983 5.33144C10.5748 5.33144 11.0415 4.85374 11.0415 4.26515Z" fill="white"/>
+                        <path d="M7.70816 16.2077C7.70816 14.911 8.73317 13.8618 9.99983 13.8618C11.2665 13.8618 12.2915 14.911 12.2915 16.2077C12.2915 17.5043 11.2665 18.5535 9.99983 18.5535C8.73317 18.5535 7.70816 17.5043 7.70816 16.2077ZM11.0415 16.2077C11.0415 15.6191 10.5748 15.1414 9.99983 15.1414C9.42483 15.1414 8.95817 15.6191 8.95817 16.2077C8.95817 16.7962 9.42483 17.2739 9.99983 17.2739C10.5748 17.2739 11.0415 16.7962 11.0415 16.2077Z" fill="white"/>
+                        <path d="M7.70816 10.2363C7.70816 8.93973 8.73317 7.8905 9.99983 7.8905C11.2665 7.8905 12.2915 8.93973 12.2915 10.2363C12.2915 11.5329 11.2665 12.5822 9.99983 12.5822C8.73317 12.5822 7.70816 11.5329 7.70816 10.2363ZM11.0415 10.2363C11.0415 9.64775 10.5748 9.17005 9.99983 9.17005C9.42483 9.17005 8.95817 9.64775 8.95817 10.2363C8.95817 10.8249 9.42483 11.3026 9.99983 11.3026C10.5748 11.3026 11.0415 10.8249 11.0415 10.2363Z" fill="white"/>
+                    </svg>    
+                    <img class="img-fluid" src="{{ asset($item->projectWallpaperURL) }}">
+                    <div class="px-3 flex-grow-1">
+                        <div class="fs-3 fw-semibold">{{$item->projectName}}</div>
+                        <div class="truncate">{{$item->projectDescription ?? ""}}</div>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="col-2 p-0 py-2">Status</div> --}}
+            @if ($user->id == $item->userID)
+                <div class="text-primary-70 fw-semibold col-3 px-3 py-2">{{$item->firstName . " " . $item->lastName}}</div>
+            @else
+                <div class="col-3 px-3 py-2">{{$item->firstName . " " . $item->lastName}}</div>
+            @endif
+            <div class="col-2 p-0 py-2 text-center">
+                @php
+                    $daysDifference = floor((strtotime($item->projectDueDate) - strtotime(date('Y-m-d'))) / (60 * 60 * 24));
+                    $dueDateFormatted = date('F j, Y', strtotime($item->projectDueDate));
+                @endphp
+                @if ($daysDifference < 7)
+                    <span class="bg-Error-50 rounded-circle d-inline-block me-2 fs-5" style="width: 0.6em; height: 0.6em;"></span>
+                @elseif ($daysDifference < 30)
+                    <span class="bg-warning-50 rounded-circle d-inline-block me-2 fs-5" style="width: 0.6em; height: 0.6em;"></span>
+                @else
+                    <span class="bg-primary-50 rounded-circle d-inline-block me-2 fs-5" style="width: 0.6em; height: 0.6em;"></span>
+                @endif
+                {{ $dueDateFormatted }}
+            </div>
+            <div class="col-2 p-0 py-2 text-center">Progress</div>
+        </a>   
+    </div> 
     @empty
     <div class="row p-5 w-100 fs-3 d-flex justify-content-center">
         Tidak ada data.

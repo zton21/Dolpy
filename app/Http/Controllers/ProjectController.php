@@ -19,6 +19,83 @@ use Pusher\Pusher;
 
 class ProjectController extends Controller
 {
+    public static function post_home(Request $request) {
+        if ($request->has('task') && $request->task == 'create_project') {
+            return ProjectController::create_project($request);
+        }
+        if ($request->has('task') && $request->task == 'complete') {
+            return ProjectController::complete_project($request);
+        }
+        if ($request->has('task') && $request->task == 'leave') {
+            return ProjectController::leave_project($request);
+        }
+        if ($request->has('task') && $request->task == 'delete') {
+            return ProjectController::delete_project($request);
+        }
+    }
+
+    public static function complete_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+        
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->exists()) {
+            // Update the project as completed
+            $project->projectCompleted = true;
+            $project->save();
+            return back()->with('success', 'Project marked as completed.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
+    public static function leave_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->exists()) {
+            // Detach the user from the project
+            $project->users()->detach($user->id);
+            return back()->with('success', 'You have left the project.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
+    public static function delete_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+        
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->where('role', 'creator')->exists()) {
+            // Delete the project and detach all members
+            $project->users()->detach();
+            $project->delete();
+            return back()->with('success', 'Project deleted successfully.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
     // Create Project
     public static function create_project(Request $request) {
         $request->validate([
@@ -31,7 +108,6 @@ class ProjectController extends Controller
         $project->projectName = $request->project_name;
         $project->projectDueDate = $request->due_date;
         $project->projectDescription = $request->project_description;
-        $project->projectStatus = 'Designing';
         $project->projectWallpaperURL = 'img/project_wallpaper/Wallpaper1.png';
 
         $project->save();

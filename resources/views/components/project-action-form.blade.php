@@ -8,14 +8,19 @@
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
             </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <p id="project-action-text" class="text-center fs-5"></p>
+            <form id="project-action-form" method="POST" action="">
+                @csrf
+                <input type="hidden" name="task" id="project-action-input" value="">
+                <input type="hidden" name="project_id" id="project-id-input" value="">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <p id="project-action-text" class="text-center fs-5"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn w-100" id="confirm-project-action-btn"></button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn w-100" id="confirm-project-action-btn"></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -26,26 +31,17 @@
         const projectActionHeader = document.getElementById('modal-title');
         const projectActionText = document.getElementById('project-action-text');
         const confirmProjectActionBtn = document.getElementById('confirm-project-action-btn');
+        const projectActionForm = document.getElementById('project-action-form');
+        const projectActionInput = document.getElementById('project-action-input');
+        const projectIDInput = document.getElementById('project-id-input');
 
         confirmProjectActionBtn.addEventListener('click', function () {
-            // Perform the selected project action
-            const action = projectActionModal.dataset.action;
-            const projectName = projectActionModal.dataset.projectName;
+            // Set the action and project name in the form
+            projectActionInput.value = projectActionModal.dataset.action;
+            projectIDInput.value = projectActionModal.dataset.projectId;
 
-            switch (action) {
-                case 'delete':
-                    // Perform delete project action
-                    console.log('Delete project:', projectName);
-                    break;
-                case 'complete':
-                    // Perform complete project action
-                    console.log('Complete project:', projectName);
-                    break;
-                case 'leave':
-                    // Perform leave project action
-                    console.log('Leave project:', projectName);
-                    break;
-            }
+            // Submit the form
+            projectActionForm.submit();
 
             // Close the modal
             $('#project-action-modal').modal('hide');
@@ -56,9 +52,11 @@
             const button = event.relatedTarget; // Button that triggered the modal
             const action = button.dataset.action; // Get the action from the button data attribute
             const projectName = button.dataset.projectName; // Get the project name from the button data attribute
+            const projectId = button.dataset.projectId;
 
             projectActionModal.dataset.action = action; // Set the data attribute
             projectActionModal.dataset.projectName = projectName; // Set the project name data attribute
+            projectActionModal.dataset.projectId = projectId; // Set the project id data attribute
 
             // Set the action text based on the selected action
             switch (action) {
