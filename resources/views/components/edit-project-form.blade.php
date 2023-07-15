@@ -8,25 +8,29 @@
                     <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
             </div>
-            <div class="modal-body">
-                <form id="edit-project-form">
+            <form id="edit-project-form" method="POST" action="">
+                @csrf
+                @method('POST')
+                <input type="hidden" name="task" id="project-action-input" value="">
+                <input type="hidden" name="project_id" id="project-id-input" value="">
+                <div class="modal-body">
                     <div class="mb-3">
                         <label for="editProjectTitle" class="form-label">Title</label>
                         <input type="text" class="form-control" id="editProjectTitle" name="editProjectTitle" required>
                     </div>
                     <div class="mb-3">
                         <label for="editProjectDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="editProjectDescription" name="editProjectDescription" rows="3" required></textarea>
+                        <textarea class="form-control" id="editProjectDescription" name="editProjectDescription" rows="3"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="editProjectDueDate" class="form-label">Due Date</label>
                         <input type="date" class="form-control" id="editProjectDueDate" name="editProjectDueDate" required>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary w-100" id="saveProjectChangesBtn">Save Changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-100" id="saveProjectChangesBtn">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -39,22 +43,20 @@
         const editProjectDescriptionTextarea = document.getElementById('editProjectDescription');
         const editProjectDueDateInput = document.getElementById('editProjectDueDate');
         const saveProjectChangesBtn = document.getElementById('saveProjectChangesBtn');
+        const projectActionInput = document.getElementById('project-action-input');
+        const projectIDInput = document.getElementById('project-id-input');
 
         // Save changes when the "Save Changes" button is clicked
         saveProjectChangesBtn.addEventListener('click', function () {
-            const projectId = editProjectModal.dataset.projectId;
-            const updatedTitle = editProjectTitleInput.value;
-            const updatedDescription = editProjectDescriptionTextarea.value;
-            const updatedDueDate = editProjectDueDateInput.value;
+            // Set the action and project name in the form
+            projectActionInput.value = editProjectModal.dataset.action;
+            projectIDInput.value = editProjectModal.dataset.projectId;
 
-            // Update the project with the new values
-            console.log('Project ID:', projectId);
-            console.log('Updated Title:', updatedTitle);
-            console.log('Updated Description:', updatedDescription);
-            console.log('Updated Due Date:', updatedDueDate);
+            // Submit the form
+            editProjectForm.submit();
 
             // Close the modal
-            $('#editProjectModal').modal('hide');
+            $('#edit-project-modal').modal('hide');
         });
 
         // Set the form values and data attribute when opening the modal
@@ -67,6 +69,7 @@
             const projectDueDate = button.dataset.projectDueDate; // Get the project due date from the button data attribute
 
             editProjectModal.dataset.action = action; // Set the data attribute
+            editProjectModal.dataset.projectId = projectId;
 
             // Set the form values
             editProjectTitleInput.value = projectName;

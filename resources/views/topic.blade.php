@@ -15,7 +15,7 @@
     <script>
         const project_id = {{$project->id}};
         const user_id = {{$user->id}};
-        const data = {{Js::from($messages)}};
+        // const data = {{Js::from($messages)}};
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -227,6 +227,14 @@
                 </div>
             </div>
             @endisset
+            @empty($topic)
+            <div class="col-7 p-0 h-100">
+                <div class="container-fluid px-5 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <img class="w-25 opacity-25" src="{{ asset('img/logo-primary.png') }}" alt="">
+                    <div class="text-neutral-50 fs-5 text-center">Send and receive messages without keeping your phone online. Use Dolpy on up to <span class="text-primary-30">4 linked devices and 1 phone</span> at the same time</div>
+                </div>
+            </div>
+            @endempty
         </div>
     </div>
 
