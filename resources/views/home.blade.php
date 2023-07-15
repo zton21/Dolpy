@@ -14,7 +14,7 @@
 </style>
 <div class="container">
     <div class="row fs-2 w-100 mx-auto">
-        <div class="col-12 d-flex flex-row mx-0 px-0" style="font-weight:600">
+        <div class="col-12 d-flex flex-row fw-semibold mt-2 mx-0 px-0">
             <div class="text-primary-50">Good Morning {{$user->firstName}}</div>
             <div>, ready to work?</div>
         </div>
@@ -22,17 +22,17 @@
     <div class="row projects mx-auto px-0">
         {{-- <div class="col-4 mx-0 px-0">
         </div> --}}
-        <div class="col-12 mx-0 px-0 d-flex justify-content-end align-items-center my-3">
-            <div class="h2 h-100 d-flex align-items-center me-auto">
-                <svg class="me-2" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="col-12 mx-0 px-0 d-flex align-items-center my-3">
+            <div class="h2 h-100 d-flex gap-2 align-items-center me-auto">
+                <svg width="32" height="32" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M27.0086 34.4742C26.5645 34.4742 26.1032 34.4571 25.6078 34.4058C24.7195 34.3375 23.7115 34.1667 22.6695 33.9104L19.7995 33.2271C11.924 31.365 9.34446 27.1967 11.1895 19.3383L12.8636 12.1804C13.2395 10.5575 13.6836 9.24209 14.2303 8.14876C17.1686 2.08417 22.789 2.63084 26.7865 3.57042L29.6395 4.23667C33.637 5.17626 36.1653 6.66251 37.5832 8.93459C38.984 11.2067 39.2061 14.1279 38.2665 18.1254L36.5924 25.2663C35.1232 31.5188 32.0653 34.4742 27.0086 34.4742ZM22.4132 5.55209C19.5603 5.55209 17.7495 6.73084 16.5365 9.25917C16.0924 10.1817 15.6995 11.3263 15.3578 12.7613L13.6836 19.9192C12.1632 26.3767 13.9228 29.1954 20.3803 30.7329L23.2503 31.4163C24.1728 31.6383 25.044 31.775 25.8299 31.8433C30.4765 32.3046 32.7828 30.2717 34.0811 24.6854L35.7553 17.5446C36.524 14.2475 36.4215 11.9413 35.3965 10.2842C34.3715 8.62709 32.3557 7.49959 29.0415 6.73084L26.1886 6.06459C24.7707 5.72292 23.5065 5.55209 22.4132 5.55209Z" fill="#1D1D1D"/>
                     <path d="M14.2305 38.0104C9.84005 38.0104 7.03838 35.3795 5.24463 29.8274L3.05796 23.0795C0.632131 15.5629 2.80171 11.3262 10.2842 8.90037L12.9834 8.02912C13.8717 7.75578 14.538 7.56787 15.1359 7.46537C15.6313 7.36287 16.1096 7.55078 16.4 7.9437C16.6905 8.33662 16.7417 8.84912 16.5367 9.29328C16.0925 10.1987 15.6996 11.3433 15.375 12.7783L13.7009 19.9362C12.1805 26.3937 13.94 29.2125 20.3975 30.75L23.2675 31.4333C24.19 31.6554 25.0613 31.792 25.8471 31.8604C26.3938 31.9116 26.838 32.2874 26.9917 32.817C27.1284 33.3466 26.9234 33.8933 26.4792 34.2008C25.3517 34.9695 23.9338 35.6187 22.14 36.1995L19.4409 37.0879C17.4763 37.7029 15.768 38.0104 14.2305 38.0104ZM13.2909 10.6258L11.0871 11.3433C4.98838 13.3079 3.5363 16.1779 5.50088 22.2937L7.68755 29.0416C9.66921 35.1404 12.5392 36.6095 18.638 34.645L21.3371 33.7566C21.4396 33.7225 21.525 33.6883 21.6275 33.6541L19.8167 33.227C11.9413 31.365 9.36171 27.1966 11.2067 19.3383L12.8809 12.1804C13.0005 11.6337 13.1371 11.1041 13.2909 10.6258Z" fill="#1D1D1D"/>
                     <path d="M29.8788 17.9546C29.7763 17.9546 29.6738 17.9375 29.5543 17.9204L21.2688 15.8192C20.5855 15.6483 20.1755 14.9479 20.3463 14.2646C20.5172 13.5812 21.2176 13.1712 21.9009 13.3421L30.1863 15.4433C30.8697 15.6142 31.2797 16.3146 31.1088 16.9979C30.9722 17.5617 30.4426 17.9546 29.8788 17.9546Z" fill="#1D1D1D"/>
                     <path d="M24.8733 23.7287C24.7708 23.7287 24.6683 23.7116 24.5487 23.6945L19.5774 22.4304C18.8941 22.2595 18.4841 21.5591 18.6549 20.8758C18.8258 20.1924 19.5262 19.7824 20.2095 19.9533L25.1808 21.2174C25.8641 21.3883 26.2741 22.0887 26.1033 22.772C25.9666 23.3529 25.4541 23.7287 24.8733 23.7287Z" fill="#1D1D1D"/>
                 </svg> 
-                Ongoing Projects
+                Project
             </div>
-            <div class="mx-3">
+            {{-- <div class="mx-3">
                 <div class="fs-5 pb-1">Sort By</div>
                 <div class="d-flex fs-7">
                     <div class="border border-2 rounded-pill py-1 px-5 text-neutral-50">
@@ -45,8 +45,8 @@
                         Due Date
                     </div>
                 </div>
-            </div>
-            <div class="">
+            </div> --}}
+            <div>
                 {{-- Sort By --}}
                 {{-- Button: Create Project --}}
                 <button onclick="openCreateProjectFormModal()" class="btn btn-primary">Create Project</button>
@@ -64,14 +64,14 @@
             </svg>
             Project Name
         </div>
-        <div class="col-2">
+        {{-- <div class="col-2">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 23.25H9C3.57 23.25 1.25 20.93 1.25 15.5V9.5C1.25 4.07 3.57 1.75 9 1.75H15C20.43 1.75 22.75 4.07 22.75 9.5V15.5C22.75 20.93 20.43 23.25 15 23.25ZM9 3.25C4.39 3.25 2.75 4.89 2.75 9.5V15.5C2.75 20.11 4.39 21.75 9 21.75H15C19.61 21.75 21.25 20.11 21.25 15.5V9.5C21.25 4.89 19.61 3.25 15 3.25H9Z" fill="#858487"/>
                 <path d="M10.5799 16.08C10.3799 16.08 10.1899 16 10.0499 15.86L7.21994 13.03C6.92994 12.74 6.92994 12.26 7.21994 11.97C7.50994 11.68 7.98994 11.68 8.27994 11.97L10.5799 14.27L15.7199 9.12998C16.0099 8.83998 16.4899 8.83998 16.7799 9.12998C17.0699 9.41998 17.0699 9.89998 16.7799 10.19L11.1099 15.86C10.9699 16 10.7799 16.08 10.5799 16.08Z" fill="#858487"/>
             </svg>                        
             Status
-        </div>
-        <div class="col-2">
+        </div> --}}
+        <div class="col-3 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.15957 12.12C9.12957 12.12 9.10957 12.12 9.07957 12.12C9.02957 12.11 8.95957 12.11 8.89957 12.12C5.99957 12.03 3.80957 9.75 3.80957 6.94C3.80957 4.08 6.13957 1.75 8.99957 1.75C11.8596 1.75 14.1896 4.08 14.1896 6.94C14.1796 9.75 11.9796 12.03 9.18957 12.12C9.17957 12.12 9.16957 12.12 9.15957 12.12ZM8.99957 3.25C6.96957 3.25 5.30957 4.91 5.30957 6.94C5.30957 8.94 6.86957 10.55 8.85957 10.62C8.91957 10.61 9.04957 10.61 9.17957 10.62C11.1396 10.53 12.6796 8.92 12.6896 6.94C12.6896 4.91 11.0296 3.25 8.99957 3.25Z" fill="#858487"/>
                 <path d="M16.5394 12.25C16.5094 12.25 16.4794 12.25 16.4494 12.24C16.0394 12.28 15.6194 11.99 15.5794 11.58C15.5394 11.17 15.7894 10.8 16.1994 10.75C16.3194 10.74 16.4494 10.74 16.5594 10.74C18.0194 10.66 19.1594 9.46 19.1594 7.99C19.1594 6.47 17.9294 5.24 16.4094 5.24C15.9994 5.25 15.6594 4.91 15.6594 4.5C15.6594 4.09 15.9994 3.75 16.4094 3.75C18.7494 3.75 20.6594 5.66 20.6594 8C20.6594 10.3 18.8594 12.16 16.5694 12.25C16.5594 12.25 16.5494 12.25 16.5394 12.25Z" fill="#858487"/>
@@ -80,7 +80,7 @@
             </svg>
             Owner
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 2.5V5.5" stroke="#A3A3A5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M16 2.5V5.5" stroke="#A3A3A5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -95,7 +95,7 @@
             </svg>                        
             Due Date
         </div>
-        <div class="col-2">
+        <div class="col-2 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.50977 7C4.95977 7 4.50977 6.55 4.50977 6C4.50977 5.45 4.94977 5 5.50977 5H5.51977C6.06977 5 6.51977 5.45 6.51977 6C6.51977 6.55 6.06977 7 5.50977 7Z" fill="#858487"/>
                 <path d="M18.5098 20C17.9598 20 17.5098 19.55 17.5098 19C17.5098 18.45 17.9498 18 18.5098 18H18.5198C19.0698 18 19.5198 18.45 19.5198 19C19.5198 19.55 19.0698 20 18.5098 20Z" fill="#858487"/>
@@ -107,6 +107,23 @@
         </div>
     </div>
     @forelse ($projects as $item)
+    <div class="wrapper position-relative">
+        <div class="dropdown position-absolute top-0 end-0">
+            <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dotMenuButton">
+                @if ($user->id == $item->userID)
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-project-modal" data-action="edit" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}" data-project-description="{{ $item->projectDescription }}" data-project-due-date="{{ $item->projectDueDate }}">Edit Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="delete" data-project-name="{{ $item->projectName }}">Delete Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="complete" data-project-name="{{ $item->projectName }}">Complete Project</button>
+                @else
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="leave" data-project-name="{{ $item->projectName }}">Leave Project</button>
+                @endif
+            </div>
+        </div>
+        @include('components.edit-project-form')
+        @include('components.project-action-form')
         <a class="hover-5 row project-item mx-0 px-0 my-2 text-decoration-none text-dark" href="{{Route('project', $item->id)}}">
             <div class="col-4 p-0">
                 <div class="d-flex flex-row mx-0 w-100 h-100 px-0">
@@ -115,20 +132,38 @@
                         <path d="M7.70816 16.2077C7.70816 14.911 8.73317 13.8618 9.99983 13.8618C11.2665 13.8618 12.2915 14.911 12.2915 16.2077C12.2915 17.5043 11.2665 18.5535 9.99983 18.5535C8.73317 18.5535 7.70816 17.5043 7.70816 16.2077ZM11.0415 16.2077C11.0415 15.6191 10.5748 15.1414 9.99983 15.1414C9.42483 15.1414 8.95817 15.6191 8.95817 16.2077C8.95817 16.7962 9.42483 17.2739 9.99983 17.2739C10.5748 17.2739 11.0415 16.7962 11.0415 16.2077Z" fill="white"/>
                         <path d="M7.70816 10.2363C7.70816 8.93973 8.73317 7.8905 9.99983 7.8905C11.2665 7.8905 12.2915 8.93973 12.2915 10.2363C12.2915 11.5329 11.2665 12.5822 9.99983 12.5822C8.73317 12.5822 7.70816 11.5329 7.70816 10.2363ZM11.0415 10.2363C11.0415 9.64775 10.5748 9.17005 9.99983 9.17005C9.42483 9.17005 8.95817 9.64775 8.95817 10.2363C8.95817 10.8249 9.42483 11.3026 9.99983 11.3026C10.5748 11.3026 11.0415 10.8249 11.0415 10.2363Z" fill="white"/>
                     </svg>    
-                    <img class="img-fluid w-25" src="{{ asset($item->projectWallpaperURL) }}">
+                    <img class="img-fluid" src="{{ asset($item->projectWallpaperURL) }}">
                     <div class="px-3 flex-grow-1">
                         <div class="fs-3 fw-semibold">{{$item->projectName}}</div>
                         <div class="truncate">{{$item->projectDescription ?? ""}}</div>
                     </div>
                 </div>
             </div>
-            <div class="col-2 p-0 py-2">Status</div>
-            <div class="col-2 p-0 py-2">{{$item->firstName}}</div>
-            <div class="col-2 p-0 py-2">{{$item->projectDueDate}}</div>
-            <div class="col-2 p-0 py-2">Progress</div>
-        </a>    
+            {{-- <div class="col-2 p-0 py-2">Status</div> --}}
+            @if ($user->id == $item->userID)
+                <div class="text-primary-70 fw-semibold col-3 px-3 py-2">{{$item->firstName . " " . $item->lastName}}</div>
+            @else
+                <div class="col-3 px-3 py-2">{{$item->firstName . " " . $item->lastName}}</div>
+            @endif
+            <div class="col-2 p-0 py-2 text-center">
+                @php
+                    $daysDifference = floor((strtotime($item->projectDueDate) - strtotime(date('Y-m-d'))) / (60 * 60 * 24));
+                    $dueDateFormatted = date('F j, Y', strtotime($item->projectDueDate));
+                @endphp
+                @if ($daysDifference < 7)
+                    <span class="bg-Error-50 rounded-circle d-inline-block me-2 fs-5" style="width: 0.6em; height: 0.6em;"></span>
+                @elseif ($daysDifference < 30)
+                    <span class="bg-warning-50 rounded-circle d-inline-block me-2 fs-5" style="width: 0.6em; height: 0.6em;"></span>
+                @else
+                    <span class="bg-primary-50 rounded-circle d-inline-block me-2 fs-5" style="width: 0.6em; height: 0.6em;"></span>
+                @endif
+                {{ $dueDateFormatted }}
+            </div>
+            <div class="col-2 p-0 py-2 text-center">Progress</div>
+        </a>   
+    </div> 
     @empty
-    <div class="row m-5 p-5 w-100 fs-3 d-flex justify-content-center">
+    <div class="row p-5 w-100 fs-3 d-flex justify-content-center">
         Tidak ada data.
     </div>          
     @endforelse
@@ -139,19 +174,14 @@
         {{-- <div class="col-4 mx-0 px-0">
         </div> --}}
         <div class="col-12 mx-0 px-0 d-flex justify-content-end align-items-center my-3">
-            <div class="h2 h-100 d-flex align-items-center me-auto">
-                <svg class="me-2" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M27.0086 34.4742C26.5645 34.4742 26.1032 34.4571 25.6078 34.4058C24.7195 34.3375 23.7115 34.1667 22.6695 33.9104L19.7995 33.2271C11.924 31.365 9.34446 27.1967 11.1895 19.3383L12.8636 12.1804C13.2395 10.5575 13.6836 9.24209 14.2303 8.14876C17.1686 2.08417 22.789 2.63084 26.7865 3.57042L29.6395 4.23667C33.637 5.17626 36.1653 6.66251 37.5832 8.93459C38.984 11.2067 39.2061 14.1279 38.2665 18.1254L36.5924 25.2663C35.1232 31.5188 32.0653 34.4742 27.0086 34.4742ZM22.4132 5.55209C19.5603 5.55209 17.7495 6.73084 16.5365 9.25917C16.0924 10.1817 15.6995 11.3263 15.3578 12.7613L13.6836 19.9192C12.1632 26.3767 13.9228 29.1954 20.3803 30.7329L23.2503 31.4163C24.1728 31.6383 25.044 31.775 25.8299 31.8433C30.4765 32.3046 32.7828 30.2717 34.0811 24.6854L35.7553 17.5446C36.524 14.2475 36.4215 11.9413 35.3965 10.2842C34.3715 8.62709 32.3557 7.49959 29.0415 6.73084L26.1886 6.06459C24.7707 5.72292 23.5065 5.55209 22.4132 5.55209Z" fill="#1D1D1D"/>
-                    <path d="M14.2305 38.0104C9.84005 38.0104 7.03838 35.3795 5.24463 29.8274L3.05796 23.0795C0.632131 15.5629 2.80171 11.3262 10.2842 8.90037L12.9834 8.02912C13.8717 7.75578 14.538 7.56787 15.1359 7.46537C15.6313 7.36287 16.1096 7.55078 16.4 7.9437C16.6905 8.33662 16.7417 8.84912 16.5367 9.29328C16.0925 10.1987 15.6996 11.3433 15.375 12.7783L13.7009 19.9362C12.1805 26.3937 13.94 29.2125 20.3975 30.75L23.2675 31.4333C24.19 31.6554 25.0613 31.792 25.8471 31.8604C26.3938 31.9116 26.838 32.2874 26.9917 32.817C27.1284 33.3466 26.9234 33.8933 26.4792 34.2008C25.3517 34.9695 23.9338 35.6187 22.14 36.1995L19.4409 37.0879C17.4763 37.7029 15.768 38.0104 14.2305 38.0104ZM13.2909 10.6258L11.0871 11.3433C4.98838 13.3079 3.5363 16.1779 5.50088 22.2937L7.68755 29.0416C9.66921 35.1404 12.5392 36.6095 18.638 34.645L21.3371 33.7566C21.4396 33.7225 21.525 33.6883 21.6275 33.6541L19.8167 33.227C11.9413 31.365 9.36171 27.1966 11.2067 19.3383L12.8809 12.1804C13.0005 11.6337 13.1371 11.1041 13.2909 10.6258Z" fill="#1D1D1D"/>
-                    <path d="M29.8788 17.9546C29.7763 17.9546 29.6738 17.9375 29.5543 17.9204L21.2688 15.8192C20.5855 15.6483 20.1755 14.9479 20.3463 14.2646C20.5172 13.5812 21.2176 13.1712 21.9009 13.3421L30.1863 15.4433C30.8697 15.6142 31.2797 16.3146 31.1088 16.9979C30.9722 17.5617 30.4426 17.9546 29.8788 17.9546Z" fill="#1D1D1D"/>
-                    <path d="M24.8733 23.7287C24.7708 23.7287 24.6683 23.7116 24.5487 23.6945L19.5774 22.4304C18.8941 22.2595 18.4841 21.5591 18.6549 20.8758C18.8258 20.1924 19.5262 19.7824 20.2095 19.9533L25.1808 21.2174C25.8641 21.3883 26.2741 22.0887 26.1033 22.772C25.9666 23.3529 25.4541 23.7287 24.8733 23.7287Z" fill="#1D1D1D"/>
-                </svg> 
-                Completed Projects
+            <div class="h2 h-100 d-flex align-items-center gap-2 me-auto">
+                <svg width="32px" height="32px" viewBox="0 0 1024 1024" fill="#1D1D1D" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M824.8 1003.2H203.2c-12.8 0-25.6-2.4-37.6-7.2-11.2-4.8-21.6-12-30.4-20.8-8.8-8.8-16-19.2-20.8-30.4-4.8-12-7.2-24-7.2-37.6V260c0-12.8 2.4-25.6 7.2-37.6 4.8-11.2 12-21.6 20.8-30.4 8.8-8.8 19.2-16 30.4-20.8 12-4.8 24-7.2 37.6-7.2h94.4v48H203.2c-26.4 0-48 21.6-48 48v647.2c0 26.4 21.6 48 48 48h621.6c26.4 0 48-21.6 48-48V260c0-26.4-21.6-48-48-48H730.4v-48H824c12.8 0 25.6 2.4 37.6 7.2 11.2 4.8 21.6 12 30.4 20.8 8.8 8.8 16 19.2 20.8 30.4 4.8 12 7.2 24 7.2 37.6v647.2c0 12.8-2.4 25.6-7.2 37.6-4.8 11.2-12 21.6-20.8 30.4-8.8 8.8-19.2 16-30.4 20.8-11.2 4.8-24 7.2-36.8 7.2z" fill=""></path><path d="M752.8 308H274.4V152.8c0-32.8 26.4-60 60-60h61.6c22.4-44 67.2-72.8 117.6-72.8 50.4 0 95.2 28.8 117.6 72.8h61.6c32.8 0 60 26.4 60 60v155.2m-430.4-48h382.4V152.8c0-6.4-5.6-12-12-12H598.4l-5.6-16c-12-33.6-43.2-56-79.2-56s-67.2 22.4-79.2 56l-5.6 16H334.4c-6.4 0-12 5.6-12 12v107.2zM432.8 792c-6.4 0-12-2.4-16.8-7.2L252.8 621.6c-4.8-4.8-7.2-10.4-7.2-16.8s2.4-12 7.2-16.8c4.8-4.8 10.4-7.2 16.8-7.2s12 2.4 16.8 7.2L418.4 720c4 4 8.8 5.6 13.6 5.6s10.4-1.6 13.6-5.6l295.2-295.2c4.8-4.8 10.4-7.2 16.8-7.2s12 2.4 16.8 7.2c9.6 9.6 9.6 24 0 33.6L449.6 784.8c-4.8 4-11.2 7.2-16.8 7.2z" fill=""></path></g></svg>
+                Completed Project
             </div>
         </div>
     </div>
     <div class="row w-100 text-dark bg-neutral-10 py-1 table-header mx-auto">
-        <div class="col-4 text-center">
+        <div class="col-6 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 23.3438H8C4.35 23.3438 2.25 21.2437 2.25 17.5938V7.59375C2.25 3.94375 4.35 1.84375 8 1.84375H16C19.65 1.84375 21.75 3.94375 21.75 7.59375V17.5938C21.75 21.2437 19.65 23.3438 16 23.3438ZM8 3.34375C5.14 3.34375 3.75 4.73375 3.75 7.59375V17.5938C3.75 20.4538 5.14 21.8438 8 21.8438H16C18.86 21.8438 20.25 20.4538 20.25 17.5938V7.59375C20.25 4.73375 18.86 3.34375 16 3.34375H8Z" fill="#858487"/>
                 <path d="M18.5 9.84375H16.5C14.98 9.84375 13.75 8.61375 13.75 7.09375V5.09375C13.75 4.68375 14.09 4.34375 14.5 4.34375C14.91 4.34375 15.25 4.68375 15.25 5.09375V7.09375C15.25 7.78375 15.81 8.34375 16.5 8.34375H18.5C18.91 8.34375 19.25 8.68375 19.25 9.09375C19.25 9.50375 18.91 9.84375 18.5 9.84375Z" fill="#858487"/>
@@ -160,13 +190,13 @@
             </svg>
             Project Name
         </div>
-        <div class="col-2">
+        {{-- <div class="col-2">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 23.25H9C3.57 23.25 1.25 20.93 1.25 15.5V9.5C1.25 4.07 3.57 1.75 9 1.75H15C20.43 1.75 22.75 4.07 22.75 9.5V15.5C22.75 20.93 20.43 23.25 15 23.25ZM9 3.25C4.39 3.25 2.75 4.89 2.75 9.5V15.5C2.75 20.11 4.39 21.75 9 21.75H15C19.61 21.75 21.25 20.11 21.25 15.5V9.5C21.25 4.89 19.61 3.25 15 3.25H9Z" fill="#858487"/>
                 <path d="M10.5799 16.08C10.3799 16.08 10.1899 16 10.0499 15.86L7.21994 13.03C6.92994 12.74 6.92994 12.26 7.21994 11.97C7.50994 11.68 7.98994 11.68 8.27994 11.97L10.5799 14.27L15.7199 9.12998C16.0099 8.83998 16.4899 8.83998 16.7799 9.12998C17.0699 9.41998 17.0699 9.89998 16.7799 10.19L11.1099 15.86C10.9699 16 10.7799 16.08 10.5799 16.08Z" fill="#858487"/>
             </svg>                        
             Status
-        </div>
+        </div> --}}
         <div class="col-2">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9.15957 12.12C9.12957 12.12 9.10957 12.12 9.07957 12.12C9.02957 12.11 8.95957 12.11 8.89957 12.12C5.99957 12.03 3.80957 9.75 3.80957 6.94C3.80957 4.08 6.13957 1.75 8.99957 1.75C11.8596 1.75 14.1896 4.08 14.1896 6.94C14.1796 9.75 11.9796 12.03 9.18957 12.12C9.17957 12.12 9.16957 12.12 9.15957 12.12ZM8.99957 3.25C6.96957 3.25 5.30957 4.91 5.30957 6.94C5.30957 8.94 6.86957 10.55 8.85957 10.62C8.91957 10.61 9.04957 10.61 9.17957 10.62C11.1396 10.53 12.6796 8.92 12.6896 6.94C12.6896 4.91 11.0296 3.25 8.99957 3.25Z" fill="#858487"/>
@@ -215,13 +245,13 @@
                 <div class="my-auto ms-2">{{$item->projectName}}</div>
             </div>
         </div>
-        <div class="col-2 p-0 py-2">Status</div>
+        {{-- <div class="col-2 p-0 py-2">Status</div> --}}
         <div class="col-2 p-0 py-2">{{$item->firstName}}</div>
         <div class="col-2 p-0 py-2">{{$item->projectDueDate}}</div>
         <div class="col-2 p-0 py-2">Progress</div>
     </div>
     @empty
-    <div class="row m-5 p-5 w-100 fs-3 d-flex justify-content-center">
+    <div class="row p-5 w-100 fs-3 d-flex justify-content-center">
         Tidak ada data.
     </div>                
     @endforelse

@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>timeline-(taskname)</title>
+    
+    {{-- Styling --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="/css/master.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>timeline-(taskname)</title>
+    <link href="/css/timeline.css" rel="stylesheet" >
+    <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
+
+    <script src="/js/timelineinner.js"></script>
 </head>
 
 <body>
@@ -20,84 +26,51 @@
                 <p>Task Description</p>
             </div>
             <div class="col-4 text-end">
-                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 2.5V6.25" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M20 2.5V6.25" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M4.375 11.3625H25.625" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M26.25 10.625V21.25C26.25 25 24.375 27.5 20 27.5H10C5.625 27.5 3.75 25 3.75 21.25V10.625C3.75 6.875 5.625 4.375 10 4.375H20C24.375 4.375 26.25 6.875 26.25 10.625Z" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M19.6181 17.125H19.6294" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M19.6181 20.875H19.6294" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14.9941 17.125H15.0053" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M14.9941 20.875H15.0053" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10.3681 17.125H10.3794" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M10.3681 20.875H10.3794" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>                    
-                Due Date: <span class="text-success-50">30/7/2023</span>
+                <button onclick="openAddTimelineFormModal()" class="btn btn-primary mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
+                    <span class="text-white my-auto">Add Task Note</span>
+                </button>
+                <div>
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2.5V6.25" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 2.5V6.25" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.375 11.3625H25.625" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M26.25 10.625V21.25C26.25 25 24.375 27.5 20 27.5H10C5.625 27.5 3.75 25 3.75 21.25V10.625C3.75 6.875 5.625 4.375 10 4.375H20C24.375 4.375 26.25 6.875 26.25 10.625Z" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.6181 17.125H19.6294" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19.6181 20.875H19.6294" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.9941 17.125H15.0053" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.9941 20.875H15.0053" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.3681 17.125H10.3794" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.3681 20.875H10.3794" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                    
+                    Due Date: <span class="text-success-50">30/7/2023</span>
+                </div>
             </div> 
         </div>
-        <hr class="border border-black border-1 m-0 shadow">
+        <hr class="border border-black border-1 m-0 shadow-sm">
     </div>
 
-    <div class="container-fluid">
-        <div style="width: 100%; overflow-x: auto;">
-            <div class="d-flex justify-content-start mt-3 mx-3" style="width: max-content;">
+    <div class="container">
+        <div class="row">
             @for($x = 0; $x < 5; $x++)
-                <div class="card p-0 mx-3" style="width: 18rem;">
-                    <div class="card-header bg-primary-5 d-flex justify-content-between ">
-                        <div>
-                            <h3 class="card-title">List Title</h3>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1667" stroke="#379436" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.33366 5.00002H11.667C13.3337 5.00002 13.3337 4.16669 13.3337 3.33335C13.3337 1.66669 12.5003 1.66669 11.667 1.66669H8.33366C7.50033 1.66669 6.66699 1.66669 6.66699 3.33335C6.66699 5.00002 7.50033 5.00002 8.33366 5.00002Z" stroke="#379436" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M13.3333 3.35004C16.1083 3.50004 17.5 4.52504 17.5 8.33337V13.3334C17.5 16.6667 16.6667 18.3334 12.5 18.3334H7.5C3.33333 18.3334 2.5 16.6667 2.5 13.3334V8.33337C2.5 4.53337 3.89167 3.50004 6.66667 3.35004" stroke="#379436" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                    
-                            3/3
+                <div class="col-md-4 p-2 d-flex">
+                    <div class="card p-0 shadow">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h3 class="card-title my-1">Task Title Long</h3>                 
+                            <div class="d-flex justify-content-between gap-2">
+                                <a class="p-0 m-0 text-decoration-none text-neutral-90" href="#">Edit</a>
+                                <div class="border-neutral-90 my-1"></div> 
+                                <input class="form-check-input me-1 border-primary-50" type="checkbox" id="check{{$x}}" value="" onchange="complete(check{{$x}})">
+                            </div>
                         </div>
-                        <a href="">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 256 256">
-                                <path fill="black" d="M128 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16ZM48 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Zm160-48a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z"></path>
-                            </svg>
-                        </a>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1 border-primary-50" type="checkbox" value="" id="firstCheckbox">
-                        <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-                        </li>
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1 border-primary-50" type="checkbox" value="" id="secondCheckbox">
-                        <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
-                        </li>
-                        <li class="list-group-item">
-                        <input class="form-check-input me-1 border-primary-50" type="checkbox" value="" id="thirdCheckbox">
-                        <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
-                        </li>
-                    </ul>
-                    <div class="card-footer bg-primary-5">
-                        <a href="#" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                            <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.33301 11H14.6663" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M11 14.6667V7.33333" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.24967 20.1667H13.7497C18.333 20.1667 20.1663 18.3333 20.1663 13.75V8.25C20.1663 3.66666 18.333 1.83333 13.7497 1.83333H8.24967C3.66634 1.83333 1.83301 3.66666 1.83301 8.25V13.75C1.83301 18.3333 3.66634 20.1667 8.24967 20.1667Z" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                
-                            <span class=" m-1 p-0 text-neutral-50"> Add micro task...</span>
-                        </a>
+                        <div class="card-body d-flex flex-fill" style=" height:15em; text-justify: inter-word; text-align: justify"> 
+                            <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. hai hai Magnam corporis corrupti quae sint molestiae ut reiciendis quam facere, quasi harum commodi aliquid, fugit laborum, excepturi iste aspernatur necessitatibus a. Magni! Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam corporis corrupti quae sint molestiae ut reiciendis quam facere, quasi harum commodi aliquid, fugit laborum, excepturi iste aspernatur necessitatibus a. Magni!
+                        </div>
                     </div>
                 </div>
-            @endfor
-                <div class="card p-0 mx-3" style="width: 18rem; height:max-content">
-                    <div class="card-footer">
-                        <a href="#" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
-                        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.33301 11H14.6663" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M11 14.6667V7.33333" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.24967 20.1667H13.7497C18.333 20.1667 20.1663 18.3333 20.1663 13.75V8.25C20.1663 3.66666 18.333 1.83333 13.7497 1.83333H8.24967C3.66634 1.83333 1.83301 3.66666 1.83301 8.25V13.75C1.83301 18.3333 3.66634 20.1667 8.24967 20.1667Z" stroke="#A3A3A5" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                        
-                            <span class=" m-1 p-0 text-neutral-50"> Add another micro task list...</span>
-                    </div>
-                </div>
-            </div>    
-        </div>
+        @endfor
+        </div>    
     </div>
 </body>
 </html>
