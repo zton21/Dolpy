@@ -89,12 +89,12 @@
                         </div>
                     </div>
                     <div class="card_box" id="todo" style="min-height: 550px;">{{-- container drag  --}}
-                        <a class="task_card text-decoration-none" id="1" draggable="true">
+                        {{-- <a class="task_card text-decoration-none" id="1" draggable="true">
                             <div class="card shadow rounded-4 mx-3">
                                 <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">Task1</h5>
-                                    <p class="card-text text-truncate m-0">every timeline cards will looks like this this this this this this </p>
+                                    <h5 class="card-title task-title">Task1</h5>
+                                    <p class="card-text task-description text-truncate m-0">every timeline cards will looks like this this this this this this</p>
                                     <hr class="p-0 my-3">
                                     <div class="d-flex flex-row justify-content-between">
                                         <div class="d-flex flex-row align-items-center gap-1">
@@ -116,7 +116,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="card_box" id="onprogress" style="min-height: 550px;">
-                        <a class="task_card text-decoration-none" id="2" draggable="true">
+                        {{-- <a class="task_card text-decoration-none" id="2" draggable="true">
                             <div class="card shadow rounded-4 mx-3">
                                 <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                                 <div class="card-body d-flex flex-column">
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </a>    
+                        </a>     --}}
                     </div>
                 </div>
             </div>
@@ -182,12 +182,12 @@
                 </div>
                 <div class="card_box" id="done" style="min-height: 550px;">
                     {{-- @for($x=0; $x<3; $x++) --}}
-                    <a class="task_card text-decoration-none" id="3" draggable="true">
+                    <a class="task_card d-none text-decoration-none" id="3" draggable="true">
                         <div class="card rounded-4 mx-3 shadow">
                             <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex flex-row card-title align-items-center gap-2">
-                                    <h5 class="m-0">Task 3</h5>
+                                    <h5 class="m-0 task_title">Task 3</h5>
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_1428_1163)">
                                         <mask id="mask0_1428_1163" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
@@ -205,7 +205,7 @@
                                         </defs>
                                         </svg>                                        
                                 </div>
-                                <p class="card-text text-truncate m-0">every timeline cards will looks like this this this this this this </p>
+                                <p class="card-text task_desc text-truncate m-0">every timeline cards will looks like this this this this this this </p>
                                 <hr class="p-0 my-3">
                                 <div class="d-flex flex-row justify-content-between">
                                     <div class="d-flex flex-row align-items-center gap-1">
@@ -214,7 +214,7 @@
                                             <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <div class="text-primary-50">5/5</div>
+                                        <div class="text-primary-50 task_progress">5/5</div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center gap-1">
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -222,7 +222,7 @@
                                             <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                        <div class="text-primary-50">end at 10/2/2023</div>
+                                        <div class="text-primary-50 task_duedate">end at 10/2/2023</div>
                                     </div>
                                 </div>
                             </div>

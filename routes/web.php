@@ -80,6 +80,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                     Route::get('/project/{id}/timeline/1/timeline_inner', 'timeline_inner')->name('timeline_inner');
                     
                     Route::post('/project/{id}/timeline', 'post_timeline')->name('timeline');
+                    // Route::get('/project/{id}/timelines', 'get_tasks')->name('timeline');
                 });
             });
         }
