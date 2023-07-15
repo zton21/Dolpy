@@ -74,6 +74,13 @@
                     confirmProjectActionBtn.classList.add('btn-primary');
                     confirmProjectActionBtn.classList.remove('btn-danger');
                     break;
+                case 'uncomplete':
+                    projectActionHeader.textContent = 'Uncomplete Project';
+                    projectActionText.textContent = `Are you sure you want to unmark the project "${projectName}" as completed?`;
+                    confirmProjectActionBtn.textContent = 'Uncomplete Project';
+                    confirmProjectActionBtn.classList.add('btn-primary');
+                    confirmProjectActionBtn.classList.remove('btn-danger');
+                    break;
                 case 'leave':
                     projectActionHeader.textContent = 'Leave Project';
                     projectActionText.textContent = `Are you sure you want to leave the project "${projectName}"?`;

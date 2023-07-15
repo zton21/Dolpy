@@ -27,6 +27,9 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'complete') {
             return ProjectController::complete_project($request);
         }
+        if ($request->has('task') && $request->task == 'uncomplete') {
+            return ProjectController::uncomplete_project($request);
+        }
         if ($request->has('task') && $request->task == 'leave') {
             return ProjectController::leave_project($request);
         }
@@ -51,6 +54,27 @@ class ProjectController extends Controller
             $project->projectCompleted = true;
             $project->save();
             return back()->with('success', 'Project marked as completed.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
+    public static function uncomplete_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+        
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->exists()) {
+            // Update the project as completed
+            $project->projectCompleted = false;
+            $project->save();
+            return back()->with('success', 'Project marked as uncompleted.');
         }
     
         return back()->with('error', 'Action could not be performed.');
