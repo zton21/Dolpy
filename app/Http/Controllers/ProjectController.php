@@ -36,7 +36,35 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'delete') {
             return ProjectController::delete_project($request);
         }
+        if ($request->has('task') && $request->task == 'edit') {
+            return ProjectController::edit_project($request);
+        }
     }
+
+    public static function edit_project(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'editProjectTitle' => 'required',
+            'editProjectDescription' => '',
+            'editProjectDueDate' => 'required',
+        ]);
+
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+
+        // Update the project properties
+        $project->projectName = $validatedData['editProjectTitle'];
+        $project->projectDescription = $validatedData['editProjectDescription'];
+        $project->projectDueDate = $validatedData['editProjectDueDate'];
+
+        // Save the updated project
+        $project->save();
+
+        // Redirect back with a success message
+        return back()->with('success', 'Project updated successfully.');
+    }
+
 
     public static function complete_project(Request $request)
     {
