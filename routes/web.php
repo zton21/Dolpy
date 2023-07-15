@@ -58,7 +58,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
             // Berhubungan dengan User, Project
             Route::controller(ProjectController::class)->group(function () {
-                Route::post('/home', 'create_project');
+                Route::post('/home', 'post_home');
                 Route::post('/pusher/auth/{id}', 'pusher_authenticate');
 
                 // Perlu Project Authorization
