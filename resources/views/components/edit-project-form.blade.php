@@ -1,4 +1,4 @@
-<div id="editProjectModal" class="modal fade">
+<div id="edit-project-modal" class="modal fade">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header justify-content-end">
@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form id="editProjectForm">
+                <form id="edit-project-form">
                     <div class="mb-3">
                         <label for="editProjectTitle" class="form-label">Title</label>
                         <input type="text" class="form-control" id="editProjectTitle" name="editProjectTitle" required>
@@ -33,8 +33,8 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const editProjectModal = document.getElementById('editProjectModal');
-        const editProjectForm = document.getElementById('editProjectForm');
+        const editProjectModal = document.getElementById('edit-project-modal');
+        const editProjectForm = document.getElementById('edit-project-form');
         const editProjectTitleInput = document.getElementById('editProjectTitle');
         const editProjectDescriptionTextarea = document.getElementById('editProjectDescription');
         const editProjectDueDateInput = document.getElementById('editProjectDueDate');

@@ -114,7 +114,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dotMenuButton">
                 @if ($user->id == $item->userID)
-                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#editProjectModal" data-action="edit" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}" data-project-description="{{ $item->projectDescription }}" data-project-due-date="{{ $item->projectDueDate }}">Edit Project</button>
+                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-project-modal" data-action="edit" data-project-id="{{ $item->id }}" data-project-name="{{ $item->projectName }}" data-project-description="{{ $item->projectDescription }}" data-project-due-date="{{ $item->projectDueDate }}">Edit Project</button>
                     <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="delete" data-project-name="{{ $item->projectName }}">Delete Project</button>
                     <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#project-action-modal" data-action="complete" data-project-name="{{ $item->projectName }}">Complete Project</button>
                 @else
