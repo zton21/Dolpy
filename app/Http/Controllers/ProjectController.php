@@ -152,7 +152,7 @@ class ProjectController extends Controller
 
     public static function pusher_authenticate(Request $request) {
         $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
-        $pusher = pusher();
+        $pusher = ProjectController::pusher();
         $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
         
         return response($x, 200);
@@ -288,17 +288,15 @@ class ProjectController extends Controller
         $timeline->next = -1;
         $timeline->save();
 
+        $timeline->refresh();
+
         // Broadcast
         $pusher = ProjectController::pusher();
-        // $pusher->trigger(
-        //     'private-timeline.'.$project_id,
-        //     'new_task',
-        //     [
-        //         'timeline' => $timeline->only(''),
-        //         'project_id' => $project_id,
-        //     ]
-        // );
-
+        $pusher->trigger(
+            'private-timeline.'.$project_id,
+            'new_task',
+            $timeline->only(['timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task'])
+        );
         return redirect()->back()->with('success', 'successfully created timeline');
     }
 
@@ -337,17 +335,46 @@ class ProjectController extends Controller
         $parent->next = $item->id;
         $parent->save();
         
-        return response('success', 200);
+        // Broadcast
+        $timestamp = time();
+
+        $pusher = ProjectController::pusher();
+        $progress = ProjectController::get_progress($project_id);
+        $pusher->trigger(
+            'private-timeline.'.$project_id,
+            'move_task',
+            [
+                'id' => $item->id,
+                'target_id' => $parent->id,
+                'progress' => $progress,
+                'timestamp' => $timestamp,
+            ]
+        );
+
+        return response([
+            // 'progress' => ProjectController::get_progress($project_id),
+            'timestamp' => $timestamp,
+
+        ], 200);
     } 
     
+    public static function get_progress($project_id) {
+        $progress = DB::select('SELECT round(avg(if(`group`="done", 100, if(n_task=0, 0, 100*completed_task/n_task)))) as `sum` from timelines where project_id = ? and `type` != "head"', [$project_id]);
+        return $progress[0]->sum;
+    }
+
     public static function timeline(Request $request, $project_id) {
         if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
+        
+        $result = DB::select('SELECT sum(n_task) as `sum` from timelines where project_id = ?', [$project_id]);
+        $completed = DB::select('SELECT sum(completed_task) as `sum` from timelines where project_id = ?', [$project_id]);
+        
         return view('timeline', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
+            'n_task' => $result[0]->sum,
+            'completed_task' => $completed[0]->sum,
+            'progress' => ProjectController::get_progress($project_id),
         ]);
     }
-
-
-
 }

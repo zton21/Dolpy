@@ -15,7 +15,7 @@
     <script>
         const project_id = {{$project->id}};
         const user_id = {{$user->id}};
-        const data = {{Js::from($messages)}};
+        // const data = {{Js::from($messages)}};
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
