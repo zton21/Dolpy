@@ -23,6 +23,7 @@ class TopicSectionFactory extends Factory
             'user_id' => User::all()->random()->id,
             'topicName' => fake()->words(2,true),
             'topicDate' => fake()->dateTimeThisYear(),
+            'topicDescription' => fake()->sentence($nbWords = fake()->numberBetween($min = 3, $max = 6), $variableNbWords = true),
         ];
     }
 }

@@ -361,6 +361,42 @@ class ProjectController extends Controller
         if ($request->has('topic')) {
             return ProjectController::create_topic($request, $id);
         }
+        if ($request->has('task') && $request->task == 'edit_topic') {
+            return ProjectController::edit_topic($request, $id);
+        }
+        if ($request->has('task') && $request->task == 'delete_topic') {
+            dd($request);
+            return ProjectController::delete_topic($request, $id);
+        }
+    }
+
+    public static function edit_topic(Request $request, $id)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'editTopicTitle' => 'required',
+            'editTopicDescription' => '',
+        ]);
+
+        $topicID = $request->input('topic_id');
+        $topic = TopicSection::find($topicID);
+
+        $topic->topicName = $validatedData['editTopicTitle'];
+        $topic->topicDescription = $validatedData['editTopicDescription'];
+        $topic->save();
+
+        return redirect()->back()->with('success', 'Topic updated successfully.');
+    }
+
+    public static function delete_topic(Request $request, $id)
+    {
+        $topicID = $request->input('topic_id');
+        $topic = TopicSection::find($topicID);
+        
+        $topic->comments()->delete();
+        $topic->delete();
+
+        return back()->with('success', 'Topic deleted successfully.');
     }
 
     public static function post_member(Request $request, $id) {
