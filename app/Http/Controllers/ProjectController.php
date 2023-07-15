@@ -14,6 +14,7 @@ use App\Models\TopicSection;
 use App\Models\Comment;
 use App\Models\TopicUser;
 use App\Models\User;
+use App\Models\Timeline;
 
 use Pusher\Pusher;
 
@@ -111,6 +112,19 @@ class ProjectController extends Controller
         $project->projectWallpaperURL = 'img/project_wallpaper/Wallpaper1.png';
 
         $project->save();
+
+        // Create timeline base
+        foreach (array('todo', 'onprogress', 'done') as $group) {
+            $timeline = new Timeline;
+            $timeline->next = -1;
+            $timeline->type = 'head';
+            $timeline->group = $group;
+            $timeline->project_id = $project->id;
+            $timeline->timelineTitle = "";
+            $timeline->timelineDesc = "";
+            $timeline->save();
+        }
+
 
         // Insert current user as member
         ProjectController::add_member($project->id, Auth::user()->id);
@@ -276,13 +290,6 @@ class ProjectController extends Controller
         ]);
     }
 
-    public static function timeline($project_id)
-    {
-        return view('timeline', [
-            'user' => Auth::user(),
-            'project' => ProjectHeader::find($project_id),
-        ]);
-    }
     
     public static function timeline_inner($project_id)
     {
@@ -322,24 +329,101 @@ class ProjectController extends Controller
 
     public static function post_timeline(Request $request, $project_id) {
         // Drag n drop task
-        if ($request->has('task') && $request->task == 'modify') {
-            // Validasi
-            dd($request);
-        }
-        if ($request->has('task') && $request->task == 'add_timeline') {
-            // Validate request
-            dd($request);
-            
-            $request->validate([
-                'timeline_name' => 'required',
-                'timeline_description' => '',
-                'timeline_color' => '',
-                'start_date' => 'required',
-                'end_date' => 'required',
-            ]);
-
-            // 
-            
-        }
+        if ($request->has('task') && $request->task == 'modify') return ProjectController::move_task($request, $project_id);
+        if ($request->has('task') && $request->task == 'add_timeline') return ProjectController::add_task($request, $project_id);
+        return response('Request not found', 404);
     }
+
+    public static function add_task(Request $request, $project_id) {
+        // Validate request
+        // dd("add_timeline");
+        $request->validate([
+            'timeline_name' => 'required',
+            'timeline_description' => '',
+            'timeline_color' => '',
+            // 'start_date' => 'required',
+            // 'end_date' => 'required',
+        ]);
+
+        // Model create n insert
+        $timeline = new Timeline;
+        $timeline->timelineTitle = $request->timeline_name;
+        $timeline->timelineDesc = $request->timeline_description;
+        $timeline->type = 'blue';
+        // $timeline->start_date = $request->start_date;
+        // $timeline->end_date = $request->end_date;
+        
+        $timeline->project_id = $project_id;
+        $timeline->next = -2;
+        $timeline->save();
+
+        // Append ke todo terakhir
+        DB::update('UPDATE timelines t set t.next = ? where t.next = ? and t.group = ? and t.project_id = ? limit 1', 
+            [$timeline->id, -1, 'todo', $project_id]);
+
+        $timeline->next = -1;
+        $timeline->save();
+
+        // Broadcast
+        $pusher = ProjectController::pusher();
+        // $pusher->trigger(
+        //     'private-timeline.'.$project_id,
+        //     'new_task',
+        //     [
+        //         'timeline' => $timeline->only(''),
+        //         'project_id' => $project_id,
+        //     ]
+        // );
+
+        return redirect()->back()->with('success', 'successfully created timeline');
+    }
+
+    public static function move_task(Request $request, $project_id) {
+        // move : $timeline_id, $before_id, $group
+
+        // Validasi : agak banyak buat syncing semoga ga error
+        // "task" => "modify"
+        //   "id" => "83"
+        //   "group" => "onprogress"
+        //   "before" => "81"
+
+        // dd($request);
+        
+        $item = Timeline::find($request->id);
+        if (!$item) return response('Item not found', 404);
+        if ($item->type == 'head') return response('Item not found', 404);
+        if ($item->project_id != $project_id) return response('Forbidden', 403);
+
+        $prev = Timeline::where('next', $item->id)->first();
+        if (!$prev) return response('Item not found (missing parent)');
+
+        $parent = Timeline::find($request->before);
+        if (!$parent) return response('Target has changed', 404);
+        if ($parent->group != $request->group) return response('Target has changed', 404);
+        if ($parent->project_id != $project_id) return response('Forbidden', 403);
+
+        // Detach dari tempat asli
+        $prev->next = $item->next;
+        $prev->save();
+        // Attach ke setelah before
+        $item->next = $parent->next;
+        $item->group = $parent->group;
+        $item->save();
+
+        $parent->next = $item->id;
+        $parent->save();
+        
+        return response('success', 200);
+    } 
+    
+    public static function timeline(Request $request, $project_id) {
+        if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
+        return view('timeline', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+        ]);
+    }
+
+
+
 }
