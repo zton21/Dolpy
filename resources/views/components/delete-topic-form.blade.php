@@ -11,7 +11,7 @@
             <form id="delete-topic-form" method="POST" action="">
                 @csrf
                 <input type="hidden" name="task" value="delete_topic">
-                <input type="hidden" name="topic_id" id="topic-id-input" value="">
+                <input type="hidden" name="topic_id" id="delete-topic-id-input" value="">
                 <div class="modal-body">
                     <div class="mb-3">
                         <p id="delete-topic-text" class="text-center fs-5"></p>
@@ -30,7 +30,7 @@
         const deleteTopicModal = document.getElementById('delete-topic-modal');
         const confirmDeleteTopicBtn = document.getElementById('confirm-delete-topic-btn');
         const deleteTopicForm = document.getElementById('delete-topic-form');
-        const topicIDInput = document.getElementById('topic-id-input');
+        const topicIDInput = document.getElementById('delete-topic-id-input');
 
         confirmDeleteTopicBtn.addEventListener('click', function () {
             topicIDInput.value = deleteTopicModal.dataset.topicId;

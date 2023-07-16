@@ -11,7 +11,7 @@
             <form id="edit-topic-form" method="POST" action="">
                 @csrf
                 <input type="hidden" name="task" value="edit_topic">
-                <input type="hidden" name="topic_id" id="topic-id-input" value="">
+                <input type="hidden" name="topic_id" id="edit-topic-id-input" value="">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="editTopicTitle" class="form-label">Title</label>
@@ -37,7 +37,7 @@
         const editTopicTitleInput = document.getElementById('editTopicTitle');
         const editTopicDescriptionTextarea = document.getElementById('editTopicDescription');
         const saveTopicChangesBtn = document.getElementById('saveTopicChangesBtn');
-        const topicIDInput = document.getElementById('topic-id-input');
+        const topicIDInput = document.getElementById('edit-topic-id-input');
 
         saveTopicChangesBtn.addEventListener('click', function () {
             topicIDInput.value = editTopicModal.dataset.topicId;

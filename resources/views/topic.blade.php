@@ -108,13 +108,13 @@
                     </div>
                     <div class="container-fluid h-100 mx-auto" style="width: 100%; flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($topics as $item)
-                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}} position-relative" id="t{{$item->id}}">
+                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}} position-relative dotMenuButtonWrapper" id="t{{$item->id}}">
                             <div class="dropdown position-absolute top-0 end-0">
                                 <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dotMenuButton">
-                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}" data-topic-description={{ $item->topicDescription }}>Edit Topic</button>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}" data-topic-description="{{ $item->topicDescription }}">Edit Topic</button>
                                     <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#delete-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}">Delete Topic</button>
                                 </div>
                             </div>
@@ -165,11 +165,10 @@
                         <div class="col-12 d-flex flex-row gap-2">
                             <h1>{{$topic->topicName}}</h1>
                             <div class="mt-2 me-auto" class="text-secondary">{{$topic->topicDate}}</div>
-                            <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="black" d="M128 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16ZM48 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Zm160-48a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z"/></svg>
                         </div>
                     </div>
                     <div class="row px-2 mx-0 bg-white pb-3">
-                        <div class="me-auto fs-5">{{ $topic->topicDescription ?? "" }}</div>
+                        <div class="me-auto fs-5">{{ $topic->topicDescription }}</div>
                     </div>
                     <hr class="p-0 my-0">
                     <div class="container-fluid p-0 chatbox" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">

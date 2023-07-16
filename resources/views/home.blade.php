@@ -95,7 +95,7 @@
             </svg>                        
             Due Date
         </div>
-        <div class="col-2 text-center">
+        <div class="col-3 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.50977 7C4.95977 7 4.50977 6.55 4.50977 6C4.50977 5.45 4.94977 5 5.50977 5H5.51977C6.06977 5 6.51977 5.45 6.51977 6C6.51977 6.55 6.06977 7 5.50977 7Z" fill="#858487"/>
                 <path d="M18.5098 20C17.9598 20 17.5098 19.55 17.5098 19C17.5098 18.45 17.9498 18 18.5098 18H18.5198C19.0698 18 19.5198 18.45 19.5198 19C19.5198 19.55 19.0698 20 18.5098 20Z" fill="#858487"/>
@@ -107,7 +107,7 @@
         </div>
     </div>
     @forelse ($projects as $item)
-    <div class="wrapper position-relative">
+    <div class="wrapper position-relative dotMenuButtonWrapper">
         <div class="dropdown position-absolute top-0 end-0">
             <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
@@ -159,7 +159,12 @@
                 @endif
                 {{ $dueDateFormatted }}
             </div>
-            <div class="col-2 p-0 py-2 text-center">Progress</div>
+            <div class="col-3 px-lg-5 px-md-3 py-2 text-center"><div class="px-lg-5 px-md-3">
+                <div class="progress fs-6" style="height: 0.7em">
+                    <div class="progress-bar bg-success-50" role="progressbar" style="width: {{ $item->projectProgress }}%" aria-valuenow="{{ $item->projectProgress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                {{ $item->projectProgress . "%" }}
+            </div></div>
         </a>   
     </div> 
     @empty
@@ -221,7 +226,7 @@
             </svg>                        
             Due Date
         </div>
-        <div class="col-2 text-center">
+        <div class="col-3 text-center">
             <svg class="me-2" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.50977 7C4.95977 7 4.50977 6.55 4.50977 6C4.50977 5.45 4.94977 5 5.50977 5H5.51977C6.06977 5 6.51977 5.45 6.51977 6C6.51977 6.55 6.06977 7 5.50977 7Z" fill="#858487"/>
                 <path d="M18.5098 20C17.9598 20 17.5098 19.55 17.5098 19C17.5098 18.45 17.9498 18 18.5098 18H18.5198C19.0698 18 19.5198 18.45 19.5198 19C19.5198 19.55 19.0698 20 18.5098 20Z" fill="#858487"/>
@@ -233,7 +238,7 @@
         </div>
     </div>
     @forelse ($completed as $item)
-    <div class="wrapper position-relative">
+    <div class="wrapper position-relative dotMenuButtonWrapper">
         <div class="dropdown position-absolute top-0 end-0">
             <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
@@ -285,7 +290,7 @@
                 @endif
                 {{ $dueDateFormatted }}
             </div>
-            <div class="col-2 p-0 py-2 text-center">Progress</div>
+            <div class="col-3 p-0 py-2 text-center">Progress</div>
         </a>   
     </div> 
     @empty

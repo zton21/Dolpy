@@ -38,6 +38,7 @@ $(() => {
             let c = x.prev();
             upload_changes(id, (c.length ? c.attr('id') : head[group]), group, 'modify').done(function (data) {
                 // $('.card-progress').text(data.progress + ' %')
+
                 timestamps[data.timestamp] = 1;
             })
         }, 0);
@@ -115,18 +116,19 @@ $(() => {
         let card = createTask(data);
         card.appendTo($('#todo'));
         card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
+        $('.card-progress').text(data.progress + '%')
         
         refresh_data();
     });
 
     channel.bind('move_task', function(data) {
         if (data.timestamp in timestamps) {
-            delete(timestamps(data.timestamp));
+            delete(timestamps[data.timestamp]);
             return;
         }
         let curr = $('#'+data.id), par = $('#'+data.target_id);
         // console.log(JSON.stringify(data));
-        $('.card-progress').text(data.progress + ' %')
+        $('.card-progress').text(data.progress + '%')
         if (par.length) curr.detach().insertAfter(par);
         else curr.detach().prependTo($('#'+arr[data.target_id].group))
         

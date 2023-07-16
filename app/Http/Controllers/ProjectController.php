@@ -258,6 +258,7 @@ class ProjectController extends Controller
 
         $topic = new TopicSection;
         $topic->topicName = $request->topic_name;
+        $topic->topicDescription = $request->topic_description;
         $topic->topicDate = date("Y-m-d");
         $topic->project_id = $project_id;
         $topic->user_id = Auth::user()->id;
@@ -358,14 +359,13 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'read') {
             return ProjectController::read_message($request, $id);
         }
-        if ($request->has('topic')) {
+        if ($request->has('task') && $request->task == 'create_topic') {
             return ProjectController::create_topic($request, $id);
         }
         if ($request->has('task') && $request->task == 'edit_topic') {
             return ProjectController::edit_topic($request, $id);
         }
         if ($request->has('task') && $request->task == 'delete_topic') {
-            dd($request);
             return ProjectController::delete_topic($request, $id);
         }
     }
@@ -393,7 +393,6 @@ class ProjectController extends Controller
         $topicID = $request->input('topic_id');
         $topic = TopicSection::find($topicID);
         
-        $topic->comments()->delete();
         $topic->delete();
 
         return back()->with('success', 'Topic deleted successfully.');
@@ -459,7 +458,10 @@ class ProjectController extends Controller
         $pusher->trigger(
             'private-timeline.'.$project_id,
             'new_task',
-            $timeline->only(['id', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task'])
+            array_merge(
+                $timeline->only(['id', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task']),
+                ['progress' => ProjectController::update_progress($project_id)],
+            )
         );
         return redirect()->back()->with('success', 'successfully created timeline');
     }
@@ -503,7 +505,7 @@ class ProjectController extends Controller
         $timestamp = time();
 
         $pusher = ProjectController::pusher();
-        $progress = ProjectController::get_progress($project_id);
+        $progress = ProjectController::update_progress($project_id);
         $pusher->trigger(
             'private-timeline.'.$project_id,
             'move_task',
@@ -516,15 +518,18 @@ class ProjectController extends Controller
         );
 
         return response([
-            // 'progress' => ProjectController::get_progress($project_id),
+            // 'progress' => ProjectController::update_progress($project_id),
             'timestamp' => $timestamp,
 
         ], 200);
     } 
     
-    public static function get_progress($project_id) {
+    public static function update_progress($project_id) {
         $progress = DB::select('SELECT round(avg(if(`group`="done", 100, if(n_task=0, 0, 100*completed_task/n_task)))) as `sum` from timelines where project_id = ? and `type` != "head"', [$project_id]);
-        return $progress[0]->sum;
+        $project = ProjectHeader::find($project_id);
+        $project->projectProgress = INTVAL($progress[0]->sum);
+        $project->save();
+        return INTVAL($progress[0]->sum);
     }
 
     public static function timeline(Request $request, $project_id) {
@@ -538,7 +543,7 @@ class ProjectController extends Controller
             'project' => ProjectHeader::find($project_id),
             'n_task' => $result[0]->sum,
             'completed_task' => $completed[0]->sum,
-            'progress' => ProjectController::get_progress($project_id),
+            'progress' => ProjectController::update_progress($project_id),
         ]);
     }
 }

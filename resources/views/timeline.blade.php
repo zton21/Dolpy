@@ -30,8 +30,8 @@
                 <div class="card p-0 m-0">
                     <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
                     <div class="card-body bg-primary-10">
-                        <h3>Web Programming</h3>
-                        <span>Every Project has it own card too</span>
+                        <h3>{{ $project->projectName }}</h3>
+                        <span>{{ $project->projectDescription }}</span>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                             tasks completed
                         </div>
                         <div class="flex-column text-center">
-                            <h2 class="card-progress">@isset($progress){{$progress}} @endisset @empty($progress) 0 @endempty%</h2>
+                            <h2 class="card-progress"> {{$progress}}% </h2>
                             overall progress
                         </div>
                     </div>

@@ -9,19 +9,20 @@
                 </div>
             </div>
             <form id="create-topic-form" method="POST" action="">
+                @csrf
+                <input type="hidden" name="task" value="create_topic">
                 <div class="modal-body">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="topic-name" class="form-label">Topic Title</label>
-                            <input type="text" class="form-control" id="topic-name" name="topic_name" placeholder="Enter topic title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="topic-description" class="form-label">Topic Description <span class="text-secondary">(Optional)</span></label>
-                            <textarea class="form-control" id="topic-description" name="topic_description" placeholder="Enter topic description" rows="1"></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="topic-name" class="form-label">Topic Title</label>
+                        <input type="text" class="form-control" id="topic-name" name="topic_name" placeholder="Enter topic title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="topic-description" class="form-label">Topic Description <span class="text-secondary">(Optional)</span></label>
+                        <textarea class="form-control" id="topic-description" name="topic_description" placeholder="Enter topic description" rows="1"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" name="topic" class="btn btn-primary w-100">Create New Topic</button>
+                    <button type="submit" class="btn btn-primary w-100">Create New Topic</button>
                 </div>
             </form>
         </div>
