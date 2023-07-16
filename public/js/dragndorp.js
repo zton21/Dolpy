@@ -116,7 +116,7 @@ $(() => {
         let card = createTask(data);
         card.appendTo($('#todo'));
         card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
-        $('.card-progress').text(data.progress + ' %')
+        $('.card-progress').text(data.progress + '%')
         
         refresh_data();
     });
@@ -128,7 +128,7 @@ $(() => {
         }
         let curr = $('#'+data.id), par = $('#'+data.target_id);
         // console.log(JSON.stringify(data));
-        $('.card-progress').text(data.progress + ' %')
+        $('.card-progress').text(data.progress + '%')
         if (par.length) curr.detach().insertAfter(par);
         else curr.detach().prependTo($('#'+arr[data.target_id].group))
         
