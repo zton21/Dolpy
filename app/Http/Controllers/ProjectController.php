@@ -332,7 +332,7 @@ class ProjectController extends Controller
         }
         // dd($topic, $data);
 
-        dd(\DB::getQueryLog());
+        // dd(\DB::getQueryLog());
     }
 
     public static function files($project_id)
