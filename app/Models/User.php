@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ProjectHeader;
 
 class User extends Authenticatable implements CanResetPassword
 {
@@ -45,4 +46,11 @@ class User extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany(ProjectHeader::class, 'project_details', 'user_id', 'project_id')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
 }

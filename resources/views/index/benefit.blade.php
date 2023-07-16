@@ -37,9 +37,9 @@
     <div class="row">
         <div class="col-8 desc ms-auto my-auto">
             <div class="row fs-2 fw-bold mb-2">Let developers focus on code</div>
-            <div class="row fs-5 mb-4">Lorem ipsum dolor sit amet. Non laboriosam voluptates ut illo ipsum sed quia accusantium sed autem placeat! Sit delectus numquam et quas veniam ut galisum nihil qui libero unde ut ipsum beatae ut quam facilis aut cupiditate omnis. Et harum natus ut eaque incidunt et mollitia nihil. Ad doloremque dolor est quia delectus non galisum culpa.</div>
+            <div class="row fs-5 mb-4" style="text-align: justify;">Dolpy enables developers to focus on coding by handling project management tasks. With its extensive features, Dolpy simplifies project organization, task assignment, and collaboration, freeing developers to dedicate their time to coding. By streamlining project management processes, Dolpy ensures developers can be highly productive and deliver top-notch code.</div>
             <div class="row fs-2 fw-bold mb-2">How it works?</div>
-            <div class="row fs-5 mb-4">Lorem ipsum dolor sit amet. Non laboriosam voluptates ut illo ipsum sed quia accusantium sed autem placeat! Sit delectus numquam et quas veniam</div>
+            <div class="row fs-5 mb-4" style="text-align: justify;"> Dolpy operates as a mobile app and web-based platform, providing users with seamless access to project management tools and features. Sign up now!</div>
         </div>
     </div>
 </div>

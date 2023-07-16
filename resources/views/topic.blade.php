@@ -15,7 +15,7 @@
     <script>
         const project_id = {{$project->id}};
         const user_id = {{$user->id}};
-        const data = {{Js::from($messages)}};
+        // const data = {{Js::from($messages)}};
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -73,8 +73,8 @@
     @include('layout.project-nav', ['chatsActive' => "active"])
 
     <div class="container vh-100" style="padding-top: 90px;">
-        <div class="row h-100">
-            <div class="col-5 h-100" style="border: 1px solid #A3A3A5;">
+        <div class="row h-100 border">
+            <div class="col-5 h-100">
                 <div class="container-fluid p-0 h-100 d-flex flex-column overflow-hidden">
                     <div class="row card-bg p-1 align-items-end" style="height: 96px">
                         <div class="col-12 d-flex justify-content-end">
@@ -107,14 +107,25 @@
                     </div>
                     <div class="container-fluid h-100 mx-auto" style="width: 100%; flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($topics as $item)
-                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}}" id="t{{$item->id}}">
+                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}} position-relative" id="t{{$item->id}}">
+                            <div class="dropdown position-absolute top-0 end-0">
+                                <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dotMenuButton">
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}" data-topic-description={{ $item->topicDescription }}>Edit Topic</button>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#delete-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}">Delete Topic</button>
+                                </div>
+                            </div>
+                            @include('components.edit-topic-form')
+                            @include('components.delete-topic-form')
                             <a class="text-decoration-none text-dark" href="?topic={{$loop->index}}">
                                 <div class="row d-flex align-items-start px-3 topic">
                                     <div class="col-6">
                                         <h4 class="m-0">{{$item->topicName}}</h4>
                                         <div class="text-secondary">{{$item->topicDate}}</div>
                                     </div>
-                                    <div class="col-6 d-flex flex-row gap-2 align-items-center justify-content-end">
+                                    <div class="col-5 d-flex flex-row gap-2 align-items-center justify-content-end">
                                         <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                                         <div>by {{$item->firstName}}</div>
                                     </div>
@@ -157,10 +168,7 @@
                         </div>
                     </div>
                     <div class="row px-2 mx-0 bg-white pb-3">
-                        <div class="col-12 d-flex flex-row gap-2 align-items-center">
-                            <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                            <div class="me-auto fs-5">Jawab pertanyaan ini?</div>
-                        </div>
+                        <div class="me-auto fs-5">{{ $topic->topicDescription ?? "" }}</div>
                     </div>
                     <hr class="p-0 my-0">
                     <div class="container-fluid p-0 chatbox" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
@@ -227,6 +235,14 @@
                 </div>
             </div>
             @endisset
+            @empty($topic)
+            <div class="col-7 p-0 h-100">
+                <div class="container-fluid px-5 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <img class="w-25 opacity-25" src="{{ asset('img/logo-primary.png') }}" alt="">
+                    <div class="text-neutral-50 fs-5 text-center">Send and receive messages without keeping your phone online. Use Dolpy on up to <span class="text-primary-30">4 linked devices and 1 phone</span> at the same time</div>
+                </div>
+            </div>
+            @endempty
         </div>
     </div>
 

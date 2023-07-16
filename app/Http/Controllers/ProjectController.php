@@ -14,11 +14,141 @@ use App\Models\TopicSection;
 use App\Models\Comment;
 use App\Models\TopicUser;
 use App\Models\User;
+use App\Models\Timeline;
 
 use Pusher\Pusher;
 
 class ProjectController extends Controller
 {
+    public static function post_home(Request $request) {
+        if ($request->has('task') && $request->task == 'create_project') {
+            return ProjectController::create_project($request);
+        }
+        if ($request->has('task') && $request->task == 'complete') {
+            return ProjectController::complete_project($request);
+        }
+        if ($request->has('task') && $request->task == 'uncomplete') {
+            return ProjectController::uncomplete_project($request);
+        }
+        if ($request->has('task') && $request->task == 'leave') {
+            return ProjectController::leave_project($request);
+        }
+        if ($request->has('task') && $request->task == 'delete') {
+            return ProjectController::delete_project($request);
+        }
+        if ($request->has('task') && $request->task == 'edit') {
+            return ProjectController::edit_project($request);
+        }
+    }
+
+    public static function edit_project(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'editProjectTitle' => 'required',
+            'editProjectDescription' => '',
+            'editProjectDueDate' => 'required',
+        ]);
+
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+
+        // Update the project properties
+        $project->projectName = $validatedData['editProjectTitle'];
+        $project->projectDescription = $validatedData['editProjectDescription'];
+        $project->projectDueDate = $validatedData['editProjectDueDate'];
+
+        // Save the updated project
+        $project->save();
+
+        // Redirect back with a success message
+        return back()->with('success', 'Project updated successfully.');
+    }
+
+
+    public static function complete_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+        
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->exists()) {
+            // Update the project as completed
+            $project->projectCompleted = true;
+            $project->save();
+            return back()->with('success', 'Project marked as completed.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
+    public static function uncomplete_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+        
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->exists()) {
+            // Update the project as completed
+            $project->projectCompleted = false;
+            $project->save();
+            return back()->with('success', 'Project marked as uncompleted.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
+    public static function leave_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->exists()) {
+            // Detach the user from the project
+            $project->users()->detach($user->id);
+            return back()->with('success', 'You have left the project.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
+    public static function delete_project(Request $request)
+    {
+        $projectID = $request->input('project_id');
+        $project = ProjectHeader::find($projectID);
+        
+        if (!$project) {
+            return back()->with('error', 'Project not found.');
+        }
+        
+        $user = Auth::user();
+        
+        if ($project->users()->where('user_id', $user->id)->where('role', 'creator')->exists()) {
+            // Delete the project and detach all members
+            $project->users()->detach();
+            $project->delete();
+            return back()->with('success', 'Project deleted successfully.');
+        }
+    
+        return back()->with('error', 'Action could not be performed.');
+    }
+
     // Create Project
     public static function create_project(Request $request) {
         $request->validate([
@@ -31,10 +161,22 @@ class ProjectController extends Controller
         $project->projectName = $request->project_name;
         $project->projectDueDate = $request->due_date;
         $project->projectDescription = $request->project_description;
-        $project->projectStatus = 'Designing';
         $project->projectWallpaperURL = 'img/project_wallpaper/Wallpaper1.png';
 
         $project->save();
+
+        // Create timeline base
+        foreach (array('todo', 'onprogress', 'done') as $group) {
+            $timeline = new Timeline;
+            $timeline->next = -1;
+            $timeline->type = 'head';
+            $timeline->group = $group;
+            $timeline->project_id = $project->id;
+            $timeline->timelineTitle = "";
+            $timeline->timelineDesc = "";
+            $timeline->save();
+        }
+
 
         // Insert current user as member
         ProjectController::add_member($project->id, Auth::user()->id);
@@ -138,7 +280,7 @@ class ProjectController extends Controller
 
     public static function pusher_authenticate(Request $request) {
         $project_id = substr($request->channel_name, strpos($request->channel_name, '.') + 1);
-        $pusher = pusher();
+        $pusher = ProjectController::pusher();
         $x = $pusher->authorizeChannel($request->channel_name, $request->socket_id);
         
         return response($x, 200);
@@ -200,13 +342,6 @@ class ProjectController extends Controller
         ]);
     }
 
-    public static function timeline($project_id)
-    {
-        return view('timeline', [
-            'user' => Auth::user(),
-            'project' => ProjectHeader::find($project_id),
-        ]);
-    }
     
     public static function timeline_inner($project_id)
     {
@@ -226,6 +361,42 @@ class ProjectController extends Controller
         if ($request->has('topic')) {
             return ProjectController::create_topic($request, $id);
         }
+        if ($request->has('task') && $request->task == 'edit_topic') {
+            return ProjectController::edit_topic($request, $id);
+        }
+        if ($request->has('task') && $request->task == 'delete_topic') {
+            dd($request);
+            return ProjectController::delete_topic($request, $id);
+        }
+    }
+
+    public static function edit_topic(Request $request, $id)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'editTopicTitle' => 'required',
+            'editTopicDescription' => '',
+        ]);
+
+        $topicID = $request->input('topic_id');
+        $topic = TopicSection::find($topicID);
+
+        $topic->topicName = $validatedData['editTopicTitle'];
+        $topic->topicDescription = $validatedData['editTopicDescription'];
+        $topic->save();
+
+        return redirect()->back()->with('success', 'Topic updated successfully.');
+    }
+
+    public static function delete_topic(Request $request, $id)
+    {
+        $topicID = $request->input('topic_id');
+        $topic = TopicSection::find($topicID);
+        
+        $topic->comments()->delete();
+        $topic->delete();
+
+        return back()->with('success', 'Topic deleted successfully.');
     }
 
     public static function post_member(Request $request, $id) {
@@ -246,24 +417,128 @@ class ProjectController extends Controller
 
     public static function post_timeline(Request $request, $project_id) {
         // Drag n drop task
-        if ($request->has('task') && $request->task == 'modify') {
-            // Validasi
-            dd($request);
-        }
-        if ($request->has('task') && $request->task == 'add_timeline') {
-            // Validate request
-            dd($request);
-            
-            $request->validate([
-                'timeline_name' => 'required',
-                'timeline_description' => '',
-                'timeline_color' => '',
-                'start_date' => 'required',
-                'end_date' => 'required',
-            ]);
+        if ($request->has('task') && $request->task == 'modify') return ProjectController::move_task($request, $project_id);
+        if ($request->has('task') && $request->task == 'add_timeline') return ProjectController::add_task($request, $project_id);
+        return response('Request not found', 404);
+    }
 
-            // 
-            
-        }
+    public static function add_task(Request $request, $project_id) {
+        // Validate request
+        // dd("add_timeline");
+        $request->validate([
+            'timeline_name' => 'required',
+            'timeline_description' => '',
+            'timeline_color' => '',
+            // 'start_date' => 'required',
+            // 'end_date' => 'required',
+        ]);
+
+        // Model create n insert
+        $timeline = new Timeline;
+        $timeline->timelineTitle = $request->timeline_name;
+        $timeline->timelineDesc = $request->timeline_description;
+        $timeline->type = 'blue';
+        // $timeline->start_date = $request->start_date;
+        // $timeline->end_date = $request->end_date;
+        
+        $timeline->project_id = $project_id;
+        $timeline->next = -2;
+        $timeline->save();
+
+        // Append ke todo terakhir
+        DB::update('UPDATE timelines t set t.next = ? where t.next = ? and t.group = ? and t.project_id = ? limit 1', 
+            [$timeline->id, -1, 'todo', $project_id]);
+
+        $timeline->next = -1;
+        $timeline->save();
+
+        $timeline->refresh();
+
+        // Broadcast
+        $pusher = ProjectController::pusher();
+        $pusher->trigger(
+            'private-timeline.'.$project_id,
+            'new_task',
+            $timeline->only(['id', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task'])
+        );
+        return redirect()->back()->with('success', 'successfully created timeline');
+    }
+
+    public static function move_task(Request $request, $project_id) {
+        // move : $timeline_id, $before_id, $group
+
+        // Validasi : agak banyak buat syncing semoga ga error
+        // "task" => "modify"
+        //   "id" => "83"
+        //   "group" => "onprogress"
+        //   "before" => "81"
+
+        // dd($request);
+        
+        $item = Timeline::find($request->id);
+        if (!$item) return response('Item not found', 404);
+        if ($item->type == 'head') return response('Item not found', 404);
+        if ($item->project_id != $project_id) return response('Forbidden', 403);
+
+        $prev = Timeline::where('next', $item->id)->first();
+        if (!$prev) return response('Item not found (missing parent)');
+
+        $parent = Timeline::find($request->before);
+        if (!$parent) return response('Target has changed', 404);
+        if ($parent->group != $request->group) return response('Target has changed', 404);
+        if ($parent->project_id != $project_id) return response('Forbidden', 403);
+
+        // Detach dari tempat asli
+        $prev->next = $item->next;
+        $prev->save();
+        // Attach ke setelah before
+        $item->next = $parent->next;
+        $item->group = $parent->group;
+        $item->save();
+
+        $parent->next = $item->id;
+        $parent->save();
+        
+        // Broadcast
+        $timestamp = time();
+
+        $pusher = ProjectController::pusher();
+        $progress = ProjectController::get_progress($project_id);
+        $pusher->trigger(
+            'private-timeline.'.$project_id,
+            'move_task',
+            [
+                'id' => $item->id,
+                'target_id' => $parent->id,
+                'progress' => $progress,
+                'timestamp' => $timestamp,
+            ]
+        );
+
+        return response([
+            // 'progress' => ProjectController::get_progress($project_id),
+            'timestamp' => $timestamp,
+
+        ], 200);
+    } 
+    
+    public static function get_progress($project_id) {
+        $progress = DB::select('SELECT round(avg(if(`group`="done", 100, if(n_task=0, 0, 100*completed_task/n_task)))) as `sum` from timelines where project_id = ? and `type` != "head"', [$project_id]);
+        return $progress[0]->sum;
+    }
+
+    public static function timeline(Request $request, $project_id) {
+        if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
+        
+        $result = DB::select('SELECT sum(n_task) as `sum` from timelines where project_id = ?', [$project_id]);
+        $completed = DB::select('SELECT sum(completed_task) as `sum` from timelines where project_id = ?', [$project_id]);
+        
+        return view('timeline', [
+            'user' => Auth::user(),
+            'project' => ProjectHeader::find($project_id),
+            'n_task' => $result[0]->sum,
+            'completed_task' => $completed[0]->sum,
+            'progress' => ProjectController::get_progress($project_id),
+        ]);
     }
 }

@@ -39,7 +39,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/resetpassword', 'ResetPasswordController@showResetPassword')->name('password.reset');
     Route::post('/resetpassword', 'ResetPasswordController@reset')->name('password.update');
 
-    Route::get('/calendar', 'UserController@calendar')->name('calendar');
     Route::get('/test', 'UserController@test')->name('test');
     
     Route::middleware(['web', 'auth'])->group(
@@ -54,11 +53,12 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 Route::get('/faq', 'faq')->name('faq');
 
                 Route::post('/profile', 'updateProfilePicture');
+                Route::get('/calendar', 'calendar')->name('calendar');
             });
 
             // Berhubungan dengan User, Project
             Route::controller(ProjectController::class)->group(function () {
-                Route::post('/home', 'create_project');
+                Route::post('/home', 'post_home');
                 Route::post('/pusher/auth/{id}', 'pusher_authenticate');
 
                 // Perlu Project Authorization
@@ -80,6 +80,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                     Route::get('/project/{id}/timeline/{task_id}', 'timeline_inner')->name('timeline_inner');
                     
                     Route::post('/project/{id}/timeline', 'post_timeline')->name('timeline');
+                    // Route::get('/project/{id}/timelines', 'get_tasks')->name('timeline');
                 });
             });
         }

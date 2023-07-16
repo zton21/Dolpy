@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('n_message')->default(0);
             $table->string('topicName');
             $table->date('topicDate');
+            $table->text('topicDescription')->nullable();
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('project_headers')->onDelete('cascade')->onUpdate('cascade');

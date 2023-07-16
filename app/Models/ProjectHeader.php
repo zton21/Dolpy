@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use App\Models\TopicSection;
 use App\Models\FileSection;
 
@@ -15,9 +16,14 @@ class ProjectHeader extends Model
         'projectName',
         'projectDescription',
         'projectDueDate',
-        'projectStatus',
-        
     ];
+    
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'project_details', 'project_id', 'user_id')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
 
     public function topics(): HasMany
     {
