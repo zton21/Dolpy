@@ -164,11 +164,10 @@
                         <div class="col-12 d-flex flex-row gap-2">
                             <h1>{{$topic->topicName}}</h1>
                             <div class="mt-2 me-auto" class="text-secondary">{{$topic->topicDate}}</div>
-                            <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="black" d="M128 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16ZM48 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Zm160-48a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z"/></svg>
                         </div>
                     </div>
                     <div class="row px-2 mx-0 bg-white pb-3">
-                        <div class="me-auto fs-5">{{ $topic->topicDescription ?? "" }}</div>
+                        <div class="me-auto fs-5">{{ $topic->topicDescription }}</div>
                     </div>
                     <hr class="p-0 my-0">
                     <div class="container-fluid p-0 chatbox" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">

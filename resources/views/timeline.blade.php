@@ -29,8 +29,8 @@
                 <div class="card p-0 m-0">
                     <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
                     <div class="card-body bg-primary-10">
-                        <h3>Web Programming</h3>
-                        <span>Every Project has it own card too</span>
+                        <h3>{{ $project->projectName }}</h3>
+                        <span>{{ $project->projectDescription }}</span>
                     </div>
                 </div>
             </div>

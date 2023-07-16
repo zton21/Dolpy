@@ -38,8 +38,8 @@
                     <div class="card p-0">
                         <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
                         <div class="card-body bg-primary-10">
-                            <h3>Web Programming</h3>
-                            <span>Every Project has it own card too</span>
+                            <h3>{{ $project->projectName }}</h3>
+                            <span>{{ $project->projectDescription }}</span>
                         </div>
                     </div>
                     <div class="row m-0 py-3 justify-content-between">
@@ -76,13 +76,11 @@
             </div>
             <div class="col-7 h-100 border p-0">
                 <div class="container-fluid p-0 h-100 d-flex flex-column">
-                    <div class="d-flex flex-row gap-2 p-2 align-items-center">
+                    <div class="d-flex flex-row gap-2 py-2 px-3 align-items-center">
                         <h1>Design System</h1>
                         <div class="me-auto" class="text-secondary">10/2/2023 - 02.36 PM</div>
-                        <svg class="mt-1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="black" d="M128 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16ZM48 96a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Zm160-48a32 32 0 1 0 32 32a32 32 0 0 0-32-32Zm0 48a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z"/></svg>
                     </div>
-                    <div class="d-flex flex-row px-2 pb-3 gap-2 align-items-center">
-                        <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                    <div class="d-flex flex-row px-3 pb-3 gap-2 align-items-center">
                         <div class="me-auto fs-5">doloremque dolor est quia delectus non galisum culpa?</div>
                     </div>
                     <hr class="p-0 my-0">
