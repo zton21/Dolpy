@@ -55,7 +55,7 @@
                             tasks completed
                         </div>
                         <div class="flex-column text-center">
-                            <h2 class="card-progress">@isset($progress){{$progress}} @endisset @empty($progress) 0 @endempty%</h2>
+                            <h2 class="card-progress"> {{$progress}}% </h2>
                             overall progress
                         </div>
                     </div>

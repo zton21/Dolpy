@@ -529,7 +529,7 @@ class ProjectController extends Controller
         $project = ProjectHeader::find($project_id);
         $project->projectProgress = INTVAL($progress[0]->sum);
         $project->save();
-        return $progress[0]->sum;
+        return INTVAL($progress[0]->sum);
     }
 
     public static function timeline(Request $request, $project_id) {
