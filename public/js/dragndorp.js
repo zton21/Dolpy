@@ -111,10 +111,12 @@ $(() => {
     var channel = pusher.subscribe(`private-timeline.${project_id}`);
     channel.bind('new_task', function(data) {
         // console.log(data);
+        arr[data.id] = data;
         let card = createTask(data);
         card.appendTo($('#todo'));
         card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
         
+        refresh_data();
     });
 
     channel.bind('move_task', function(data) {

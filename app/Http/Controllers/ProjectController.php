@@ -459,7 +459,7 @@ class ProjectController extends Controller
         $pusher->trigger(
             'private-timeline.'.$project_id,
             'new_task',
-            $timeline->only(['timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task'])
+            $timeline->only(['id', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task'])
         );
         return redirect()->back()->with('success', 'successfully created timeline');
     }
