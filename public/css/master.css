@@ -142,3 +142,10 @@
 }
 
 .hover-5:hover {background-color: var(--primary-5) !important;}
+
+.dotMenuButtonWrapper:hover #dotMenuButton {
+    display: block;
+}
+#dotMenuButton {
+    display: none;
+}

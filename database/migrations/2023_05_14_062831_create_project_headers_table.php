@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('projectDueDate');
             $table->text('projectDescription')->nullable();
             $table->boolean('projectCompleted')->default(false);
+            $table->integer('projectProgress')->default(0);
             $table->string('projectWallpaperURL');
             $table->timestamps();
         });

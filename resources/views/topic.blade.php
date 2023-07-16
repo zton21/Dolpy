@@ -107,7 +107,7 @@
                     </div>
                     <div class="container-fluid h-100 mx-auto" style="width: 100%; flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($topics as $item)
-                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}} position-relative" id="t{{$item->id}}">
+                        <div class="py-1 my-1 hover-5 {{$item->id == $topic->id?'active1':''}} position-relative dotMenuButtonWrapper" id="t{{$item->id}}">
                             <div class="dropdown position-absolute top-0 end-0">
                                 <button class="btn" type="button" id="dotMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
