@@ -39,7 +39,6 @@ Route::namespace('App\Http\Controllers')->group(function() {
     Route::get('/resetpassword', 'ResetPasswordController@showResetPassword')->name('password.reset');
     Route::post('/resetpassword', 'ResetPasswordController@reset')->name('password.update');
 
-    Route::get('/calendar', 'UserController@calendar')->name('calendar');
     Route::get('/test', 'UserController@test')->name('test');
     
     Route::middleware(['web', 'auth'])->group(
@@ -54,6 +53,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                 Route::get('/faq', 'faq')->name('faq');
 
                 Route::post('/profile', 'updateProfilePicture');
+                Route::get('/calendar', 'calendar')->name('calendar');
             });
 
             // Berhubungan dengan User, Project
