@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
     <link href="/css/master.css" rel="stylesheet">
+    <link href="/css/sidebar.css" rel="stylesheet">
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="{{ asset('/img/logo-primary.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,5 +17,6 @@
 <body class="min-vh-100 d-flex flex-column">
     @include('layout.nav')
     @yield('content')
+    <script src="/js/sidebar.js"></script>
 </body>
 </html>
