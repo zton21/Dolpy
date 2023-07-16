@@ -71,8 +71,8 @@
                         </div>
                     </div>
                     <div class="card_box" id="todo" style="min-height: 550px;">
-                        @for($x=0; $x<3; $x++)
-                        <a class="task_card text-decoration-none" id="1" draggable="true">
+                        @for($x=0; $x<2; $x++)
+                        <a class="task_card text-decoration-none" id="{{$x}}" draggable="true">
                             <div class="card shadow rounded-4 mx-3">
                                 <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                                 <div class="card-body d-flex flex-column">
@@ -115,8 +115,8 @@
                         </div>
                     </div>
                     <div class="card_box" id="onprogress" style="min-height: 550px;">
-                        @for($x=0; $x<3; $x++)
-                        <a class="task_card text-decoration-none" id="2" draggable="true" href="#">
+                        @for($x=0; $x<2; $x++)
+                        <a class="task_card text-decoration-none" id="{{$x}}" draggable="true" href="#">
                             <div class="card shadow rounded-4 mx-3">
                                 <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                                 <div class="card-body d-flex flex-column">
@@ -167,8 +167,8 @@
                     </div>
                 </div>
                 <div class="card_box" id="done" style="min-height: 550px;">
-                    @for($x=0; $x<3; $x++)
-                    <a class="task_card text-decoration-none" id="3" draggable="true">
+                    @for($x=0; $x<2; $x++)
+                    <a class="task_card text-decoration-none" id="{{$x}}" draggable="true">
                         <div class="card rounded-4 mx-3 shadow">
                             <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
                             <div class="card-body d-flex flex-column">
