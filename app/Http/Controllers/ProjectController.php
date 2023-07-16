@@ -258,6 +258,7 @@ class ProjectController extends Controller
 
         $topic = new TopicSection;
         $topic->topicName = $request->topic_name;
+        $topic->topicDescription = $request->topic_description;
         $topic->topicDate = date("Y-m-d");
         $topic->project_id = $project_id;
         $topic->user_id = Auth::user()->id;
@@ -358,14 +359,13 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'read') {
             return ProjectController::read_message($request, $id);
         }
-        if ($request->has('topic')) {
+        if ($request->has('task') && $request->task == 'create_topic') {
             return ProjectController::create_topic($request, $id);
         }
         if ($request->has('task') && $request->task == 'edit_topic') {
             return ProjectController::edit_topic($request, $id);
         }
         if ($request->has('task') && $request->task == 'delete_topic') {
-            dd($request);
             return ProjectController::delete_topic($request, $id);
         }
     }
@@ -393,7 +393,6 @@ class ProjectController extends Controller
         $topicID = $request->input('topic_id');
         $topic = TopicSection::find($topicID);
         
-        $topic->comments()->delete();
         $topic->delete();
 
         return back()->with('success', 'Topic deleted successfully.');

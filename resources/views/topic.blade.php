@@ -113,7 +113,7 @@
                                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dotMenuButton">
-                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}" data-topic-description={{ $item->topicDescription }}>Edit Topic</button>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#edit-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}" data-topic-description="{{ $item->topicDescription }}">Edit Topic</button>
                                     <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#delete-topic-modal" data-topic-id="{{ $item->id }}" data-topic-name="{{ $item->topicName }}">Delete Topic</button>
                                 </div>
                             </div>
