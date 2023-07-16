@@ -10,8 +10,8 @@
             </div>
             <form id="project-action-form" method="POST" action="">
                 @csrf
-                <input type="hidden" name="task" id="project-action-input" value="">
-                <input type="hidden" name="project_id" id="project-id-input" value="">
+                <input type="hidden" name="task" id="complete-project-action-input" value="">
+                <input type="hidden" name="project_id" id="complete-project-id-input" value="">
                 <div class="modal-body">
                     <div class="mb-3">
                         <p id="project-action-text" class="text-center fs-5"></p>
@@ -32,8 +32,8 @@
         const projectActionText = document.getElementById('project-action-text');
         const confirmProjectActionBtn = document.getElementById('confirm-project-action-btn');
         const projectActionForm = document.getElementById('project-action-form');
-        const projectActionInput = document.getElementById('project-action-input');
-        const projectIDInput = document.getElementById('project-id-input');
+        const projectActionInput = document.getElementById('complete-project-action-input');
+        const projectIDInput = document.getElementById('complete-project-id-input');
 
         confirmProjectActionBtn.addEventListener('click', function () {
             // Set the action and project name in the form
