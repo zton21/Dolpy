@@ -29,7 +29,7 @@
                         <form class="d-flex flex-row p-3 gap-3 w-100 flex-shrink-1 accept-invite disabled text-dark" method="POST" action='/home'>
                             @csrf
                             <input type='hidden' name='notif_id' value='{{$item->id}}'>
-                            <img class="img-fluid rounded-circle fs-5" style="width: 2em;" src="{{ asset('img/profilePicture.png') }}" alt="">
+                            <img class="img-fluid rounded-circle fs-5" style="width: 2em;" src="{{ asset('storage/' . $item->profileURL) }}" alt="">
                             <div class="d-flex flex-column">
                                 <div class="d-flex"><b>{{$item->firstName}} {{$item->lastName}}</b>&nbsp;has invited you to&nbsp;<b>{{$item->projectName}}</b></div>
                                 <div>{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
