@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ProjectHeader;
 use App\Models\ProjectDetail;
 use App\Models\TopicSection;
+use App\Models\FileSection;
 use App\Models\Comment;
 use App\Models\TopicUser;
 use App\Models\User;
@@ -367,37 +368,30 @@ class ProjectController extends Controller
 
     public static function view_files($project_id)
     {
-        // $result = DB::select(
-        //     "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message 
-        //     FROM topic_sections t JOIN users u                              
-        //     LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id 
-        //     LEFT JOIN comments c ON t.last_comment_id = c.id   
-        //     WHERE t.project_id = :project_id AND u.id = :user_id" 
-        // , ['user_id' => Auth::user()->id, 'project_id' => $project_id]);
+        $result = DB::select(
+            "SELECT f.*, u.firstName, 
+            FROM file_sections f JOIN users u
+            WHERE f.project_id = :project_id"
+        , ['project_id' => $project_id]);
         
-        // $topic_n = ProjectController::get_current_topic($request);
+        $topic_n = ProjectController::get_current_topic($request);
 
-        // if (count($result) == 0) {
-        //     $messages = null;
-        //     $topic = null;
-        // }
-        // else {
-        //     $topic = $result[$topic_n];
-        //     $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
-        //         WHERE c.topic_id = :topic_id ORDER BY c.created_at"
-        //     , ["topic_id" => $topic->id]);
-        // };
-
-        // return view('topic', [
-        //     'user' => Auth::user(),
-        //     'project' => ProjectHeader::find($project_id),
-        //     'topics' => $result,
-        //     'topic' => $topic,
-        //     'messages' => $messages,
-        // ]);
+        if (count($result) == 0) {
+            $messages = null;
+            $topic = null;
+        }
+        else {
+            $topic = $result[$topic_n];
+            $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
+                WHERE c.topic_id = :topic_id ORDER BY c.created_at"
+            , ["topic_id" => $topic->id]);
+        };
 
         return view('files', UserController::appendUser([
             'project' => ProjectHeader::find($project_id),
+            'topics' => $result,
+            'topic' => $topic,
+            'messages' => $messages,
         ]));
     }
 
@@ -428,13 +422,13 @@ class ProjectController extends Controller
             'file_section_description' => '',
         ]);
 
-        $topic = new FileSection;
-        $topic->fileSectionName = $request->file_section_name;
-        $topic->fileSectionDescription = $request->file_section_description;
-        $topic->topicDate = date("Y-m-d");
-        $topic->project_id = $project_id;
-        $topic->user_id = Auth::user()->id;
-        $topic->save();
+        $file = new FileSection;
+        $file->fileSectionName = $request->file_section_name;
+        $file->fileSectionDescription = $request->file_section_description;
+        $file->fileSectionDate = date("Y-m-d");
+        $file->project_id = $project_id;
+        $file->user_id = Auth::user()->id;
+        $file->save();
 
         return redirect()->back();
     }
