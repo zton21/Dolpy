@@ -18,8 +18,11 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('title');
-            $table->'completed';
-            $
+            $table->boolean('completed');
+            $table->longText('content');
+            $table->foreignId('timeline_id');
+
+            $table->foreign('timeline_id')->references('id')->on('timelines')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

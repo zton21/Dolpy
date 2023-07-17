@@ -15,6 +15,7 @@ use App\Models\Comment;
 use App\Models\TopicUser;
 use App\Models\User;
 use App\Models\Timeline;
+use App\Models\Note;
 
 use Pusher\Pusher;
 
@@ -540,12 +541,15 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
         if ($request->has('taskid')) {
             $task = Timeline::find($request->taskid);
+            if ($task) {
+                return view('timeline_inner', [
+                    'user' => Auth::user(),
+                    'project' => ProjectHeader::find($project_id),
+                    'task' => $task,
+                    'notes' => Note::where('timeline_id', $task->id)->get(),
+                ]);
 
-            return view('timeline_inner', [
-                'user' => Auth::user(),
-                'project' => ProjectHeader::find($project_id),
-                
-            ]);
+            }
         }
         $result = DB::select('SELECT sum(n_task) as `sum` from timelines where project_id = ?', [$project_id]);
         $completed = DB::select('SELECT sum(completed_task) as `sum` from timelines where project_id = ?', [$project_id]);
@@ -558,4 +562,6 @@ class ProjectController extends Controller
             'progress' => ProjectController::update_progress($project_id),
         ]);
     }
+
+    
 }
