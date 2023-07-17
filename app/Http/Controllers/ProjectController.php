@@ -433,13 +433,6 @@ class ProjectController extends Controller
         return redirect()->back()->with([['success' => 'Successfully invited member']]);
     }
 
-    public static function post_timeline(Request $request, $project_id) {
-        // Drag n drop task
-        if ($request->has('task') && $request->task == 'modify') return ProjectController::move_task($request, $project_id);
-        if ($request->has('task') && $request->task == 'add_timeline') return ProjectController::add_task($request, $project_id);
-        return response('Request not found', 404);
-    }
-
     public static function add_task(Request $request, $project_id) {
         // Validate request
         // dd("add_timeline");
@@ -566,9 +559,8 @@ class ProjectController extends Controller
                     'user' => Auth::user(),
                     'project' => ProjectHeader::find($project_id),
                     'task' => $task,
-                    'notes' => Note::where('timeline_id', $task->id)->get(),
+                    'notes' => Note::where('timeline_id', $task->id)->orderBy('completed')->get(),
                 ]);
-
             }
         }
         $result = DB::select('SELECT sum(n_task) as `sum` from timelines where project_id = ?', [$project_id]);
@@ -582,6 +574,42 @@ class ProjectController extends Controller
             'progress' => ProjectController::update_progress($project_id),
         ]);
     }
+    public static function add_notes(Request $request, $project_id) {
+        // Validasi
+        $task = Timeline::find($request->taskid);
+        if (!$task) return response('Not found', 403);
 
+        $notes = new Note;
+        $notes->timeline_id = $task->id;
+        $notes->title = $request->note_title;
+        $notes->content = $request->note_description;
+        $notes->save();
+
+        $task->n_task += 1;
+
+        return redirect()->back()->with(['success' => 'Successfully added notes.']);
+    }
     
+    public static function complete_note(Request $request, $project_id) {
+        $task = Timeline::find($request->taskid);
+        if (!$task) return response('Not found', 403);
+
+        $notes = Note::find($request->note_id);
+        if (!$notes) return response('Not found', 404);
+
+        $notes->completed = ($request->completed == 'true' ? 1 : 0);
+        $notes->save();
+        
+        // dd(Note::find($request->note_id)->completed);
+    }
+
+    public static function post_timeline(Request $request, $project_id) {
+        // Drag n drop task
+        if ($request->has('task') && $request->task == 'modify') return ProjectController::move_task($request, $project_id);
+        if ($request->has('task') && $request->task == 'add_timeline') return ProjectController::add_task($request, $project_id);
+        if ($request->has('task') && $request->task == 'create') return ProjectController::add_notes($request, $project_id);
+        if ($request->has('task') && $request->task == 'complete-note') return ProjectController::complete_note($request, $project_id);
+        return response('Request not recognized', 404);
+    }
+
 }

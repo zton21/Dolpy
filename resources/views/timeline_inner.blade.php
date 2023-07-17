@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>timeline-(taskname)</title>
+    <title>{{$task->timelineTitle}}</title>
     
     {{-- Styling --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
@@ -13,6 +13,8 @@
     <link href="/css/master.css" rel="stylesheet">
     <link href="/css/timeline.css" rel="stylesheet" >
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ Session::token() }}">
+    <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
     <script src="/js/timelineinner.js"></script>
 </head>
 
@@ -54,10 +56,10 @@
         <div class="row">
             @foreach ($notes as $item)
                 <div class="col-md-4 p-2 d-flex">
-                    <div class="card p-0 shadow">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card p-0 shadow w-100 {{$item->completed?'bg-success-5':''}}">
+                        <div class="card-header d-flex justify-content-between align-items-center ">
                             <div class="d-flex align-items-center gap-1">
-                                <input class="form-check-input me-1 border-primary-50" type="checkbox" id="check{{$item->id}}" value="" onchange="complete(check{{$item->id}})">
+                                <input class="form-check-input me-1 border-primary-50" type="checkbox" id="{{$item->id}}" {{$item->completed?'checked':''}} value="">
                                 <h3 class="card-title my-1">{{$item->title}}</h3>                 
                             </div>
                             <button class="btn" type="button">
