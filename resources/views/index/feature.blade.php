@@ -78,7 +78,7 @@
     </div>
 
     <div class="row gap-2 p-5 my-3 justify-content-center align-items-center position-relative">
-        <div class="kotak position-absolute top-50 start-0 translate-middle" style="transform: translate(5%,-50%)!important;">
+        <div class="kotak position-absolute top-50 start-0 translate-middle" style="transform: translate(10%,-50%)!important;">
             <svg width="700" height="400" viewBox="0 0 700 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_71_132)">
                     <rect x="17.9998" y="10" width="675" height="375" rx="10" fill="white"/>

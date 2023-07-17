@@ -53,7 +53,7 @@
         }
         .truncate {
             max-width: 100%;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -125,7 +125,7 @@
                                 <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
                                     <div class="col-12 d-flex flex-row align-items-center gap-2">
                                         <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
-                                        <div class="me-auto chatcontent">{{$item->chatContent}}</div>
+                                        <div class="me-auto chatcontent truncate">{{$item->chatContent}}</div>
                                         <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px">{{$item->new_message == 0? '' : $item->new_message}}</div>
                                     </div>
                                 </div>
@@ -234,5 +234,6 @@
             @endempty
         </div>
     </div>
+    <script src="/js/masternav.js"></script>
 </body>
 </html>
