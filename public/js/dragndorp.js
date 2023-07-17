@@ -69,6 +69,12 @@ $(() => {
         x.find('.task_progress').text(data.completed_task + '/' + data.n_task);
         x.find('.task_duedate').text('end at 10/2/2023'); // not implemented
         // console.log(x.html());
+        x.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
+        x.on('dblclick', function(e) {
+            var params = ['taskid='+x.attr('id')];
+            window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.join('&');
+        });
+        
         return x;
     }
 
@@ -92,7 +98,6 @@ $(() => {
                 // append item
                 let card = createTask(arr[curr])
                 card.appendTo($('#'+x));
-                card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
             }
         }
         refresh_data();
@@ -115,7 +120,7 @@ $(() => {
         arr[data.id] = data;
         let card = createTask(data);
         card.appendTo($('#todo'));
-        card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
+        // card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
         $('.card-progress').text(data.progress + '%')
         
         refresh_data();

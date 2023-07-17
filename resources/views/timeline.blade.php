@@ -14,13 +14,16 @@
     <link href="/css/master.css" rel="stylesheet" >
     <link href="/css/dragndrop.css" rel="stylesheet" >
     <link href="/css/timeline.css" rel="stylesheet" >
-    <link href="/css/sidebar.css" rel="stylesheet">
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
     <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
         const project_id = {{$project->id}};
     </script>
+    <style>
+        #done .centang {opacity: 1;}
+        .centang {opacity: 0; }
+    </style>
 </head>
 <body>
 @include('layout.project-nav', ['timelineActive' => "active"])
@@ -48,7 +51,7 @@
                     <h5 class="my-3">Current completion:</h5>
                     <div class="d-flex flex-row justify-content-around my-auto">
                         <div class="flex-column text-center">
-                            <h2 class='card-counter'>1/5</h2>
+                            <h2 class='card-counter'>&nbsp;</h2>
                             cards completed
                         </div>
                         <div class="flex-column text-center">
@@ -69,7 +72,7 @@
                 <div class="border rounded-3 bg-primary-5">
                     <div class="d-flex flex-row justify-content-between align-items-center">
                         <div class="d-flex flex-row p-2">
-                            <div class="h3 todo">To Do <span class="badge rounded-pill text-bg-primary px-2 py-1" style="font-size: 0.5em">3</span></div>
+                            <div class="h3 todo">To Do <span class="badge rounded-pill text-bg-primary px-2 py-1 align-items-center" style="font-size: 0.5em"></span></div>
                         </div>
                         <div class="p-2">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1253_1400)"><path d="M22.5 10.75C24.2964 10.75 25.75 12.2036 25.75 14C25.75 15.7964 24.2964 17.25 22.5 17.25C20.7036 17.25 19.25 15.7964 19.25 14C19.25 12.2036 20.7036 10.75 22.5 10.75ZM22.5 15.4773C23.3155 15.4773 23.9773 14.8155 23.9773 14C23.9773 13.1845 23.3155 12.5227 22.5 12.5227C21.6845 12.5227 21.0227 13.1845 21.0227 14C21.0227 14.8155 21.6845 15.4773 22.5 15.4773Z" fill="#858487"/><path d="M14 10.75C15.7964 10.75 17.25 12.2036 17.25 14C17.25 15.7964 15.7964 17.25 14 17.25C12.2036 17.25 10.75 15.7964 10.75 14C10.75 12.2036 12.2036 10.75 14 10.75ZM14 15.4773C14.8155 15.4773 15.4773 14.8155 15.4773 14C15.4773 13.1845 14.8155 12.5227 14 12.5227C13.1845 12.5227 12.5227 13.1845 12.5227 14C12.5227 14.8155 13.1845 15.4773 14 15.4773Z" fill="#858487"/><path d="M5.5 10.75C7.29636 10.75 8.75 12.2036 8.75 14C8.75 15.7964 7.29636 17.25 5.5 17.25C3.70364 17.25 2.25 15.7964 2.25 14C2.25 12.2036 3.70364 10.75 5.5 10.75ZM5.5 15.4773C6.31545 15.4773 6.97727 14.8155 6.97727 14C6.97727 13.1845 6.31545 12.5227 5.5 12.5227C4.68455 12.5227 4.02273 13.1845 4.02273 14C4.02273 14.8155 4.68455 15.4773 5.5 15.4773Z" fill="#858487"/></g><defs><clipPath id="clip0_1253_1400"><rect width="28" height="28" fill="white" transform="matrix(-1 0 0 -1 28 28)"/></clipPath></defs></svg>
@@ -111,7 +114,7 @@
                 <div class="border rounded-3 bg-primary-5" >
                     <div class="d-flex flex-row justify-content-between align-items-center">
                         <div class="d-flex flex-row p-2">
-                            <div class="h3 onprogress">On Progress <span class="badge rounded-pill text-bg-primary px-2 py-1" style="font-size: 0.5em">3</span></div>
+                            <div class="h3 onprogress">On Progress <span class="badge rounded-pill text-bg-primary px-2 py-1" style="font-size: 0.5em"></span></div>
                         </div>
                         <div class="p-2">
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1253_1400)"><path d="M22.5 10.75C24.2964 10.75 25.75 12.2036 25.75 14C25.75 15.7964 24.2964 17.25 22.5 17.25C20.7036 17.25 19.25 15.7964 19.25 14C19.25 12.2036 20.7036 10.75 22.5 10.75ZM22.5 15.4773C23.3155 15.4773 23.9773 14.8155 23.9773 14C23.9773 13.1845 23.3155 12.5227 22.5 12.5227C21.6845 12.5227 21.0227 13.1845 21.0227 14C21.0227 14.8155 21.6845 15.4773 22.5 15.4773Z" fill="#858487"/><path d="M14 10.75C15.7964 10.75 17.25 12.2036 17.25 14C17.25 15.7964 15.7964 17.25 14 17.25C12.2036 17.25 10.75 15.7964 10.75 14C10.75 12.2036 12.2036 10.75 14 10.75ZM14 15.4773C14.8155 15.4773 15.4773 14.8155 15.4773 14C15.4773 13.1845 14.8155 12.5227 14 12.5227C13.1845 12.5227 12.5227 13.1845 12.5227 14C12.5227 14.8155 13.1845 15.4773 14 15.4773Z" fill="#858487"/><path d="M5.5 10.75C7.29636 10.75 8.75 12.2036 8.75 14C8.75 15.7964 7.29636 17.25 5.5 17.25C3.70364 17.25 2.25 15.7964 2.25 14C2.25 12.2036 3.70364 10.75 5.5 10.75ZM5.5 15.4773C6.31545 15.4773 6.97727 14.8155 6.97727 14C6.97727 13.1845 6.31545 12.5227 5.5 12.5227C4.68455 12.5227 4.02273 13.1845 4.02273 14C4.02273 14.8155 4.68455 15.4773 5.5 15.4773Z" fill="#858487"/></g><defs><clipPath id="clip0_1253_1400"><rect width="28" height="28" fill="white" transform="matrix(-1 0 0 -1 28 28)"/></clipPath></defs></svg>
@@ -161,7 +164,7 @@
                 <div class="border rounded-3" style="background: #F3F8FE">
                 <div class="d-flex flex-row justify-content-between align-items-center">
                     <div class="d-flex flex-row p-2">
-                        <div class="h3 done">Done <span class="badge rounded-pill text-bg-primary px-2 py-1" style="font-size: 0.5em">3</span></div>
+                        <div class="h3 done">Done <span class="badge rounded-pill text-bg-primary px-2 py-1" style="font-size: 0.5em"></span></div>
                     </div>
                     <div class="p-2">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_1253_1400)"><path d="M22.5 10.75C24.2964 10.75 25.75 12.2036 25.75 14C25.75 15.7964 24.2964 17.25 22.5 17.25C20.7036 17.25 19.25 15.7964 19.25 14C19.25 12.2036 20.7036 10.75 22.5 10.75ZM22.5 15.4773C23.3155 15.4773 23.9773 14.8155 23.9773 14C23.9773 13.1845 23.3155 12.5227 22.5 12.5227C21.6845 12.5227 21.0227 13.1845 21.0227 14C21.0227 14.8155 21.6845 15.4773 22.5 15.4773Z" fill="#858487"/><path d="M14 10.75C15.7964 10.75 17.25 12.2036 17.25 14C17.25 15.7964 15.7964 17.25 14 17.25C12.2036 17.25 10.75 15.7964 10.75 14C10.75 12.2036 12.2036 10.75 14 10.75ZM14 15.4773C14.8155 15.4773 15.4773 14.8155 15.4773 14C15.4773 13.1845 14.8155 12.5227 14 12.5227C13.1845 12.5227 12.5227 13.1845 12.5227 14C12.5227 14.8155 13.1845 15.4773 14 15.4773Z" fill="#858487"/><path d="M5.5 10.75C7.29636 10.75 8.75 12.2036 8.75 14C8.75 15.7964 7.29636 17.25 5.5 17.25C3.70364 17.25 2.25 15.7964 2.25 14C2.25 12.2036 3.70364 10.75 5.5 10.75ZM5.5 15.4773C6.31545 15.4773 6.97727 14.8155 6.97727 14C6.97727 13.1845 6.31545 12.5227 5.5 12.5227C4.68455 12.5227 4.02273 13.1845 4.02273 14C4.02273 14.8155 4.68455 15.4773 5.5 15.4773Z" fill="#858487"/></g><defs><clipPath id="clip0_1253_1400"><rect width="28" height="28" fill="white" transform="matrix(-1 0 0 -1 28 28)"/></clipPath></defs></svg>
@@ -175,22 +178,24 @@
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex flex-row card-title align-items-center gap-2">
                                     <h5 class="m-0 task_title">Task 3</h5>
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_1428_1163)">
-                                        <mask id="mask0_1428_1163" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
-                                        <path d="M9.00001 16.5C9.98511 16.5013 10.9607 16.3079 11.8709 15.9309C12.781 15.5539 13.6076 15.0007 14.3033 14.3033C15.0007 13.6076 15.5539 12.781 15.9309 11.8709C16.3079 10.9607 16.5013 9.98511 16.5 9.00001C16.5013 8.01491 16.3078 7.03927 15.9308 6.12917C15.5539 5.21906 15.0007 4.39242 14.3033 3.69676C13.6076 2.99927 12.781 2.44613 11.8709 2.06914C10.9607 1.69215 9.98511 1.49873 9.00001 1.50001C8.01491 1.49875 7.03927 1.69218 6.12917 2.06917C5.21906 2.44616 4.39242 2.99928 3.69676 3.69676C2.99928 4.39242 2.44616 5.21906 2.06917 6.12917C1.69218 7.03927 1.49875 8.01491 1.50001 9.00001C1.49873 9.98511 1.69215 10.9607 2.06914 11.8709C2.44613 12.781 2.99927 13.6076 3.69676 14.3033C4.39242 15.0007 5.21906 15.5539 6.12917 15.9308C7.03927 16.3078 8.01491 16.5013 9.00001 16.5Z" fill="white" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
-                                        <path d="M6 9L8.25 11.25L12.75 6.75" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </mask>
-                                        <g mask="url(#mask0_1428_1163)">
-                                        <path d="M0 0H18V18H0V0Z" fill="#4FD34D"/>
-                                        </g>
-                                        </g>
-                                        <defs>
-                                        <clipPath id="clip0_1428_1163">
-                                        <rect width="18" height="18" fill="white"/>
-                                        </clipPath>
-                                        </defs>
-                                        </svg>                                        
+                                    <div class="centang">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_1428_1163)">
+                                            <mask id="mask0_1428_1163" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="18">
+                                            <path d="M9.00001 16.5C9.98511 16.5013 10.9607 16.3079 11.8709 15.9309C12.781 15.5539 13.6076 15.0007 14.3033 14.3033C15.0007 13.6076 15.5539 12.781 15.9309 11.8709C16.3079 10.9607 16.5013 9.98511 16.5 9.00001C16.5013 8.01491 16.3078 7.03927 15.9308 6.12917C15.5539 5.21906 15.0007 4.39242 14.3033 3.69676C13.6076 2.99927 12.781 2.44613 11.8709 2.06914C10.9607 1.69215 9.98511 1.49873 9.00001 1.50001C8.01491 1.49875 7.03927 1.69218 6.12917 2.06917C5.21906 2.44616 4.39242 2.99928 3.69676 3.69676C2.99928 4.39242 2.44616 5.21906 2.06917 6.12917C1.69218 7.03927 1.49875 8.01491 1.50001 9.00001C1.49873 9.98511 1.69215 10.9607 2.06914 11.8709C2.44613 12.781 2.99927 13.6076 3.69676 14.3033C4.39242 15.0007 5.21906 15.5539 6.12917 15.9308C7.03927 16.3078 8.01491 16.5013 9.00001 16.5Z" fill="white" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+                                            <path d="M6 9L8.25 11.25L12.75 6.75" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </mask>
+                                            <g mask="url(#mask0_1428_1163)">
+                                            <path d="M0 0H18V18H0V0Z" fill="#4FD34D"/>
+                                            </g>
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_1428_1163">
+                                            <rect width="18" height="18" fill="white"/>
+                                            </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </div>                          
                                 </div>
                                 <p class="card-text task_desc text-truncate m-0">every timeline cards will looks like this this this this this this </p>
                                 <hr class="p-0 my-3">
@@ -222,6 +227,6 @@
         </div>
     </div>
     <script src="/js/dragndorp.js"></script>
-    <script src="/js/sidebar.js"></script>
+    <script src="/js/masternav.js"></script>
 </body>
 </html>

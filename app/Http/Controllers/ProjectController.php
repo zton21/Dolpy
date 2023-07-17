@@ -15,6 +15,7 @@ use App\Models\Comment;
 use App\Models\TopicUser;
 use App\Models\User;
 use App\Models\Timeline;
+use App\Models\Note;
 
 use Pusher\Pusher;
 
@@ -343,6 +344,24 @@ class ProjectController extends Controller
         ]);
     }
 
+    public static function post_files(Request $request) {
+        dd("ASDSA");
+        if ($request->has('task') && $request->task == 'send_file') {
+            return ProjectController::add_files_file($request);
+        }
+    }
+
+    public static function add_files_file(Request $request) {
+        if ($request->hasFile('fileInput')) {
+            $file = $request->file('fileInput');
+            $storagePath = storage_path('app/public/uploads');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($storagePath, $fileName);
+            return response()->json(['message' => 'File uploaded successfully']);
+        }
+
+        return response()->json(['error' => 'No file uploaded'], 400);
+    }
     
     public static function timeline_inner($project_id)
     {
@@ -487,6 +506,10 @@ class ProjectController extends Controller
 
         $parent = Timeline::find($request->before);
         if (!$parent) return response('Target has changed', 404);
+        if ($parent->id == $item->id) return response('error1', 200);
+        if ($parent->id == $prev->id) return response('error2', 200);
+        if ($item->id == $prev->id) return response('error3', 200);
+
         if ($parent->group != $request->group) return response('Target has changed', 404);
         if ($parent->project_id != $project_id) return response('Forbidden', 403);
 
@@ -534,7 +557,18 @@ class ProjectController extends Controller
 
     public static function timeline(Request $request, $project_id) {
         if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
-        
+        if ($request->has('taskid')) {
+            $task = Timeline::find($request->taskid);
+            if ($task) {
+                return view('timeline_inner', [
+                    'user' => Auth::user(),
+                    'project' => ProjectHeader::find($project_id),
+                    'task' => $task,
+                    'notes' => Note::where('timeline_id', $task->id)->get(),
+                ]);
+
+            }
+        }
         $result = DB::select('SELECT sum(n_task) as `sum` from timelines where project_id = ?', [$project_id]);
         $completed = DB::select('SELECT sum(completed_task) as `sum` from timelines where project_id = ?', [$project_id]);
         
@@ -546,4 +580,6 @@ class ProjectController extends Controller
             'progress' => ProjectController::update_progress($project_id),
         ]);
     }
+
+    
 }
