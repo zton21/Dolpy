@@ -45,7 +45,7 @@
                 <p>{{$task->timelineDesc}}</p>
             </div>
             <div class="col-4 text-end">
-                <button class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#task-note-modal" data-action="create" data-timeline-id="{{ $task->id }}">
+                <button class="btn bg-primary-50 mb-3 btndolpy"  data-bs-toggle="modal" data-bs-target="#task-note-modal" data-action="create" data-timeline-id="{{ $task->id }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                     <span class="text-white my-auto">Add Task Note</span>
                 </button>
@@ -70,30 +70,6 @@
         <hr class="border border-black border-1 m-0 shadow-sm">
     </div>
 
-    {{-- <div class="container">
-        <div class="row">
-            @foreach ($notes as $item)
-                <div class="col-md-4 p-2 d-flex">
-                    <div class="card p-0 shadow w-100 {{$item->completed?'bg-success-5':''}}">
-                        <div class="card-header d-flex flex-row justify-content-between align-items-center w-100">
-                            <div class="d-flex flex-row align-items-center gap-1 w-100">
-                                <input class="form-check-input me-1 border-primary-50" type="checkbox" id="{{$item->id}}" {{$item->completed?'checked':''}} value="">
-                                <h3 class="card-title my-1 truncate1 w-100">{{$item->title}}</h3>                 
-                            </div>
-                            <button class="btn" type="button">
-                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
-                            </button> 
-                        </div>
-                        <div class="card-body " style="min-width: 18rem; height:15rem; text-justify: inter-word; text-align: justify"> 
-                            <div class="card-text truncate9">
-                                {{$item->content}}
-                            </div>             
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>    
-    </div> --}}
     <div class="container">
         <div class="row">
             @foreach ($notes as $item)

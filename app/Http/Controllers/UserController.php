@@ -142,8 +142,7 @@ class UserController extends Controller
             'user' => Auth::user(),
             'projects' => $results,
         ];
-        
-        return view('home2', $data);
+        return view('home2',  UserController::appendUser($data));
     }
 
 }

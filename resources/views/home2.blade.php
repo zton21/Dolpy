@@ -15,8 +15,7 @@
 <div class="container">
     <div class="row fs-2 w-100 mx-auto">
         <div class="col-12 d-flex flex-row fw-semibold mt-2 mx-0 px-0">
-            <div class="text-primary-50">Good Morning {{$user->firstName}}</div>
-            <div>, ready to work?</div>
+            <div class="text-primary-50"> ({{sizeof($projects)}}) Search Result:</div>
         </div>
     </div>
     <div class="row projects mx-auto px-0">
