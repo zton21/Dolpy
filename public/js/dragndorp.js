@@ -93,6 +93,10 @@ $(() => {
                 let card = createTask(arr[curr])
                 card.appendTo($('#'+x));
                 card.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
+                card.on('dblclick', function(e) {
+                    var params = ['taskid='+card.attr('id')];
+                    window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.join('&');
+                });
             }
         }
         refresh_data();
