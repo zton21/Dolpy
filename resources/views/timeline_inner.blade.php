@@ -26,10 +26,11 @@
                 <p>Task Description</p>
             </div>
             <div class="col-4 text-end">
-                <button onclick="openAddTimelineFormModal()" class="btn btn-primary mb-3">
+                <button class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#task-note-modal" data-action="create" data-timeline-id="{{ $timeline_id }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                     <span class="text-white my-auto">Add Task Note</span>
                 </button>
+                @include('components.task-note-form')
                 <div>
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 2.5V6.25" stroke="#1D1D1D" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
