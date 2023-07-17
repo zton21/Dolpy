@@ -10,13 +10,16 @@
         border: 1px solid #A3A3A5;
         border-radius: 10px;
     }
+    .text-justify{
+        text-align: justify;
+    }
 </style>
 
 @section('title', "Manage Your Account | Dolpy")
 
 @section('content')
 <div class="container my-auto d-flex flex-column justify-content-center">
-    <div class="row mb-5">
+    <div class="row my-3">
         <div class="col-md-8 col-sm-3">
             <div class="h2">
                 Frequently Asked Questions
@@ -30,7 +33,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                        <div class="accordion-body text-justify">
+                            Dolpy is a powerful project management app available on mobile and web. With features like chat, separate file sections, calendar, and timeline, Dolpy enables efficient project organization, secure file storage, and seamless collaboration. Boost productivity and achieve high-quality project outcomes with Dolpy.
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -40,7 +45,9 @@
                     </button>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                        <div class="accordion-body text-justify">
+                            To begin using Dolpy, first, download the Dolpy mobile app from your device's app store or access the web version via the Dolpy website. Create a new account or log in using your existing credentials. Once logged in, you can start by creating a new project and adding team members to collaborate with. Utilize the chat feature to communicate and share updates, use the calendar to schedule tasks and deadlines, and leverage the timeline to track the progress of your project. Dolpy's intuitive interface makes it easy to navigate and maximize the efficiency of your project management processes.
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -50,7 +57,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                        <div class="accordion-body text-justify">
+                            To join the Dolpy community, simply visit the Dolpy website or download the mobile app. From there, click on the "Get Started" button and follow the prompts to create a new account. Once registered, you will have access to the Dolpy community, where you can connect with other users, participate in discussions, share insights, and exchange project management tips. Engaging with the Dolpy community allows you to learn from others, gain valuable knowledge, and expand your professional network.
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -60,7 +69,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                        <div class="accordion-body text-justify">
+                            To extend your Dolpy subscription, go to your account settings, find the subscription tab, and follow the prompts to renew. Dolpy offers flexible monthly, annual, and customized plans. Extend your subscription to enjoy continued access to all Dolpy features and benefits.
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -70,7 +81,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                        <div class="accordion-body text-justify">
+                            Dolpy offers numerous benefits for project management, including seamless collaboration, efficient communication, easy access to project documents, organized scheduling, and enhanced team productivity. With its centralized platform, chat and file features, calendar, and timeline functionalities, Dolpy optimizes time management, improves coordination, and facilitates successful project completion.
+                        </div>
                     </div>
                 </div>
             </div>
