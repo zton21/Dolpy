@@ -9,7 +9,6 @@
 </style>
 
 <nav class="navbar navbar-expand-sm navbar-light bg-white navbar-custom mb-2">
-    @include('layout.sidebar')
     <div class="container-fluid px-5">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('dashboard') }}">
             <img src="{{ asset('/img/logo-primary.png') }}" alt="Logo" height="40px">

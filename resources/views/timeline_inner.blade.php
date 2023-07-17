@@ -13,7 +13,6 @@
     <link href="/css/master.css" rel="stylesheet">
     <link href="/css/timeline.css" rel="stylesheet" >
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
-    <link href="/css/sidebar.css" rel="stylesheet">
     <script src="/js/timelineinner.js"></script>
 </head>
 
@@ -22,8 +21,8 @@
     <div class="container" style="padding-top: 90px;">
         <div class="row py-2 mt-3">
             <div class="col-8">
-                <h1>Task list Name</h1>
-                <p>Task Description</p>
+                <h1>{{$task->timelineTitle}}</h1>
+                <p>{{$task->timelineDesc}}</p>
             </div>
             <div class="col-4 text-end">
                 <button class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#task-note-modal" data-action="create" data-timeline-id="{{ $timeline_id }}">
@@ -44,7 +43,7 @@
                         <path d="M10.3681 17.125H10.3794" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10.3681 20.875H10.3794" stroke="#1D1D1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>                    
-                    Due Date: <span class="text-success-50">30/7/2023</span>
+                    Due Date: <span class="text-success-50">{{$task->end_date}}</span>
                 </div>
             </div> 
         </div>
@@ -53,26 +52,25 @@
 
     <div class="container">
         <div class="row">
-            @for($x = 0; $x < 5; $x++)
+            @foreach ($notes as $item)
                 <div class="col-md-4 p-2 d-flex">
                     <div class="card p-0 shadow">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h3 class="card-title my-1">Task Title Long</h3>                 
-                            <div class="d-flex justify-content-between gap-2">
-                                <a class="p-0 m-0 text-decoration-none text-neutral-90" href="#">Edit</a>
-                                <div class="border-neutral-90 my-1"></div> 
-                                <input class="form-check-input me-1 border-primary-50" type="checkbox" id="check{{$x}}" value="" onchange="complete(check{{$x}})">
+                            <div class="d-flex align-items-center gap-1">
+                                <input class="form-check-input me-1 border-primary-50" type="checkbox" id="check{{$item->id}}" value="" onchange="complete(check{{$item->id}})">
+                                <h3 class="card-title my-1">{{$item->title}}</h3>                 
                             </div>
+                            <button class="btn" type="button">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
+                            </button> 
                         </div>
                         <div class="card-body d-flex flex-fill" style=" height:15em; text-justify: inter-word; text-align: justify"> 
-                            <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. hai hai Magnam corporis corrupti quae sint molestiae ut reiciendis quam facere, quasi harum commodi aliquid, fugit laborum, excepturi iste aspernatur necessitatibus a. Magni! Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam corporis corrupti quae sint molestiae ut reiciendis quam facere, quasi harum commodi aliquid, fugit laborum, excepturi iste aspernatur necessitatibus a. Magni!
+                            {{$item->content}}                            
                         </div>
                     </div>
                 </div>
-        @endfor
+            @endforeach
         </div>    
     </div>
-<script src="/js/sidebar.js"></script>
 </body>
 </html>

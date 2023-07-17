@@ -14,7 +14,6 @@
     <link href="/css/master.css" rel="stylesheet" >
     <link href="/css/dragndrop.css" rel="stylesheet" >
     <link href="/css/timeline.css" rel="stylesheet" >
-    <link href="/css/sidebar.css" rel="stylesheet">
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
     <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
@@ -228,6 +227,5 @@
         </div>
     </div>
     <script src="/js/dragndorp.js"></script>
-    <script src="/js/sidebar.js"></script>
 </body>
 </html>
