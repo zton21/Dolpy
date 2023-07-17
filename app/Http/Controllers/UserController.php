@@ -111,7 +111,7 @@ class UserController extends Controller
             $filename = $user->id . '_' . time() . '.' . $extension;
 
             // Delete previous profile picture if exists
-            if($user->profileURL !== 'blankProfilePic.png') {
+            if($user->profileURL !== 'profile_pictures/blankProfilePic.png') {
                 Storage::disk('public')->delete($user->profileURL);
             }
 

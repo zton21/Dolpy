@@ -25,13 +25,12 @@ return new class extends Migration
 
             $table->integer('next')->nullable();
             $table->string('group')->default('todo');
-            $table->string('type')->default('default');
+            $table->string('type')->default('blue');
 
             $table->integer('n_task')->default(0);
             $table->integer('completed_task')->default(0);
 
-            $table->date('start_date')->default(date('Y-m-d'));
-            $table->date('end_date')->default(date('Y-m-d', strtotime('+1 month', strtotime(date('Y-m-d')))));
+            $table->date('end_date')->default(date('Y-m-d'));
         });
     }
 

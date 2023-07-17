@@ -439,7 +439,8 @@ class ProjectController extends Controller
         $request->validate([
             'timeline_name' => 'required',
             'timeline_description' => '',
-            'timeline_color' => '',
+            'timeline_due_date' => 'required',
+            'tag_color' => '',
             // 'start_date' => 'required',
             // 'end_date' => 'required',
         ]);
@@ -448,7 +449,8 @@ class ProjectController extends Controller
         $timeline = new Timeline;
         $timeline->timelineTitle = $request->timeline_name;
         $timeline->timelineDesc = $request->timeline_description;
-        $timeline->type = 'blue';
+        $timeline->end_date = $request->timeline_due_date;
+        $timeline->type = $request->tag_color;
         // $timeline->start_date = $request->start_date;
         // $timeline->end_date = $request->end_date;
         
@@ -471,7 +473,7 @@ class ProjectController extends Controller
             'private-timeline.'.$project_id,
             'new_task',
             array_merge(
-                $timeline->only(['id', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task']),
+                $timeline->only(['id', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task', 'end_date']),
                 ['progress' => ProjectController::update_progress($project_id)],
             )
         );
@@ -549,7 +551,7 @@ class ProjectController extends Controller
     }
 
     public static function timeline(Request $request, $project_id) {
-        if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
+        if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task', 'end_date')->where('project_id', $project_id)->get();
         if ($request->has('taskid')) {
             $task = Timeline::find($request->taskid);
             if ($task) {
