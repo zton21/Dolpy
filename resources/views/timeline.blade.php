@@ -174,7 +174,7 @@
                     {{-- @for($x=0; $x<3; $x++) --}}
                     <a class="task_card d-none text-decoration-none" id="3" draggable="true">
                         <div class="card rounded-4 mx-3 shadow">
-                            <div class="card-header rounded-top-4 bg-danger fs-4" style="height: 1em"></div>
+                            <div class="card-header rounded-top-4 fs-4 card-color" style="height: 1em"></div>
                             <div class="card-body d-flex flex-column">
                                 <div class="d-flex flex-row card-title align-items-center gap-2">
                                     <h5 class="m-0 task_title">Task 3</h5>

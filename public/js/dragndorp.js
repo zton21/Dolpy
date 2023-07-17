@@ -67,7 +67,8 @@ $(() => {
         x.find('.task_title').text(data.timelineTitle);
         x.find('.task_desc').text(data.timelineDesc);
         x.find('.task_progress').text(data.completed_task + '/' + data.n_task);
-        x.find('.task_duedate').text('end at 10/2/2023'); // not implemented
+        x.find('.task_duedate').text('end at '+data.end_date);
+        x.find('.card-color').addClass('bg-'+data.type+'-50');
         // console.log(x.html());
         x.on('dragstart', function(e) {e.originalEvent.dataTransfer.setData('element', e.target.id);})
         x.on('dblclick', function(e) {
