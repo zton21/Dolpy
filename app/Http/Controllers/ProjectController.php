@@ -586,6 +586,7 @@ class ProjectController extends Controller
         $notes->save();
 
         $task->n_task += 1;
+        $task->save();
 
         return redirect()->back()->with(['success' => 'Successfully added notes.']);
     }
@@ -597,8 +598,10 @@ class ProjectController extends Controller
         $notes = Note::find($request->note_id);
         if (!$notes) return response('Not found', 404);
 
+        $task->completed_task = $task->completed_task + ($request->completed == 'true' ? 1 : 0) - $notes->completed;
         $notes->completed = ($request->completed == 'true' ? 1 : 0);
         $notes->save();
+        $task->save();
         
         // dd(Note::find($request->note_id)->completed);
     }
