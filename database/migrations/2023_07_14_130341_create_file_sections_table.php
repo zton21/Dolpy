@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('project_id');
             $table->foreignId('user_id');
             $table->string('fileSectionName');
+            $table->string('fileSectionDescription')->nullable();
             $table->date('fileSectionDate');
             $table->timestamps();
 

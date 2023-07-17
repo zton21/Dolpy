@@ -25,7 +25,7 @@
                     <div class="bg-primary-5 dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="notificationDropdown">
                         <div class="fs-4 px-3 pt-2 fw-semibold">Notification</div>
                         <hr class="mx-3 mb-0">
-                        <a class="dropdown-item d-flex flex-row p-3 gap-3 w-100 flex-shrink-1" href="#">
+                        <div class="dropdown-item d-flex flex-row p-3 gap-3 w-100 flex-shrink-1">
                             <img class="img-fluid rounded-circle fs-5" style="width: 2em;" src="{{ asset('img/profilePicture.png') }}" alt="">
                             <div class="d-flex flex-column">
                                 <div class="d-flex">Dolpy Team has invited you to web programming project</div>
@@ -35,7 +35,7 @@
                                     <button class="btn btn-danger">Reject</button>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item">
