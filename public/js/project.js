@@ -1,4 +1,4 @@
-const LAZY_READ_TIMEOUT = 5000;
+const LAZY_READ_TIMEOUT = 1000;
 
 $(window).on('load', () => {
     let topic_id = $('.active1').attr('id')
