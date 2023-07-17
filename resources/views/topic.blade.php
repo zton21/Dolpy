@@ -60,13 +60,7 @@
             display: -webkit-box;
         }
     </style>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
+    <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
     <script src="{{asset('js/project.js')}}"></script>
 </head>
 <body>
