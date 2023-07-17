@@ -35,7 +35,15 @@ class UserController extends Controller
             JOIN users u ON u.id = d.user_id WHERE h.projectCompleted = true ORDER BY h.created_at", [$x]);
         return $results;
     }
-
+    public static function appendUser($data) {
+        return array_merge($data, [
+            'user' => Auth::user(),
+            'notifs' => DB::select('SELECT n.*, u.firstName, u.lastName, p.projectName, u.profileURL from notifications n
+            LEFT JOIN users u ON n.sender_id = u.id
+            LEFT JOIN project_headers p ON n.project_id = p.id
+            where user_id = ?', [Auth::user()->id]),
+        ]);
+    }
     public static function home(Request $request)
     {
         if ($request->has('search')) return UserController::search($request);
@@ -44,36 +52,29 @@ class UserController extends Controller
         $complete = UserController::get_user_complete_projects("");
 
         $data = [
-            'user' => Auth::user(),
             'projects' => $uncomplete,
             'completed' => $complete,
         ];
         
-        return view('home', $data);
+        return view('home', UserController::appendUser($data));
     }
 
     public static function profile()
     {
-        $data = [
-            'user' => Auth::user(),
-        ];
-        return view('profile', $data);
+        $data = [];
+        return view('profile', UserController::appendUser($data));
     }
 
     public static function setting()
     {
-        $data = [
-            'user' => Auth::user(),
-        ];
-        return view('setting', $data);
+        $data = [];
+        return view('setting', UserController::appendUser($data));
     }
 
     public static function faq()
     {
-        $data = [
-            'user' => Auth::user(),
-        ];
-        return view('faq', $data);
+        $data = [];
+        return view('faq', UserController::appendUser($data));
     }
 
     // Join Project sebagai member
@@ -97,10 +98,8 @@ class UserController extends Controller
     
     public static function calendar()
     {
-        $data = [
-            'user' => Auth::user(),
-        ];
-        return view('calendar', $data);
+        $data = [];
+        return view('calendar', UserController::appendUser($data));
     }
 
     public function updateProfilePicture(Request $request)

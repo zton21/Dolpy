@@ -150,10 +150,16 @@
     fill: var(--primary-70) ;
     transform: rotate(330deg);
 }
+
+.notif .show #SVGRepo_notif {
+    stroke: var(--primary-70) !important;
+    transform: rotate(330deg);
+}
+/* 
 .notif_nactive{
     stroke: var(--primary-70) ;
     transform: rotate(330deg);
-}
+} */
 
 /* Dolpy Navbar poject css */
 a.pnav{

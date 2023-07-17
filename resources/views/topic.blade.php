@@ -59,6 +59,9 @@
             text-overflow: ellipsis;
             display: -webkit-box;
         }
+        .fs-7 {
+            font-size: 12px;
+        }
     </style>
     <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
     <script src="{{asset('js/project.js')}}"></script>
@@ -110,7 +113,7 @@
                                         <div class="text-secondary">{{$item->topicDate}}</div>
                                     </div>
                                     <div class="col-5 d-flex flex-row gap-2 align-items-center justify-content-end">
-                                        <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                        <img src="{{ asset('storage/' . $item->profileURL2) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                                         <div>by {{$item->firstName}}</div>
                                     </div>
                                 </div>
@@ -118,7 +121,7 @@
                                 @isset($item->chatContent)
                                 <div class="row d-flex align-items-center justify-content-between px-3 pb-2">
                                     <div class="col-12 d-flex flex-row align-items-center gap-2">
-                                        <img src="{{ asset('img/profilePicture.png') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                                         <div class="me-auto chatcontent truncate">{{$item->chatContent}}</div>
                                         <div class="rounded-circle text-white d-flex align-items-center justify-content-center notification" style="background: #3980F3; width: 32px; height: 32px">{{$item->new_message == 0? '' : $item->new_message}}</div>
                                     </div>
@@ -161,7 +164,7 @@
                                     <div class="offset-1 col-10">
                                         <div class="d-flex flex-row-reverse gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex text-break" style="background: #D7E6FD">
@@ -170,18 +173,18 @@
                                         </div>
                                     </div>
                                     <div class="col-1">
-                                        <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
                                     </div>
                                 </div>                                
                             @else
                                 <div class="row px-4 py-2">
                                     <div class="col-1">
-                                        <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                             {{$item->chatContent}}
