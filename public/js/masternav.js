@@ -15,6 +15,14 @@ $(() => {
 
     items.forEach(item => {
         if (item.classList.contains('dropdown-toggle') == false) {
+            if (item.classList.contains('pnav')) {
+                item.addEventListener("mouseover", () =>{
+                    item.parentNode.classList.toggle("hoverproject");
+                });
+                item.addEventListener("mouseout", () =>{
+                    item.parentNode.classList.toggle("hoverproject");
+                });
+            }
             item.addEventListener("mouseover", () =>{
                 item.parentNode.classList.toggle("hover");
             });

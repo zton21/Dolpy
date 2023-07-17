@@ -234,5 +234,6 @@
             @endempty
         </div>
     </div>
+    <script src="/js/masternav.js"></script>
 </body>
 </html>
