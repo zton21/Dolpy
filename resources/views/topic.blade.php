@@ -165,7 +165,7 @@
                         @forelse ($messages as $item)
                             @if ($item->user_id == $user->id)
                                 <div class="row px-4 py-2">
-                                    <div class="col-11">
+                                    <div class="offset-1 col-10">
                                         <div class="d-flex flex-row-reverse gap-2">
                                             <div>{{$item->firstName}}</div>
                                             <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
@@ -185,7 +185,7 @@
                                     <div class="col-1">
                                         <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle">
                                     </div>
-                                    <div class="col-11">
+                                    <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
                                             <div>{{$item->firstName}}</div>
                                             <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
