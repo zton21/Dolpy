@@ -487,6 +487,10 @@ class ProjectController extends Controller
 
         $parent = Timeline::find($request->before);
         if (!$parent) return response('Target has changed', 404);
+        if ($parent->id == $item->id) return response('error1', 200);
+        if ($parent->id == $prev->id) return response('error2', 200);
+        if ($item->id == $prev->id) return response('error3', 200);
+
         if ($parent->group != $request->group) return response('Target has changed', 404);
         if ($parent->project_id != $project_id) return response('Forbidden', 403);
 
@@ -534,7 +538,15 @@ class ProjectController extends Controller
 
     public static function timeline(Request $request, $project_id) {
         if ($request->has('task') && $request->task == 'get_tasks') return Timeline::select('id', 'next', 'group', 'timelineTitle', 'timelineDesc', 'type', 'n_task', 'completed_task')->where('project_id', $project_id)->get();
-        
+        if ($request->has('taskid')) {
+            $task = Timeline::find($request->taskid);
+
+            return view('timeline_inner', [
+                'user' => Auth::user(),
+                'project' => ProjectHeader::find($project_id),
+                
+            ]);
+        }
         $result = DB::select('SELECT sum(n_task) as `sum` from timelines where project_id = ?', [$project_id]);
         $completed = DB::select('SELECT sum(completed_task) as `sum` from timelines where project_id = ?', [$project_id]);
         
