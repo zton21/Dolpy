@@ -1,8 +1,8 @@
 $(() => {  
     let items = document.querySelectorAll('.nav-link');
+    let btn_pcs = document.querySelectorAll('.btndolpy');
     const pathname = window.location.pathname;
-    console.log(pathname);
-    
+
     let notif = document.querySelector('#SVGRepo_notif');
     notif.addEventListener("click", () =>{
         notif.classList.toggle("notif_nactive");
@@ -26,10 +26,23 @@ $(() => {
             item.addEventListener("mouseover", () =>{
                 item.parentNode.classList.toggle("hover");
             });
+            // item.addEventListener("mouseout", () =>{
+            //     item.parentNode.classList.toggle("hover");
+            // });
+        }
+    });
+    btn_pcs.forEach(item => {
+        console.log(item);
+        if (item.classList.contains('dropdown-toggle') == false) {
+            item.addEventListener("mouseover", () =>{
+                item.classList.toggle("hoverbtn");
+            });
             item.addEventListener("mouseout", () =>{
-                item.parentNode.classList.toggle("hover");
-                // item.classList.toggle("hover");
+                item.classList.toggle("hoverbtn");
             });
         }
     });
+
+    
+
 });

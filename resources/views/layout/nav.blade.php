@@ -6,8 +6,9 @@
         </a>
         <div class="d-flex flex-row">
             <form class="d-flex m-0">
-                <input class="form-control me-2 my-2 d-none d-md-block" type="search" placeholder="Search" aria-label="Search">
+                <input type="search" class="form-control me-2 my-2 d-none d-md-block" placeholder="Search" name="search" value="{{ request('search') }}">
             </form>
+            
             <ul class="navbar-nav align-items-center gap-2">
                 <li class="nav-item" style="border-radius: 50%;">
                     <a class="nav-link" href="{{ route('faq') }}">
