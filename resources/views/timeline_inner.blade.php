@@ -13,7 +13,6 @@
     <link href="/css/master.css" rel="stylesheet">
     <link href="/css/timeline.css" rel="stylesheet" >
     <link href="{{ asset('css/rfs.css') }}" rel="stylesheet">
-    <link href="/css/sidebar.css" rel="stylesheet">
     <script src="/js/timelineinner.js"></script>
 </head>
 
@@ -72,6 +71,5 @@
         @endfor
         </div>    
     </div>
-<script src="/js/sidebar.js"></script>
 </body>
 </html>
