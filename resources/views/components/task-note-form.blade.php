@@ -11,7 +11,7 @@
             <form id="task-note-form" method="POST" action="">
                 @csrf
                 <input type="hidden" name="task" id="task-note-input" value="">
-                <input type="hidden" name="project_id" id="timeline-id-input" value="">
+                <input type="hidden" name="timeline_id" id="timeline-id-input" value="">
                 <div class="modal-body">
                     @csrf
                     <div class="mb-3">
