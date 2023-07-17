@@ -13,6 +13,7 @@ use App\Models\ProjectDetail;
 use App\Models\TopicSection;
 use App\Models\FileSection;
 use App\Models\Comment;
+use App\Models\Attachment;
 use App\Models\TopicUser;
 use App\Models\User;
 use App\Models\Timeline;
@@ -365,33 +366,54 @@ class ProjectController extends Controller
         // dd(\DB::getQueryLog());
     }
 
-    public static function view_files($project_id)
+    public static function view_files(Request $request, $project_id)
     {
         $result = DB::select(
-            "SELECT f.*, u.firstName, 
-            FROM file_sections f JOIN users u
-            WHERE f.project_id = :project_id"
+            "SELECT f.*, u.firstName, u.lastName, u.profileURL
+            FROM file_sections f
+            JOIN users u ON f.user_id = u.id
+            WHERE f.project_id = :project_id" 
         , ['project_id' => $project_id]);
         
-        $topic_n = ProjectController::get_current_topic($request);
-
-        if (count($result) == 0) {
-            $messages = null;
-            $topic = null;
+        $fileSection = NULL;
+        $attachments = NULL;
+        if (count($result) > 0) {
+            
+            $id = ($request->has('id') ? $request->id : $result[0]->id);
+            $fileSection = FileSection::find($id);
+            
+            if ($fileSection) {
+                $attachments = Attachment::where('file_id', $fileSection->id);
+            }
+            
         }
-        else {
-            $topic = $result[$topic_n];
-            $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
-                WHERE c.topic_id = :topic_id ORDER BY c.created_at"
-            , ["topic_id" => $topic->id]);
-        };
-
         return view('files', UserController::appendUser([
             'project' => ProjectHeader::find($project_id),
-            'topics' => $result,
-            'topic' => $topic,
-            'messages' => $messages,
+            'files' => $result,
+            'file' => $fileSection,
+            'attachments' => $attachments,
         ]));
+        
+        // $topic_n = ProjectController::get_current_topic($request);
+
+        // if (count($result) == 0) {
+        //     $messages = null;
+        //     $topic = null;
+        // }
+        // else {
+        //     $topic = $result[$topic_n];
+        //     $messages = DB::select("SELECT c.*, u.firstName, u.id, u.profileURL FROM comments c JOIN users u ON c.user_id = u.id 
+        //         WHERE c.topic_id = :topic_id ORDER BY c.created_at"
+        //     , ["topic_id" => $topic->id]);
+        // };
+        
+
+        // return view('topic', UserController::appendUser([
+        //     'project' => ProjectHeader::find($project_id),
+        //     'topics' => $result,
+        //     'topic' => $topic,
+        //     'messages' => $messages,
+        // ]));
     }
 
     public static function post_files(Request $request, $id) {
