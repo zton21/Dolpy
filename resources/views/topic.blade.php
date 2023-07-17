@@ -113,7 +113,7 @@
                                         <div class="text-secondary">{{$item->topicDate}}</div>
                                     </div>
                                     <div class="col-5 d-flex flex-row gap-2 align-items-center justify-content-end">
-                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
+                                        <img src="{{ asset('storage/' . $item->profileURL2) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 40px">
                                         <div>by {{$item->firstName}}</div>
                                     </div>
                                 </div>
