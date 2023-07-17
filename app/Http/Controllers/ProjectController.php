@@ -219,12 +219,11 @@ class ProjectController extends Controller
     // Notes: Message gw ilangin karena rencananya mau pake local storage sama sync perubahan pake websocket
     public static function view_project(Request $request, $project_id) {
         $result = DB::select(
-            "SELECT t.*, u.firstName, c.chatContent, u.profileURL, us.profileURL AS profileURL2, (t.n_message - IFNULL(tu.seen, 0)) AS new_message 
-            FROM topic_sections t 
-            JOIN users u ON t.user_id = u.id              
+            "SELECT t.*, u.firstName, c.chatContent, u.profileURL, us.profileURL AS profileURL2, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t 
+            JOIN users u ON t.user_id = u.id      
             LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id 
-            LEFT JOIN comments c ON t.last_comment_id = c.id   
-            LEFT JOIN users us ON c.user_id = us.id
+            LEFT JOIN comments c ON t.last_comment_id = c.id  
+            LEFT JOIN users us ON us.id = c.user_id
             WHERE t.project_id = :project_id" 
         , ['project_id' => $project_id]);
         
