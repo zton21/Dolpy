@@ -69,7 +69,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                     Route::post('/pusher/auth/{id}', 'pusher_authenticate');
                     
                     // Files
-                    Route::get('/project/{id}/files', 'files')->name('files');
+                    Route::get('/project/{id}/files', 'view_files')->name('files');
                     Route::post('/project/{id}/files', 'post_files');
 
                     // Member

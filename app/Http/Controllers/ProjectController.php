@@ -336,19 +336,79 @@ class ProjectController extends Controller
         // dd(\DB::getQueryLog());
     }
 
-    public static function files($project_id)
+    public static function view_files($project_id)
     {
+        // $result = DB::select(
+        //     "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message 
+        //     FROM topic_sections t JOIN users u                              
+        //     LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id 
+        //     LEFT JOIN comments c ON t.last_comment_id = c.id   
+        //     WHERE t.project_id = :project_id AND u.id = :user_id" 
+        // , ['user_id' => Auth::user()->id, 'project_id' => $project_id]);
+        
+        // $topic_n = ProjectController::get_current_topic($request);
+
+        // if (count($result) == 0) {
+        //     $messages = null;
+        //     $topic = null;
+        // }
+        // else {
+        //     $topic = $result[$topic_n];
+        //     $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
+        //         WHERE c.topic_id = :topic_id ORDER BY c.created_at"
+        //     , ["topic_id" => $topic->id]);
+        // };
+
+        // return view('topic', [
+        //     'user' => Auth::user(),
+        //     'project' => ProjectHeader::find($project_id),
+        //     'topics' => $result,
+        //     'topic' => $topic,
+        //     'messages' => $messages,
+        // ]);
+
         return view('files', [
             'user' => Auth::user(),
             'project' => ProjectHeader::find($project_id),
         ]);
     }
 
-    public static function post_files(Request $request) {
-        dd("ASDSA");
-        if ($request->has('task') && $request->task == 'send_file') {
-            return ProjectController::add_files_file($request);
+    public static function post_files(Request $request, $id) {
+        // if ($request->has('task') && $request->task == 'send_file') {
+        //     return ProjectController::add_files_file($request);
+        // }
+        // if ($request->has('task') && $request->task == 'send_message') {
+        //     return CommentController::add_comment($request, $id);
+        // }
+        // if ($request->has('task') && $request->task == 'read') {
+        //     return ProjectController::read_message($request, $id);
+        // }
+        if ($request->has('task') && $request->task == 'create_file') {
+            return ProjectController::create_file($request, $id);
         }
+        // if ($request->has('task') && $request->task == 'edit_topic') {
+        //     return ProjectController::edit_topic($request, $id);
+        // }
+        // if ($request->has('task') && $request->task == 'delete_topic') {
+        //     return ProjectController::delete_topic($request, $id);
+        // }
+    }
+
+    public static function create_file(Request $request, $project_id) {
+        $request->validate([
+            'file_section_name' => 'required',
+            'file_section_description' => '',
+        ]);
+
+        $topic = new FileSection;
+        $topic->fileSectionName = $request->file_section_name;
+        $topic->fileSectionDescription = $request->file_section_description;
+        $topic->topicDate = date("Y-m-d");
+        $topic->project_id = $project_id;
+        $topic->user_id = Auth::user()->id;
+        $topic->save();
+
+        return redirect()->back();
     }
 
     public static function add_files_file(Request $request) {

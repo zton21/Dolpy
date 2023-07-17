@@ -9,16 +9,17 @@
                 </div>
             </div>
             <form id="add-file-section-form" method="POST" action="">
+                @csrf
+                <input type="hidden" name="task" value="create_file">
                 <div class="modal-body">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="file-section-name" class="form-label">File Section Title</label>
-                            <input type="text" class="form-control" id="file-section-name" name="file-section_name" placeholder="Enter file section title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="file-section-description" class="form-label">File Section Description <span class="text-secondary">(Optional)</span></label>
-                            <textarea class="form-control" id="file-section-description" name="file-section_description" placeholder="Enter file section description" rows="1"></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="file-section-name" class="form-label">File Section Title</label>
+                        <input type="text" class="form-control" id="file-section-name" name="file_section_name" placeholder="Enter file section title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="file-section-description" class="form-label">File Section Description <span class="text-secondary">(Optional)</span></label>
+                        <textarea class="form-control" id="file-section-description" name="file_section_description" placeholder="Enter file section description" rows="1"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" name="file-section" class="btn btn-primary w-100">Create New File Section</button>
