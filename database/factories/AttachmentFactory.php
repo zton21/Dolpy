@@ -22,7 +22,7 @@ class AttachmentFactory extends Factory
             'file_id' => FileSection::all()->random()->id,
             'user_id' => User::all()->random()->id,
             'attachmentPath' => fake()->imageUrl($width = 640, $height = 480),
-            'attachmentType' => fake()->randomElement(['image', 'link', 'doc']),
+            'attachmentType' => fake()->randomElement(['image', 'link', 'file']),
             'attachmentDate' => fake()->dateTimeThisYear(),
         ];
     }

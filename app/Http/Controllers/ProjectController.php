@@ -343,6 +343,24 @@ class ProjectController extends Controller
         ]);
     }
 
+    public static function post_files(Request $request) {
+        dd("ASDSA");
+        if ($request->has('task') && $request->task == 'send_file') {
+            return ProjectController::add_files_file($request);
+        }
+    }
+
+    public static function add_files_file(Request $request) {
+        if ($request->hasFile('fileInput')) {
+            $file = $request->file('fileInput');
+            $storagePath = storage_path('app/public/uploads');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($storagePath, $fileName);
+            return response()->json(['message' => 'File uploaded successfully']);
+        }
+
+        return response()->json(['error' => 'No file uploaded'], 400);
+    }
     
     public static function timeline_inner($project_id)
     {
