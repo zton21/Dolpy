@@ -1,0 +1,38 @@
+.sidebar{
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: max-content;
+    margin-top: -15px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+}
+.sidebar_body{
+    box-shadow: 4px 0px 5px 0px rgba(0, 0, 0, 0.25);  
+    height: 100vh;
+}
+
+.close{
+    /* transform: translateX(-50%) rotate(0deg); */
+    display: none;
+}
+
+.hover{
+    background-color: #D7E6FD;
+}
+
+.sdinactive{
+    color: #1D1D1D !important;
+    fill: #1D1D1D !important;
+    stroke: #1D1D1D !important;
+}
+
+.sdactive{
+    color: #EDEDED !important;
+    fill: #EDEDED !important;
+    stroke: #EDEDED !important;
+}
+
+.mx-n1{
+    margin-left: -1rem !important;
+}
