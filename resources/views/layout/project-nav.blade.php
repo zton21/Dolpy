@@ -50,7 +50,7 @@
                     <div class="bg-primary-5 dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="notificationDropdown">
                         <div class="fs-4 px-3 pt-2 fw-semibold">Notification</div>
                         <hr class="mx-3 mb-0">
-                        @foreach ($notifs as $item)
+                        @forelse ($notifs as $item)
                         <form class="d-flex flex-row p-3 gap-3 w-100 flex-shrink-1 accept-invite disabled text-dark" method="POST" action='/home'>
                             @csrf
                             <input type='hidden' name='notif_id' value='{{$item->id}}'>
@@ -63,8 +63,10 @@
                                     <button name="task" value="reject_invite" class="btn btn-danger">Reject</button>
                                 </div>
                             </div>
-                        </form>                            
-                        @endforeach
+                        </form>    
+                        @empty
+                        <div class="disabled text-center py-3">No notification.</div>                        
+                        @endforelse
                     </div>
                 </li>
                 {{-- <li class="nav-item">
