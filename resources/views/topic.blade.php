@@ -74,7 +74,7 @@
             <div class="col-5 p-0 h-100">
                 <div class="container-fluid p-0 h-100 d-flex flex-column overflow-hidden">
                     <div class="card p-0">
-                        <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
+                        <img style="height: 4em" src="{{ asset($project->projectWallpaperURL) }}" class="img-fluid card-img-top">
                         <div class="card-body bg-primary-10">
                             <h3>{{ $project->projectName }}</h3>
                             <div class="truncate" style="max-width: 100%;">{{$project->projectDescription}}</div>
