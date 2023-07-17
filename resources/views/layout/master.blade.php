@@ -16,5 +16,6 @@
 <body class="min-vh-100 d-flex flex-column">
     @include('layout.nav')
     @yield('content')
+    <script src="/js/masternav.js"></script>
 </body>
 </html>
