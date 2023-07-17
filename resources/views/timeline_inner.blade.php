@@ -19,6 +19,24 @@
 </head>
 
 <body>
+    <style>
+        .truncate9 {
+            max-width: 100%;
+            -webkit-line-clamp: 9;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+        }
+        .truncate1 {
+            max-width: 100%;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+        }
+    </style>
 @include('layout.project-nav', ['timelineActive' => "active"])
     <div class="container" style="padding-top: 90px;">
         <div class="row py-2 mt-3">
@@ -52,27 +70,52 @@
         <hr class="border border-black border-1 m-0 shadow-sm">
     </div>
 
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             @foreach ($notes as $item)
                 <div class="col-md-4 p-2 d-flex">
                     <div class="card p-0 shadow w-100 {{$item->completed?'bg-success-5':''}}">
-                        <div class="card-header d-flex justify-content-between align-items-center ">
-                            <div class="d-flex align-items-center gap-1">
+                        <div class="card-header d-flex flex-row justify-content-between align-items-center w-100">
+                            <div class="d-flex flex-row align-items-center gap-1 w-100">
                                 <input class="form-check-input me-1 border-primary-50" type="checkbox" id="{{$item->id}}" {{$item->completed?'checked':''}} value="">
-                                <h3 class="card-title my-1">{{$item->title}}</h3>                 
+                                <h3 class="card-title my-1 truncate1 w-100">{{$item->title}}</h3>                 
                             </div>
                             <button class="btn" type="button">
                                 <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
                             </button> 
                         </div>
-                        <div class="card-body d-flex flex-fill" style="min-width: 18rem; height:15rem; text-justify: inter-word; text-align: justify"> 
-                            {{$item->content}}                            
+                        <div class="card-body " style="min-width: 18rem; height:15rem; text-justify: inter-word; text-align: justify"> 
+                            <div class="card-text truncate9">
+                                {{$item->content}}
+                            </div>             
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>    
+    </div> --}}
+    <div class="container">
+        <div class="row">
+            @foreach ($notes as $item)
+                <div class="col-md-4 p-2 d-flex">
+                    <div class="card p-0 shadow w-100 {{$item->completed?'bg-success-5':''}}">
+                        <div class="card-header d-flex flex-row justify-content-between align-items-center w-100 gap-1">
+                            <input class="form-check-input me-1 border-primary-50 p-2" type="checkbox" id="{{$item->id}}" {{$item->completed?'checked':''}} value="">
+                            <h3 class="card-title my-1 truncate1 w-100">{{$item->title}}</h3>
+                            <button class="btn" type="button">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
+                            </button> 
+                        </div>
+                        <div class="card-body " style="min-width: 18rem; height:15rem; text-justify: inter-word; text-align: justify"> 
+                            <div class="card-text truncate9">
+                                {{$item->content}}
+                            </div>             
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>    
     </div>
+
 </body>
 </html>
