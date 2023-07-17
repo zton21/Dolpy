@@ -218,7 +218,7 @@ class ProjectController extends Controller
     // Notes: Message gw ilangin karena rencananya mau pake local storage sama sync perubahan pake websocket
     public static function view_project(Request $request, $project_id) {
         $result = DB::select(
-            "SELECT t.*, u.firstName, c.chatContent, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t 
+            "SELECT t.*, u.firstName, c.chatContent, u.profileURL, us.profileURL AS profileURL2, (t.n_message - IFNULL(tu.seen, 0)) AS new_message FROM topic_sections t 
             JOIN users u ON t.user_id = u.id      
             LEFT JOIN topic_user tu ON t.id = tu.topic_id AND u.id = tu.user_id 
             LEFT JOIN comments c ON t.last_comment_id = c.id  
@@ -234,7 +234,7 @@ class ProjectController extends Controller
         }
         else {
             $topic = $result[$topic_n];
-            $messages = DB::select("SELECT c.*, u.firstName, u.id FROM comments c JOIN users u ON c.user_id = u.id 
+            $messages = DB::select("SELECT c.*, u.firstName, u.id, u.profileURL FROM comments c JOIN users u ON c.user_id = u.id 
                 WHERE c.topic_id = :topic_id ORDER BY c.created_at"
             , ["topic_id" => $topic->id]);
         };
@@ -338,7 +338,6 @@ class ProjectController extends Controller
 
     public static function read_message(Request $request, $project_id) {
         // Validasi
-        \DB::enableQueryLog();
         $topic = TopicSection::find($request->topic_id);
         if (!$topic) return response('Forbidden', 403);
         if ($topic->project_id != $project_id) response('Forbidden', 403);
@@ -359,6 +358,7 @@ class ProjectController extends Controller
 
             DB::update('UPDATE topic_user SET seen = ? where topic_id = ? AND user_id = ?', [$topic->n_message, $topic->id, $user_id]);
         }
+        dd($topic, $data);
         // dd($topic, $data);
 
         // dd(\DB::getQueryLog());

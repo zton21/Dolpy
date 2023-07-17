@@ -38,8 +38,8 @@ class UserController extends Controller
     public static function appendUser($data) {
         return array_merge($data, [
             'user' => Auth::user(),
-            'notifs' => DB::select('SELECT n.*, u.firstName, u.lastName, p.projectName from notifications n
-            LEFT JOIN users u ON n.user_id = u.id
+            'notifs' => DB::select('SELECT n.*, u.firstName, u.lastName, p.projectName, u.profileURL from notifications n
+            LEFT JOIN users u ON n.sender_id = u.id
             LEFT JOIN project_headers p ON n.project_id = p.id
             where user_id = ?', [Auth::user()->id]),
         ]);
