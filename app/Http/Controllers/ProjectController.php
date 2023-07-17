@@ -538,7 +538,7 @@ class ProjectController extends Controller
         return response([
             // 'progress' => ProjectController::update_progress($project_id),
             'timestamp' => $timestamp,
-
+            
         ], 200);
     } 
     

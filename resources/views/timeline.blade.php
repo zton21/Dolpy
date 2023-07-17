@@ -23,6 +23,22 @@
     <style>
         #done .centang {opacity: 1;}
         .centang {opacity: 0; }
+
+        #done .task_duedate {color: var(--success-70);}
+        #done .endat {stroke: var(--success-70);}
+        #done .progress-svg {stroke: var(--success-70);}
+        #done .task_progress {color: var(--success-70);}
+
+        #todo .task_duedate {color: var(--neutral-50);}
+        #todo .endat {stroke: var(--neutral-50);}
+        #todo .progress-svg {stroke: var(--neutral-50);}
+        #todo .task_progress {color: var(--neutral-50);}
+
+        .task_duedate {color: var(--primary-70);}
+        .endat {stroke: var(--primary-70);}
+
+        .progress-svg {stroke: var(--primary-70);}
+        .task_progress {color: var(--primary-70);}
     </style>
 </head>
 <body>
@@ -201,18 +217,18 @@
                                 <hr class="p-0 my-3">
                                 <div class="d-flex flex-row justify-content-between">
                                     <div class="d-flex flex-row align-items-center gap-1">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke="#3980F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <svg class="progress-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         <div class="text-primary-50 task_progress">5/5</div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center gap-1">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke="#3980F3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke="#3980F3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <svg class='endat' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.75879 12.25L9.00879 13.5L12.3421 10.1666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.33366 4.99996H11.667C13.3337 4.99996 13.3337 4.16663 13.3337 3.33329C13.3337 1.66663 12.5003 1.66663 11.667 1.66663H8.33366C7.50033 1.66663 6.66699 1.66663 6.66699 3.33329C6.66699 4.99996 7.50033 4.99996 8.33366 4.99996Z" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M13.3333 3.34998C16.1083 3.49998 17.5 4.52498 17.5 8.33331V13.3333C17.5 16.6666 16.6667 18.3333 12.5 18.3333H7.5C3.33333 18.3333 2.5 16.6666 2.5 13.3333V8.33331C2.5 4.53331 3.89167 3.49998 6.66667 3.34998" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                         <div class="text-primary-50 task_duedate">end at 10/2/2023</div>
                                     </div>
