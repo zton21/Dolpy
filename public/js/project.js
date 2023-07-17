@@ -17,7 +17,7 @@ $(window).on('load', () => {
                     div('fs-7 text-secondary').text(data.chatDate),
                 ]),
                 div('d-flex flex-row' + (own?'-reverse':'')).append(
-                    div('p-2 rounded shadow d-inline-flex text-break'+(own?' bg-custom':'')).text(data.chatContent)
+                    div('p-2 rounded shadow d-inline-flex text-break'+(own?' bg-primary-10':'')).text(data.chatContent)
                 )
             ]),
             div('col-1').append($("<img>", {class: "img-fluid rounded-circle", alt:"Profile Picture", src:"/img/profilePicture.png"}))

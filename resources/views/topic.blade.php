@@ -59,6 +59,9 @@
             text-overflow: ellipsis;
             display: -webkit-box;
         }
+        .fs-7 {
+            font-size: 12px;
+        }
     </style>
     <script>$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});</script>
     <script src="{{asset('js/project.js')}}"></script>
@@ -161,7 +164,7 @@
                                     <div class="offset-1 col-10">
                                         <div class="d-flex flex-row-reverse gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex text-break" style="background: #D7E6FD">
@@ -181,7 +184,7 @@
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
                                             <div>{{$item->firstName}}</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                         </div>
                                         <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                             {{$item->chatContent}}
