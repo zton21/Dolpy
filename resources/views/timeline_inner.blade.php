@@ -55,12 +55,13 @@
                 <div class="col-md-4 p-2 d-flex">
                     <div class="card p-0 shadow">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h3 class="card-title my-1">Task Title Long</h3>                 
-                            <div class="d-flex justify-content-between gap-2">
-                                <a class="p-0 m-0 text-decoration-none text-neutral-90" href="#">Edit</a>
-                                <div class="border-neutral-90 my-1"></div> 
+                            <div class="d-flex align-items-center gap-1">
                                 <input class="form-check-input me-1 border-primary-50" type="checkbox" id="check{{$x}}" value="" onchange="complete(check{{$x}})">
+                                <h3 class="card-title my-1">Task Title Long</h3>                 
                             </div>
+                            <button class="btn" type="button">
+                                <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="5" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="12" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> <circle cx="19" cy="12" r="2" stroke="#858487" stroke-width="1.5"></circle> </g></svg>
+                            </button> 
                         </div>
                         <div class="card-body d-flex flex-fill" style=" height:15em; text-justify: inter-word; text-align: justify"> 
                             <p>
