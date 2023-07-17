@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('file_id');
             $table->foreignId('user_id');
+            $table->string('attachmentName');
             $table->string('attachmentPath');
             $table->string('attachmentType');
             $table->date('attachmentDate');
+            $table->string('attachmentSize');
+            $table->string('attachmentExtension');
             
             $table->foreign('file_id')->references('id')->on('file_sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

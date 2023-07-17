@@ -417,15 +417,9 @@ class ProjectController extends Controller
     }
 
     public static function post_files(Request $request, $id) {
-        // if ($request->has('task') && $request->task == 'send_file') {
-        //     return ProjectController::add_files_file($request);
-        // }
-        // if ($request->has('task') && $request->task == 'send_message') {
-        //     return CommentController::add_comment($request, $id);
-        // }
-        // if ($request->has('task') && $request->task == 'read') {
-        //     return ProjectController::read_message($request, $id);
-        // }
+        if ($request->has('task') && $request->task == 'send_file') {
+            return ProjectController::send_file($request, $id);
+        }
         if ($request->has('task') && $request->task == 'create_file') {
             return ProjectController::create_file($request, $id);
         }
@@ -454,12 +448,35 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
-    public static function add_files_file(Request $request) {
-        if ($request->hasFile('fileInput')) {
+    public static function send_file(Request $request, $project_id) {
+        // dd($request);
+        $user = Auth::user();
+        
+        // Retrieve form data
+        $fileId = $request->input('file_id');
+        $OriFileName = $request->input('file_name');
+        $fileSize = $request->input('file_size');
+        $fileExtension = $request->input('file_extension');
+
+        if ($request->hasFile('file')) {
             $file = $request->file('fileInput');
-            $storagePath = storage_path('app/public/uploads');
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move($storagePath, $fileName);
+
+            $storagePath = $file->storeAs('/files', $filename, 'public');
+            // $file->move($storagePath, $fileName);
+
+            // Store the file details in the database
+            $fileModel = new Attachment();
+            $fileModel->user_id = $user->id;
+            $fileModel->file_id = $fileId;
+            $fileModel->attachmentName = $OriFileName;
+            $fileModel->attachmentType = 'file';
+            $fileModel->attachmentDate = date("Y-m-d");
+            $fileModel->attachmentSize = $fileSize;
+            $fileModel->attachmentExtension = $fileExtension;
+            $fileModel->attachmentPath = $storagePath; // Save the file path in the database
+            $fileModel->save();
+
             return response()->json(['message' => 'File uploaded successfully']);
         }
 

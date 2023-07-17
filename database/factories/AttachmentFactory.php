@@ -21,9 +21,12 @@ class AttachmentFactory extends Factory
         return [
             'file_id' => FileSection::all()->random()->id,
             'user_id' => User::all()->random()->id,
+            'attachmentName' => fake()->randomElement(['Tugas.png', 'Latihan.pdf', 'Presen.pptx']),
             'attachmentPath' => fake()->imageUrl($width = 640, $height = 480),
             'attachmentType' => fake()->randomElement(['image', 'link', 'file']),
             'attachmentDate' => fake()->dateTimeThisYear(),
+            'attachmentSize' => fake()->randomElement(['10 KB', '1 KB', '4 MB']),
+            'attachmentExtension' => fake()->randomElement(['DOCX', 'PDF', 'XLSX', 'PPTX', 'TXT']),
         ];
     }
 }

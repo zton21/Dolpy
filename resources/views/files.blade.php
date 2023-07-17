@@ -324,9 +324,9 @@
                                         <path d="M12.4997 23.956C6.32259 23.956 1.30176 18.9351 1.30176 12.758C1.30176 6.58095 6.32259 1.56012 12.4997 1.56012C18.6768 1.56012 23.6976 6.58095 23.6976 12.758C23.6976 18.9351 18.6768 23.956 12.4997 23.956ZM12.4997 3.12262C7.18717 3.12262 2.86426 7.44554 2.86426 12.758C2.86426 18.0705 7.18717 22.3935 12.4997 22.3935C17.8122 22.3935 22.1351 18.0705 22.1351 12.758C22.1351 7.44554 17.8122 3.12262 12.4997 3.12262Z" fill="#1D1D1D"/>
                                     </svg>
                                 </label>
-                                <input type="file" id="fileInput" class="d-none">
+                                <input type="file" id="fileInput" name="fileInput" class="d-none">
+                                <x-file-upload-modal :fileId="$file->id" />
                             </div>
-                            <x-file-upload-modal />
                             <div class="col-md-4 text-center py-2">
                                 <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.6143 18.4872H17.1872C20.333 18.4872 22.9163 15.9143 22.9163 12.758C22.9163 9.6122 20.3434 7.02887 17.1872 7.02887H15.6143" stroke="#1D1D1D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
