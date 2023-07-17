@@ -94,7 +94,7 @@
                         @foreach ($members as $item)
                         <div class="row py-2 align-items-center member p-1">
                             <div class="col-auto">
-                                <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                                <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
                             </div>
                             <div class="col-8 p-0">
                             <div class="fs-6 {{$item->id == $user->id?'text-primary':''}}"><strong>{{$item->firstName}} {{$item->lastName}}</strong></div> 
