@@ -50,17 +50,21 @@
                     <div class="bg-primary-5 dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="notificationDropdown">
                         <div class="fs-4 px-3 pt-2 fw-semibold">Notification</div>
                         <hr class="mx-3 mb-0">
-                        <div class="dropdown-item d-flex flex-row p-3 gap-3 w-100 flex-shrink-1">
+                        @foreach ($notifs as $item)
+                        <form class="d-flex flex-row p-3 gap-3 w-100 flex-shrink-1 accept-invite disabled text-dark" method="POST" action='/home'>
+                            @csrf
+                            <input type='hidden' name='notif_id' value='{{$item->id}}'>
                             <img class="img-fluid rounded-circle fs-5" style="width: 2em;" src="{{ asset('img/profilePicture.png') }}" alt="">
                             <div class="d-flex flex-column">
-                                <div class="d-flex">Dolpy Team has invited you to web programming project</div>
-                                <div>20/1/2023 - 01:28 PM</div>
+                                <div class="d-flex"><b>{{$item->firstName}} {{$item->lastName}}</b>&nbsp;has invited you to&nbsp;<b>{{$item->projectName}}</b></div>
+                                <div>{{date('d/m/Y - g:i A', strtotime($item->created_at))}}</div>
                                 <div class="d-flex flex-row gap-2">
-                                    <button class="btn btn-primary">Accept</button>
-                                    <button class="btn btn-danger">Reject</button>
+                                    <button name="task" value="accept_invite" class="btn btn-primary">Accept</button>
+                                    <button name="task" value="reject_invite" class="btn btn-danger">Reject</button>
                                 </div>
                             </div>
-                        </div>
+                        </form>                            
+                        @endforeach
                     </div>
                 </li>
                 {{-- <li class="nav-item">

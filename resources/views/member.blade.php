@@ -79,7 +79,7 @@
                     <div class="mx-3 fs-4" style="color: #858487">Project members can view all Project visible boards and create new boards in the Project.</div>
                     @endif
                     <hr class="p-0 my-3 d-block">
-                    @if ($role == "Creator")
+                    {{-- @if ($role == "Creator")
                         <div class="fs-6 mx-3" style="color: #858487">Anyone with an invite link can join this Project. You can also disable and create a new invite link for this Project at any time.</div>
                         <div class="d-flex flex-row justify-content-evenly">
                             <button type="button" class="btn btn-sm btn-danger px-4 rounded-3">Disable invite link</button>
@@ -89,15 +89,15 @@
                             </button>
                         </div>
                         <hr class="p-0 my-3">
-                    @endif
+                    @endif --}}
                         <div class="container-fluid d-flex flex-column overflow-x-hidden overflow-y-auto h-100">
                         @foreach ($members as $item)
-                        <div class="row py-2 align-items-center member p-1 {{$item->id == $user->id?'myself':''}}">
+                        <div class="row py-2 align-items-center member p-1">
                             <div class="col-auto">
                                 <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
                             </div>
                             <div class="col-8 p-0">
-                            <div class="fs-6"><strong>{{$item->firstName}}</strong></div> 
+                            <div class="fs-6 {{$item->id == $user->id?'text-primary':''}}"><strong>{{$item->firstName}} {{$item->lastName}}</strong></div> 
                                 <div class="">{{$item->email}}</div>
                             </div>
                             <div class="col-auto ms-auto align-items-center justify-content-center">
