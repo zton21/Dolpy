@@ -70,6 +70,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
                     
                     // Files
                     Route::get('/project/{id}/files', 'files')->name('files');
+                    Route::post('/project/{id}/files', 'post_files');
 
                     // Member
                     Route::get('/project/{id}/member', 'member')->name('member');
