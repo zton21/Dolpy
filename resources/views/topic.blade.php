@@ -85,7 +85,7 @@
                             <h3 class="m-0">Topic List</h3>
                         </div>
                         <div class="col-auto com-sm-3">
-                            <button onclick="openCreateTopicFormModal()" class="btn btn-primary">
+                            <button onclick="openCreateTopicFormModal()" class="btn bg-primary-50 btndolpy">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
                                 <span class="text-white my-auto">Create Topic</span>
                             </button>
@@ -204,9 +204,6 @@
                                 @csrf
                                 <div class="d-flex flex-row gap-2 align-items-center">
                                     <input type="hidden" name="topic_id" value="{{$topic->id}}">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M8 5v0a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v0M8 5v0a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v0"/></svg>
-                                    </div>
                                     <div class="input-group">
                                         <input type="text" class="py-2 form-control" id="comment" name="comment" placeholder="Type your comment..." aria-describedby="basic-addon1" autocomplete="off" required>
                                     </div>

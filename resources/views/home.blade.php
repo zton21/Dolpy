@@ -49,7 +49,7 @@
             <div>
                 {{-- Sort By --}}
                 {{-- Button: Create Project --}}
-                <button onclick="openCreateProjectFormModal()" class="btn btn-primary">Create Project</button>
+                <button onclick="openCreateProjectFormModal()" class="btn bg-primary-10 btndolpy">Create Project</button>
                 <x-create-project-form></x-create-project-form>
             </div>
         </div>

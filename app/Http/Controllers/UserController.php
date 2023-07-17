@@ -44,8 +44,10 @@ class UserController extends Controller
             where user_id = ?', [Auth::user()->id]),
         ]);
     }
-    public static function home()
+    public static function home(Request $request)
     {
+        if ($request->has('search')) return UserController::search($request);
+
         $uncomplete = UserController::get_user_inprogress_projects("");
         $complete = UserController::get_user_complete_projects("");
 
@@ -123,6 +125,24 @@ class UserController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public static function search(Request $request){
+        $x = Auth::user()->id;
+        $y = $request->search;
+        $results = DB::select("SELECT h.projectName, h.projectDueDate, u.id AS userID, u.firstName, u.lastName, h.id, h.projectDescription, h.projectProgress, h.projectWallpaperURL FROM 
+        project_headers h JOIN project_details d ON h.ID = d.project_ID AND d.role = 'Creator' 
+        AND EXISTS(SELECT id FROM project_headers ph JOIN project_details pd ON ph.id = pd.project_id AND pd.user_id = ? AND h.id = ph.id) 
+        JOIN users u ON u.id = d.user_id WHERE h.projectName LIKE ? ORDER BY h.created_at", [
+            $x, 
+            "%{$request->search}%"
+        ]);
+        
+        $data = [
+            'user' => Auth::user(),
+            'projects' => $results,
+        ];
+        return view('home2',  UserController::appendUser($data));
     }
 
 }
