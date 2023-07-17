@@ -75,34 +75,24 @@
 
     <div class="container vh-100" style="padding-top: 90px;">
         <div class="row h-100 border">
-            <div class="col-5 h-100">
+            <div class="col-5 p-0 h-100">
                 <div class="container-fluid p-0 h-100 d-flex flex-column overflow-hidden">
-                    <div class="row card-bg p-1 align-items-end" style="height: 96px">
-                        <div class="col-12 d-flex justify-content-end">
-                            <a class="btn btn-primary d-inline-flex flex-row gap-2 align-items-center" style="background: #3980F3; font-size: 14px" href="#" role="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1l1-4l9.5-9.5z"/></g></svg>
-                                <div class="text-white">Modify Theme</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div style="background: #D7E6FD" class="rounded-bottom px-3 py-4">
-                            <h3>{{$project->projectName}}</h3>
+                    <div class="card p-0">
+                        <img src="{{URL::asset('img/WebProgrammingWallpaper.png')}}" class="img-fluid card-img-top">
+                        <div class="card-body bg-primary-10">
+                            <h3>{{ $project->projectName }}</h3>
                             <div class="truncate" style="max-width: 100%;">{{$project->projectDescription}}</div>
-                            <div class="btn btn-primary btn-sm">Read More</div>
                         </div>
                     </div>
-                    <div class="row py-2 align-items-center">
+                    <div class="row m-0 py-3 justify-content-between">
                         <div class="col-6">
-                            <h1>Topic List</h1>
+                            <h3 class="m-0">Topic List</h3>
                         </div>
-                        <div class="col-6 d-flex justify-content-end">
-                            {{-- <a class="btn px-4 btn-primary d-inline-flex flex-row gap-2 align-items-center" style="background: #3980F3" href="#" role="button">
+                        <div class="col-auto com-sm-3">
+                            <button onclick="openCreateTopicFormModal()" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="white" fill-rule="evenodd" clip-rule="evenodd"><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z"/><path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z"/></g></svg>
-                                <div class="text-white">Add Topic</div>
-                            </a> --}}
-                            
-                            <button onclick="openCreateTopicFormModal()" class="btn btn-primary">Create Topic</button>
+                                <span class="text-white my-auto">Create Topic</span>
+                            </button>
                             <x-create-topic-form></x-create-topic-form>
                         </div>
                     </div>
@@ -159,8 +149,8 @@
                 </div>
             </div>
             @isset($topic)
-            <div class="col-7 p-0 h-100" style="border: 1px solid #A3A3A5;">
-                <div class="container-fluid p-0 h-100 d-flex flex-column" style="background: #F3F8FE">
+            <div class="col-7 h-100 border p-0">
+                <div class="container-fluid p-0 h-100 d-flex flex-column">
                     <div class="row p-2 bg-white mx-0">
                         <div class="col-12 d-flex flex-row gap-2">
                             <h1>{{$topic->topicName}}</h1>
@@ -171,7 +161,7 @@
                         <div class="me-auto fs-5">{{ $topic->topicDescription }}</div>
                     </div>
                     <hr class="p-0 my-0">
-                    <div class="container-fluid p-0 chatbox" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
+                    <div class="container-fluid p-0 chatbox bg-primary-5" style="flex-grow: 1; overflow-x: hidden; overflow-y: auto;">
                         @forelse ($messages as $item)
                             @if ($item->user_id == $user->id)
                                 <div class="row px-4 py-2">
