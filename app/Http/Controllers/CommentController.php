@@ -44,6 +44,7 @@ class CommentController extends Controller
                 'comment' => $comment_data,
                 'project_id' => $project_id,
                 'sender' => $user->only(['firstName', 'id']),
+                'url' => asset('storage/'.$user->profileURL),
             ]
         );
 

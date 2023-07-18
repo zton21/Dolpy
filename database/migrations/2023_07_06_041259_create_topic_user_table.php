@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('topic_user', function (Blueprint $table) {
-            // $table->id();
+            $table->id();
             $table->foreignId('topic_id');
             $table->foreignId('user_id');
             $table->integer('seen')->default(0);

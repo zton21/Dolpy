@@ -3,6 +3,7 @@ const LAZY_READ_TIMEOUT = 1000;
 $(window).on('load', () => {
     let topic_id = $('.active1').attr('id')
     topic_id = topic_id.substring(1);
+    setTimeout(()=>{$('.chatbox').scrollTop($('.chatbox').prop("scrollHeight"))}, 0);
 
     // Append Message
     // {"data":{"comment":{"chatContent":"test","chatDate":"2023-07-05 02-08-36"},"project_id":"23","sender":{"firstName":"Admin","id":1}}}
@@ -10,6 +11,8 @@ $(window).on('load', () => {
     function append_data(data) {
         let own = data.id == user_id;
         let div = (c) => {return $("<div>", {class: c})}
+        // alert(data.profileURL);
+        let y = $("<img>", {class: "img-fluid rounded-circle", alt:"Profile Picture", src:data.profileURL, css:'height: 40px; width: 40px;'});
         let x = [
             div('col-11').append([
                 div('d-flex gap-2 flex-row' + (own?'-reverse':'')).append([
@@ -20,10 +23,11 @@ $(window).on('load', () => {
                     div('p-2 rounded shadow d-inline-flex text-break'+(own?' bg-primary-10':'')).text(data.chatContent)
                 )
             ]),
-            div('col-1').append($("<img>", {class: "img-fluid rounded-circle", alt:"Profile Picture", src:"/img/profilePicture.png"}))
+            div('col-1').append(y)
         ];
         if (!own) x.reverse();        
         $('.chatbox').append(div("row px-4 py-2").append(x));
+        setTimeout(()=>{$('.chatbox').scrollTop($('.chatbox').prop("scrollHeight"))}, 0);
     }
 
     const send_read_event = function() {
@@ -64,6 +68,7 @@ $(window).on('load', () => {
                 'chatDate': data.comment.chatDate,
                 'chatContent': data.comment.chatContent,
                 'id': data.sender.id,
+                'profileURL': data.url,
             }
             append_data(x);
             read_message();
@@ -112,6 +117,7 @@ $(window).on('load', () => {
         $('#comment').val('');
         post.done(function(data) {
             // Ok
+            
         })
     })
 
