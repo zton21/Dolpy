@@ -71,7 +71,7 @@
                     Effortlessly track, manage, and succeed with Dolpy. Boost productivity, conquer tasks, and keep your project on track. No more missed deadlines or chaotic schedules. Dolpy: Your key to project success!
                 </div>
                 <div class="col-12 fs-4 text-primary mt-1">
-                    <a href="#">Link / motto / anything else</a> 
+                    <a href="#">"Precision, and Timely Triumph"</a> 
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
                     Enhance team collaboration with our chat and separate file features. Discuss, provide feedback, update information, sharing files, photos, and links in real-time. Experience limitless collaboration with Dolpy!
                 </div>
                 <div class="col-auto fs-4 text-primary mt-1">
-                    <a href="#">Link / motto / anything else</a> 
+                    <a href="#">"Unleashing the power of unity"</a> 
                 </div>
             </div>
         </div>
@@ -180,7 +180,7 @@
                     Manage schedule and manage project activities easily. Gain clear visibility into your project schedule, avoid overlaps, and stay on track. Take control of your time and achieve project excellence with Dolpy!
                 </div>
                 <div class="col-12 fs-4 text-primary mt-1">
-                    <a href="#">Link / motto / anything else</a> 
+                    <a href="#">"Take charge of your time"</a> 
                 </div>
             </div>
         </div>
