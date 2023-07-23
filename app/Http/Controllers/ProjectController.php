@@ -229,7 +229,7 @@ class ProjectController extends Controller
         , ['project_id' => $project_id]);
         
         $topic_n = ProjectController::get_current_topic($request);
-
+        if ($topic_n >= count($result)) $topic_n = 0;
         if (count($result) == 0) {
             $messages = null;
             $topic = null;

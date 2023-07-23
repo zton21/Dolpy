@@ -11,6 +11,11 @@
     <link rel="shortcut icon" href="{{ asset('/img/logo-primary.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Your Team's Project with Us | Dolpy</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">    
     @include('index.nav')

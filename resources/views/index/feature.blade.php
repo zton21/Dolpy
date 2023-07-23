@@ -44,7 +44,7 @@
             </svg>
         </div>
         <div class="col-md-6">
-            <img src="{{URL::asset('img/Feature.png')}}" alt="Feature" class="img-fluid">
+            <img src="{{URL::asset('img/img0.jpg')}}" alt="Feature" class="img-fluid">
         </div>
         <div class="col-md-5">
             <div class="row">
@@ -126,7 +126,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <img src="{{URL::asset('img/Feature.png')}}" alt="Feature" class="img-fluid">
+            <img src="{{URL::asset('img/img1.jpg')}}" alt="Feature" class="img-fluid">
         </div>
     </div>
 
@@ -152,7 +152,7 @@
             </svg>
         </div>
         <div class="col-md-6">
-            <img src="{{URL::asset('img/Feature.png')}}" alt="Feature" class="img-fluid">
+            <img src="{{URL::asset('img/img2.jpg')}}" alt="Feature" class="img-fluid">
         </div>
         <div class="col-md-5">
             <div class="row">
