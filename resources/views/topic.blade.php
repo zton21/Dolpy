@@ -12,6 +12,7 @@
     <link href="/css/master.css" rel="stylesheet">
     {{-- Pusher --}}
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <link rel="shortcut icon" href="{{ asset('/img/logo-primary.png') }}" type="image/x-icon">
     <script>
         const project_id = {{$project->id}};
         const user_id = {{$user->id}};
