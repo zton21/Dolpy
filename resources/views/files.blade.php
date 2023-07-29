@@ -101,8 +101,8 @@
                                 <div class="row px-4 py-2">
                                     <div class="offset-1 col-10">
                                         <div class="d-flex flex-row-reverse gap-2">
-                                            <div>Gundul Pacul</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex flex-wrap bg-primary-10">
@@ -122,8 +122,8 @@
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
-                                            <div>Gundul Pacul</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row">
                                             <div class="p-2 rounded shadow d-inline-flex text-break bg-white flex-wrap">
@@ -139,17 +139,17 @@
                                 <div class="row px-4 py-2">
                                     <div class="offset-1 col-10">
                                         <div class="d-flex flex-row-reverse gap-2">
-                                            <div>Gundul Pacul</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div class="p-2 rounded shadow d-inline-flex flex-wrap bg-primary-10 text-end">
                                                 <div class="col-auto ps-0">
                                                     <div style="font-size: calc(0.7rem + 0.1vw);">
-                                                        Design System - 1.docx
+                                                        {{$item->attachmentName}}
                                                     </div>
                                                     <div style="font-size: calc(0.7rem + 0.1vw); color: #A3A3A5;">
-                                                        18 KB, Word.Document.12
+                                                        {{$item->attachmentSize.', '.$item->attachmentExtension}}
                                                     </div>
                                                 </div>
                                                 <div class="col-auto my-auto ms-2">
@@ -188,8 +188,8 @@
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
-                                            <div>Gundul Pacul</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row">
                                             <div class="p-2 rounded shadow d-inline-flex text-break bg-white flex-wrap">
@@ -216,10 +216,10 @@
                                                 </div>
                                                 <div class="col-auto ps-0">
                                                     <div style="font-size: calc(0.7rem + 0.1vw);">
-                                                        Design System - 1.docx
+                                                        {{$item->attachmentName}}
                                                     </div>
                                                     <div style="font-size: calc(0.7rem + 0.1vw); color: #A3A3A5;">
-                                                        18 KB, Word.Document.12
+                                                        {{$item->attachmentSize.', '.$item->attachmentExtension}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -233,8 +233,8 @@
                                 <div class="row px-4 py-2">
                                     <div class="offset-1 col-10">
                                         <div class="d-flex flex-row-reverse gap-2">
-                                            <div>Gundul Pacul</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="p-2 bg-primary-10 rounded shadow d-inline-block text-break text-end">
                                             <a href="https://www.figma.com/file/aL5K3TFy3cKzPcGW8kLkS3/Untitled?node-id=0%3A1&t=VpoK06QUPm6RHQCD-1">https://www.figma.com/file/aL5K3TFy3cKzPcGW8kLkS3/Untitled?node-id=0%3A1&t=VpoK06QUPm6RHQCD-1</a>
@@ -252,8 +252,8 @@
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
-                                            <div>Gundul Pacul</div>
-                                            <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                             <a href="https://www.figma.com/file/aL5K3TFy3cKzPcGW8kLkS3/Untitled?node-id=0%3A1&t=VpoK06QUPm6RHQCD-1">https://www.figma.com/file/aL5K3TFy3cKzPcGW8kLkS3/Untitled?node-id=0%3A1&t=VpoK06QUPm6RHQCD-1</a>
@@ -267,8 +267,8 @@
                             <img src="{{URL::asset('img/profilePicture.png')}}" alt="Profile Picture" class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-row gap-2">
-                                    <div>Gundul Pacul</div>
-                                    <div class="text-secondary" style="font-size: 12px">10/1/2023 - 02.39 PM</div>
+                                    <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                    <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                 </div>
                                 <div class="p-2 bg-white rounded shadow d-inline-block text-break">
                                     <div class="row">
@@ -295,10 +295,10 @@
                                         </div>
                                         <div class="col-auto ps-0">
                                             <div style="font-size: calc(0.7rem + 0.1vw);">
-                                                Design System - 1.docx
+                                                {{$item->attachmentName}}
                                             </div>
                                             <div style="font-size: calc(0.7rem + 0.1vw); color: #A3A3A5;">
-                                                18 KB, Word.Document.12
+                                                {{$item->attachmentSize.', '.$item->attachmentExtension}}
                                             </div>
                                         </div>
                                     </div>

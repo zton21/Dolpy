@@ -383,7 +383,7 @@ class ProjectController extends Controller
             $fileSection = FileSection::find($id);
             
             if ($fileSection) {
-                $attachments = Attachment::where('file_id', $fileSection->id);
+                $attachments = Attachment::where('file_id', $fileSection->id)->get();
             }
             
         }
