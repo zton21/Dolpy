@@ -165,7 +165,7 @@
                 <div class="brand">
                     <a class="text-neutral-10 navbar-brand fw-bold fs-3" href="/index">
                         <div class="d-inline-block" style="max-width:8vh;">
-                            <img src="http://localhost:8000/img/logo.png" alt="Logo" class="img-fluid">
+                            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="img-fluid">
                         </div>
                         <div class="d-inline ms-2 fs-1">Dolpy</div> 
                     </a>
