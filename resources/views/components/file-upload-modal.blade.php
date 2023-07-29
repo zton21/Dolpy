@@ -58,7 +58,7 @@
                 <input type="hidden" name="file_name" id="file-name-input" value="">
                 <input type="hidden" name="file_size" id="file-size-input" value="">
                 <input type="hidden" name="file_extension" id="file-extension-input" value="">
-                {{-- <input type="hidden" name="file" id="file-input" value=""> --}}
+                <input type="file" id="fileInput" name="fileInput" class="d-none">
                 <div class="modal-footer">
                     <button type="submit" id="uploadBtn" class="btn btn-primary w-100">Upload Attachment</button>
                 </div>
@@ -70,11 +70,15 @@
 <script>
     var maxFileSizeInBytes = 10 * 1024 * 1024; // 10 MB
     var file = null;
-
-    document.getElementById('fileInput').addEventListener('change', function() {
-        var fileName = document.getElementById('fileName');
+    
+    var $testing = document.getElementById('fileInput')
+    document.getElementById('fileInput').addEventListener('change', () => {setTimeout(function() {
+        // alert($('#fileInput').html());
+        
+        var fleName = document.getElementById('fileName');
         var fileDesc = document.getElementById('fileDesc');
-        file = this.files[0];
+        file = $testing.files[0];
+        // alert(file)
         
         if (file.size > maxFileSizeInBytes) {
             alert('File size exceeds the limit of 10 MB.');
@@ -128,19 +132,21 @@
         }
 
         $('#file-upload-modal').modal('show');
-    });
+    })}, 0);
 
-    $('#uploadBtn').click(function(e) {
-            // let url = URL.createObjectURL(e.target.files[0]);
-            let fd = new FormData();
-            fd.append('fileInput', file);
+    // $('#uploadBtn').click(function(e) {
+    //         // e.preventDefault();
+    //         // let url = URL.createObjectURL(e.target.files[0]);
+    //         let fd = new FormData();
+    //         console.log(file);
+    //         fd = fd.append('fileInput', $testing.files[0]);
             
-            $.post({
-                data: fd,
-                processData: false,
-                contentType: false,
-            });
-        });
+    //         $.post({
+    //             data: fd,
+    //             processData: false,
+    //             contentType: false,
+    //         });
+    //     });
 
     function getFileSize(size) {
         var kilobytes = size / 1024;

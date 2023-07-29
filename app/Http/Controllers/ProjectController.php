@@ -457,12 +457,14 @@ class ProjectController extends Controller
         $OriFileName = $request->input('file_name');
         $fileSize = $request->input('file_size');
         $fileExtension = $request->input('file_extension');
+        
+        // dd($request);
 
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('fileInput')) {
             $file = $request->file('fileInput');
             $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-            $storagePath = $file->storeAs('/files', $filename, 'public');
+            $storagePath = $file->storeAs('/files', $fileName, 'public');
             // $file->move($storagePath, $fileName);
 
             // Store the file details in the database
