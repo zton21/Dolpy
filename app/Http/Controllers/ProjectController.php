@@ -420,6 +420,12 @@ class ProjectController extends Controller
         if ($request->has('task') && $request->task == 'send_file') {
             return ProjectController::send_file($request, $id);
         }
+        if ($request->has('task') && $request->task == 'send_image') {
+            return ProjectController::send_image($request, $id);
+        }
+        if ($request->has('task') && $request->task == 'send_link') {
+            return ProjectController::send_link($request, $id);
+        }
         if ($request->has('task') && $request->task == 'create_file') {
             return ProjectController::create_file($request, $id);
         }
@@ -448,7 +454,7 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
-    public static function send_file(Request $request, $project_id) {
+    public static function send_file(Request $request) {
         // dd($request);
         $user = Auth::user();
         
@@ -479,10 +485,71 @@ class ProjectController extends Controller
             $fileModel->attachmentPath = $storagePath; // Save the file path in the database
             $fileModel->save();
 
-            return response()->json(['message' => 'File uploaded successfully']);
+            return redirect()->back();
+
+            // return response()->json(['message' => 'File uploaded successfully']);
         }
 
-        return response()->json(['error' => 'No file uploaded'], 400);
+        // return response()->json(['error' => 'No file uploaded'], 400);
+    }
+
+    public static function send_image(Request $request) {
+        // dd($request);
+        $user = Auth::user();
+        
+        // Retrieve form data
+        $fileId = $request->input('file_id');
+        $OriImageName = $request->input('image_name');
+        $imageSize = $request->input('image_size');
+        $imageExtension = $request->input('image_extension');
+        
+        // dd($request);
+
+        if ($request->hasFile('imageInput')) {
+            $image = $request->file('imageInput');
+            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $storagePath = $image->storeAs('/images', $imageName, 'public');
+            // $image->move($storagePath, $imageName);
+
+            // Store the image details in the database
+            $imageModel = new Attachment();
+            $imageModel->user_id = $user->id;
+            $imageModel->file_id = $fileId;
+            $imageModel->attachmentName = $OriImageName;
+            $imageModel->attachmentType = 'image';
+            $imageModel->attachmentDate = date("Y-m-d");
+            $imageModel->attachmentSize = $imageSize;
+            $imageModel->attachmentExtension = $imageExtension;
+            $imageModel->attachmentPath = $storagePath; // Save the image path in the database
+            $imageModel->save();
+
+            return redirect()->back();
+
+            // return response()->json(['message' => 'File uploaded successfully']);
+        }
+
+        // return response()->json(['error' => 'No file uploaded'], 400);
+    }
+
+    public static function send_link(Request $request) {
+        // dd($request);
+        $user = Auth::user();
+        $fileId = $request->input('file_id');
+        
+        $request->validate([
+            'linkInput' => 'required',
+        ]);
+
+        $imageModel = new Attachment();
+        $imageModel->user_id = $user->id;
+        $imageModel->file_id = $fileId;
+        $imageModel->attachmentName = $request->linkInput;
+        $imageModel->attachmentType = 'link';
+        $imageModel->attachmentDate = date("Y-m-d");
+        $imageModel->save();
+
+        return redirect()->back()->with('success', 'Link uploaded successfully!');
     }
     
     public static function timeline_inner($project_id)

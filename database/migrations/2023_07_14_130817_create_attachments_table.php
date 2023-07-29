@@ -18,11 +18,11 @@ return new class extends Migration
             $table->foreignId('file_id');
             $table->foreignId('user_id');
             $table->string('attachmentName');
-            $table->string('attachmentPath');
+            $table->string('attachmentPath')->nullable();
             $table->string('attachmentType');
             $table->date('attachmentDate');
-            $table->string('attachmentSize');
-            $table->string('attachmentExtension');
+            $table->string('attachmentSize')->nullable();
+            $table->string('attachmentExtension')->nullable();
             
             $table->foreign('file_id')->references('id')->on('file_sections')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
