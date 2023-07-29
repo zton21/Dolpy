@@ -383,7 +383,14 @@ class ProjectController extends Controller
             $fileSection = FileSection::find($id);
             
             if ($fileSection) {
-                $attachments = Attachment::where('file_id', $fileSection->id)->get();
+                // $attachments = Attachment::where('file_id', $fileSection->id)->get();
+                $attachments = DB::select(
+                    "SELECT a.*, u.firstName, u.lastName, u.profileURL
+                    FROM attachments a
+                    JOIN users u ON a.user_id = u.id
+                    WHERE a.file_id = :fileSection_id"
+                , ['fileSection_id' => $fileSection->id]);
+                // dd($attachments);
             }
             
         }

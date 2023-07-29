@@ -119,11 +119,11 @@
                                 {{-- Other Image --}}
                                 <div class="row px-4 py-2">
                                     <div class="col-1">
-                                        <img src="{{ asset('storage/' . $user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
-                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div>{{$item->firstName.' '.$item->lastName}}</div>
                                             <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row">
@@ -174,11 +174,11 @@
                                 {{-- Other File --}}
                                 <div class="row px-4 py-2">
                                     <div class="col-1">
-                                        <img src="{{ asset('storage/' . $user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
-                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div>{{$item->firstName.' '.$item->lastName}}</div>
                                             <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row">
@@ -229,11 +229,11 @@
                                 {{-- Other Link --}}
                                 <div class="row px-4 py-2">
                                     <div class="col-1">
-                                        <img src="{{ asset('storage/' . $user->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('storage/' . $item->profileURL) }}" alt="Profile Picture" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="col-10">
                                         <div class="d-flex flex-row gap-2">
-                                            <div>{{$user->firstName.' '.$user->lastName}}</div>
+                                            <div>{{$item->firstName.' '.$item->lastName}}</div>
                                             <div class="text-secondary" style="font-size: 12px">{{$item->attachmentDate}}</div>
                                         </div>
                                         <div class="d-flex flex-row">
